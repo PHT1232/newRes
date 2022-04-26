@@ -1,0 +1,42 @@
+package org.backend.DAO.impl;
+
+import java.util.List;
+
+import org.backend.DAO.lopHocDAO;
+import org.backend.Entity.lopHoc;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public class lopHocDAOIMPL implements lopHocDAO{
+
+	@Override
+	public List<lopHoc> getAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean insert(lopHoc lh) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean update(String id, lopHoc lh) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean delete(String id) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public lopHoc getById(String id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}
