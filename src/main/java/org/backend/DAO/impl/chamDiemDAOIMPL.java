@@ -78,7 +78,7 @@ public class chamDiemDAOIMPL implements chamDiemDAO{
 				}
 				return cd;
 			}
-		});
+		}, id);
 	}
 
 }

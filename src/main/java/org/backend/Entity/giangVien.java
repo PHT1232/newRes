@@ -4,11 +4,12 @@ public class giangVien {
 	private int id;
 	private String magv;
 	private String tenGV;
-	private String khoa;
+	private int khoa;
 	private String idBangCap;
 	private String quequan;
 	private String avatar;
 	private int status;
+	private String birthday;
 	private String created_by;
 	private String created_at;
 	private String updated_at;
@@ -17,8 +18,8 @@ public class giangVien {
 		
 	}
 	
-	public giangVien(int id, String magv, String tenGV, String khoa, String idBangCap, String quequan, String avatar,
-			int status, String created_by, String created_at, String updated_at) {
+	public giangVien(int id, String magv, String tenGV, int khoa, String idBangCap, String quequan, String avatar,
+			int status, String birthday, String created_by, String created_at, String updated_at) {
 		super();
 		this.id = id;
 		this.magv = magv;
@@ -28,9 +29,18 @@ public class giangVien {
 		this.quequan = quequan;
 		this.avatar = avatar;
 		this.status = status;
+		this.birthday = birthday;
 		this.created_by = created_by;
 		this.created_at = created_at;
 		this.updated_at = updated_at;
+	}
+
+	public String getBirthday() {
+		return birthday;
+	}
+
+	public void setBirthday(String birthday) {
+		this.birthday = birthday;
 	}
 
 	public int getId() {
@@ -57,11 +67,11 @@ public class giangVien {
 		this.tenGV = tenGV;
 	}
 
-	public String getKhoa() {
+	public int getKhoa() {
 		return khoa;
 	}
 
-	public void setKhoa(String khoa) {
+	public void setKhoa(int khoa) {
 		this.khoa = khoa;
 	}
 

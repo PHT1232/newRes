@@ -84,6 +84,6 @@ public class dkTinChiDAOIMPL implements dkTinChiDAO{
 				}
 				return dtc;
 			}
-		});
+		}, id);
 	}
 }

@@ -9,6 +9,6 @@ public interface giangVienDAO {
 	boolean insert(giangVien gv);
 	boolean update(String mgv, giangVien gv);
 	boolean delete(String mgv);
-	List<giangVien> getById(String mgv);
+	giangVien getById(String mgv);
 	giangVien getByUsername(String username);
 }

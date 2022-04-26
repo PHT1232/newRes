@@ -75,7 +75,7 @@ public class dangHocDAOIMPL implements dangHocDAO{
                 }
                 return dh;
 			}
-		});
+		}, id);
 	}
  
 }
