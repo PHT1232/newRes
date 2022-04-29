@@ -1,0 +1,16 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="projectAPI:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <exploded>false</exploded>
+        <module>projectAPI</module>
+        <packaging>war</packaging>
+        <unpackNestedArchives>false</unpackNestedArchives>
+      </options>
+    </properties>
+    <root id="archive" name="projectAPI.war">
+      <element id="artifact" artifact-name="projectAPI:war exploded" />
+    </root>
+  </artifact>
+</component>

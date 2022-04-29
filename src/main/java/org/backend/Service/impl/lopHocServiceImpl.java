@@ -34,7 +34,7 @@ public class lopHocServiceImpl implements lopHocService{
 	}
 
 	@Override
-	public lopHocDTO getById() {
+	public lopHocDTO getById(String id) {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -9,5 +9,5 @@ public interface lopHocService {
 	boolean insert(lopHocDTO lhdt);
 	boolean update(lopHocDTO lhdt, String id);
 	boolean delete(String id);
-	lopHocDTO getById();
+	lopHocDTO getById(String id);
 }

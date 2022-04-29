@@ -31,7 +31,7 @@ public class AccountController {
     dangHocService learningService;
 
     @Autowired
-    ClassesService classesService;
+    loptinchiService lopHocService;
 
     @Autowired
     SinhVienService studentService;
@@ -73,24 +73,24 @@ public class AccountController {
     public String index(ModelMap map) {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         AccountDTO acd = accountService.getByUserName(username);
-        SinhVienDTO std = studentService.getByUser(username);
-        List<monhocDTO> sdtl = new ArrayList<>();
-        List<ClassesDTO> cdtol = new ArrayList<>();
+        SinhVienDTO std = studentService.getById(acd.getStudentId());
+        List<MonDTO> sdtl = new ArrayList<>();
+        List<loptinchiDTO> cdtol = new ArrayList<>();
         if (acd.getStudentId() == null) {
-            List<LearningDTO> ltd = learningService.getByTeacherId(acd.getTeacherId());
-            for (LearningDTO ld : ltd) {
-                monhocDTO sdto = subjectsService.getBySingleId(ld.getIdMon());
-                ClassesDTO cdt = classesService.getBySingleId(ld.getClassId());
+        	List<dangHocDTO> ltd = learningService.getAll();
+            for (dangHocDTO ld : ltd) {
+                MonDTO sdto = subjectsService.getById(ld.getIdMon());
+                loptinchiDTO cdt = lopHocService.getById(ld.getClassId());
                 sdtl.add(sdto);
                 cdtol.add(cdt);
             }
             map.addAttribute("urlToClasse", "Teacher");
-            map.addAttribute("name", teacherService.getByUser(username).getName());
+            map.addAttribute("name", teacherService.getById(acd.getTeacherId()).getTenGV());
         } else {
-            List<LearningDTO> ltd = learningService.getByClassId(std.getClassId());
-            for (LearningDTO ld : ltd) {
-                monhocDTO sdto = subjectsService.getBySingleId(ld.getIdMon());
-                ClassesDTO cdt = classesService.getBySingleId(ld.getClassId());
+            List<dangHocDTO> ltd = learningService.getByClassId(std.getClassId());
+            for (dangHocDTO ld : ltd) {
+                MonDTO sdto = subjectsService.getBySingleId(ld.getIdMon());
+                loptinchiDTO cdt = lopHocService.getBySingleId(ld.getClassId());
                 sdtl.add(sdto);
                 cdtol.add(cdt);
             }
