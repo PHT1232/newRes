@@ -1,7 +1,7 @@
 package org.backend.Entity;
 
 public class khoa {
-	private int id;
+	private String id;
 	private String tenKhoa;
 	private int status;
 	private String created_by;
@@ -12,7 +12,7 @@ public class khoa {
 		
 	}
 	
-	public khoa(int id, String tenKhoa, int status, String created_by, String created_at, String updated_at) {
+	public khoa(String id, String tenKhoa, int status, String created_by, String created_at, String updated_at) {
 		super();
 		this.id = id;
 		this.tenKhoa = tenKhoa;
@@ -22,11 +22,11 @@ public class khoa {
 		this.updated_at = updated_at;
 	}
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

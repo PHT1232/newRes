@@ -1,7 +1,7 @@
 package org.backend.Models;
 
 public class MonDTO {
-	private int id;
+	private String id;
 	private String tenMon;
 	private String khoa;
 	private int soTinChi;
@@ -15,7 +15,7 @@ public class MonDTO {
 		
 	}
 
-	public MonDTO(int id, String tenMon, String khoa, int soTinChi, int soTietHoc, int status, String created_by,
+	public MonDTO(String id, String tenMon, String khoa, int soTinChi, int soTietHoc, int status, String created_by,
 			String created_at, String updated_at) {
 		super();
 		this.id = id;
@@ -29,11 +29,11 @@ public class MonDTO {
 		this.updated_at = updated_at;
 	}
 	
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

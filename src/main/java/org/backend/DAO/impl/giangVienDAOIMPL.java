@@ -33,8 +33,8 @@ public class giangVienDAOIMPL implements giangVienDAO{
 					gv.setId(rs.getInt("id"));
 					gv.setMagv(rs.getString("mgv"));
 					gv.setTenGV(rs.getString("tenGV"));
-					gv.setKhoa(rs.getInt("idKhoa"));
-					gv.setIdBangCap(rs.getString("idBangCap"));
+					gv.setKhoa(rs.getString("idKhoa"));
+					gv.setIdBangCap(rs.getInt("idBangCap"));
 					gv.setQuequan(rs.getString("quequan"));
 					gv.setAvatar(rs.getString("avatar"));
 					gv.setStatus(rs.getInt("STATUS"));
@@ -81,8 +81,8 @@ public class giangVienDAOIMPL implements giangVienDAO{
 					gv.setId(rs.getInt("id"));
 					gv.setMagv(rs.getString("mgv"));
 					gv.setTenGV(rs.getString("tenGV"));
-					gv.setKhoa(rs.getInt("idKhoa"));
-					gv.setIdBangCap(rs.getString("idBangCap"));
+					gv.setKhoa(rs.getString("idKhoa"));
+					gv.setIdBangCap(rs.getInt("idBangCap"));
 					gv.setQuequan(rs.getString("quequan"));
 					gv.setAvatar(rs.getString("avatar"));
 					gv.setStatus(rs.getInt("STATUS"));

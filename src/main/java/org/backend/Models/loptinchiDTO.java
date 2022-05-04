@@ -1,11 +1,11 @@
 package org.backend.Models;
 
 public class loptinchiDTO {
-	private int id;
+	private String id;
 	private String TenLopTC;
-	private int idKhoa;
-	private int idKhoaHoc;
-	private int idMon;
+	private String idKhoa;
+	private String idKhoaHoc;
+	private String idMon;
 	private String MaGV;
 	private int status;
 	private String created_by;
@@ -16,7 +16,7 @@ public class loptinchiDTO {
 		
 	}
 
-	public loptinchiDTO(int id, String tenLopTC, int idKhoa, int idKhoaHoc, int idMon, String maGV, int status,
+	public loptinchiDTO(String id, String tenLopTC, String idKhoa, String idKhoaHoc, String idMon, String maGV, int status,
 			String created_by, String created_at, String updated_at) {
 		super();
 		this.id = id;
@@ -31,11 +31,11 @@ public class loptinchiDTO {
 		this.updated_at = updated_at;
 	}
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -47,27 +47,27 @@ public class loptinchiDTO {
 		TenLopTC = tenLopTC;
 	}
 
-	public int getIdKhoa() {
+	public String getIdKhoa() {
 		return idKhoa;
 	}
 
-	public void setIdKhoa(int idKhoa) {
+	public void setIdKhoa(String idKhoa) {
 		this.idKhoa = idKhoa;
 	}
 
-	public int getIdKhoaHoc() {
+	public String getIdKhoaHoc() {
 		return idKhoaHoc;
 	}
 
-	public void setIdKhoaHoc(int idKhoaHoc) {
+	public void setIdKhoaHoc(String idKhoaHoc) {
 		this.idKhoaHoc = idKhoaHoc;
 	}
 
-	public int getIdMon() {
+	public String getIdMon() {
 		return idMon;
 	}
 
-	public void setIdMon(int idMon) {
+	public void setIdMon(String idMon) {
 		this.idMon = idMon;
 	}
 

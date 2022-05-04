@@ -30,7 +30,7 @@ public class khoaDAOIMPL implements khoaDAO{
 				List<khoa> ls = new ArrayList();
 				while (rs.next()) {
 					khoa kh = new khoa();
-					kh.setId(rs.getInt("id"));
+					kh.setId(rs.getString("id"));
 					kh.setTenKhoa(rs.getString("tenKhoa"));
 					kh.setStatus(rs.getInt("STATUS"));
 					kh.setCreated_by(rs.getString("created_by"));
@@ -72,7 +72,7 @@ public class khoaDAOIMPL implements khoaDAO{
 			public khoa extractData(ResultSet rs) throws SQLException, DataAccessException {
 				// TODO Auto-generated method stub
 				khoa kh = new khoa();
-				kh.setId(rs.getInt("id"));
+				kh.setId(rs.getString("id"));
 				kh.setTenKhoa(rs.getString("tenKhoa"));
 				kh.setStatus(rs.getInt("STATUS"));
 				kh.setCreated_by(rs.getString("created_by"));

@@ -3,7 +3,7 @@ package org.backend.Entity;
 public class dkTinChi {
 	private int id;
 	private String maSV;
-	private int idLopTC;
+	private String idLopTC;
 	private int status;
 	private String created_by;
 	private String created_at;
@@ -13,7 +13,7 @@ public class dkTinChi {
 		
 	}
 
-	public dkTinChi(int id, String maSV, int idLopTC, int status, String created_by, String created_at,
+	public dkTinChi(int id, String maSV, String idLopTC, int status, String created_by, String created_at,
 			String updated_at) {
 		super();
 		this.id = id;
@@ -41,11 +41,11 @@ public class dkTinChi {
 		this.maSV = maSV;
 	}
 
-	public int getIdLopTC() {
+	public String getIdLopTC() {
 		return idLopTC;
 	}
 
-	public void setIdLopTC(int idLopTC) {
+	public void setIdLopTC(String idLopTC) {
 		this.idLopTC = idLopTC;
 	}
 

@@ -32,7 +32,7 @@ public class lichHocDAOIMPL implements lichHocDAO{
 				while (rs.next()) {
 					lichHoc lh = new lichHoc();
 					lh.setId(rs.getInt("id"));
-					lh.setIdLopTc(rs.getInt("idLopTC"));
+					lh.setIdLopTc(rs.getString("idLopTC"));
 					lh.setNgayBatDau(rs.getString("NgayBatDau"));
 					lh.setNgayKetThuc(rs.getString("NgayKetThuc"));
 					lh.setGioHoc(rs.getString("GioHoc"));
@@ -78,7 +78,7 @@ public class lichHocDAOIMPL implements lichHocDAO{
 				lichHoc lh = new lichHoc();
 				while (rs.next()) {
 					lh.setId(rs.getInt("id"));
-					lh.setIdLopTc(rs.getInt("idLopTC"));
+					lh.setIdLopTc(rs.getString("idLopTC"));
 					lh.setNgayBatDau(rs.getString("NgayBatDau"));
 					lh.setNgayKetThuc(rs.getString("NgayKetThuc"));
 					lh.setGioHoc(rs.getString("GioHoc"));

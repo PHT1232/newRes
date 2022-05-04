@@ -4,8 +4,8 @@ public class giangVienDTO {
 	private int id;
 	private String magv;
 	private String tenGV;
-	private int khoa;
-	private String idBangCap;
+	private String khoa;
+	private int idBangCap;
 	private String quequan;
 	private String avatar;
 	private int status;
@@ -17,7 +17,7 @@ public class giangVienDTO {
 		
 	}
 	
-	public giangVienDTO(int id, String magv, String tenGV, int khoa, String idBangCap, String quequan,
+	public giangVienDTO(int id, String magv, String tenGV, String khoa, int idBangCap, String quequan,
 			String avatar, int status, String created_by, String created_at, String updated_at) {
 		super();
 		this.id = id;
@@ -57,19 +57,19 @@ public class giangVienDTO {
 		this.tenGV = tenGV;
 	}
 
-	public int getKhoa() {
+	public String getKhoa() {
 		return khoa;
 	}
 
-	public void setKhoa(int khoa) {
+	public void setKhoa(String khoa) {
 		this.khoa = khoa;
 	}
 
-	public String getIdBangCap() {
+	public int getIdBangCap() {
 		return idBangCap;
 	}
 
-	public void setIdBangCap(String idBangCap) {
+	public void setIdBangCap(int idBangCap) {
 		this.idBangCap = idBangCap;
 	}
 

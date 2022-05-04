@@ -28,7 +28,7 @@ public class AccountController {
     giangVienService teacherService;
 
     @Autowired
-    dangHocService learningService;
+    svLopQLService slqservice;
 
     @Autowired
     loptinchiService lopHocService;
@@ -77,22 +77,28 @@ public class AccountController {
         List<MonDTO> sdtl = new ArrayList<>();
         List<loptinchiDTO> cdtol = new ArrayList<>();
         if (acd.getStudentId() == null) {
-        	List<dangHocDTO> ltd = learningService.getAll();
-            for (dangHocDTO ld : ltd) {
-                MonDTO sdto = subjectsService.getById(ld.getIdMon());
-                loptinchiDTO cdt = lopHocService.getById(ld.getClassId());
-                sdtl.add(sdto);
-                cdtol.add(cdt);
+            giangVienDTO gvd = teacherService.getById(acd.getTeacherId());
+//        	List<MonDTO> mhtd = monservice.getAll();
+
+        	List<loptinchiDTO> ltcd = lopHocService.getAll();
+            for (loptinchiDTO ld : ltcd) {
+                if (ld.getMaGV().equals(gvd.getMagv())) {
+                    MonDTO sdto = subjectsService.getById(ld.getIdMon());
+                    sdtl.add(sdto);
+                    cdtol.add(ld);
+                }
             }
             map.addAttribute("urlToClasse", "Teacher");
-            map.addAttribute("name", teacherService.getById(acd.getTeacherId()).getTenGV());
+            map.addAttribute("name", gvd.getTenGV());
         } else {
-            List<dangHocDTO> ltd = learningService.getByClassId(std.getClassId());
+            List<dangHocDTO> ltd = learningService.getAll();
             for (dangHocDTO ld : ltd) {
-                MonDTO sdto = subjectsService.getBySingleId(ld.getIdMon());
-                loptinchiDTO cdt = lopHocService.getBySingleId(ld.getClassId());
-                sdtl.add(sdto);
-                cdtol.add(cdt);
+                if (std.getMasv().equals()) {
+                    MonDTO sdto = subjectsService.getById(ld.getIdMon());
+                    loptinchiDTO cdt = lopHocService.getById(ld.getClassId());
+                    sdtl.add(sdto);
+                    cdtol.add(cdt);
+                }
             }
             map.addAttribute("urlToClasse", "Student");
             map.addAttribute("name", studentService.getByUser(username).getName());

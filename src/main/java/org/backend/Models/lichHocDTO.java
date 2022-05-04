@@ -2,7 +2,7 @@ package org.backend.Models;
 
 public class lichHocDTO {
 	private int id;
-	private int idLopTc;
+	private String idLopTc;
 	private String ngayBatDau;
 	private String ngayKetThuc;
 	private String GioHoc;
@@ -15,7 +15,7 @@ public class lichHocDTO {
 		
 	}
 
-	public lichHocDTO(int id, int idLopTc, String ngayBatDau, String ngayKetThuc, String gioHoc, int status,
+	public lichHocDTO(int id, String idLopTc, String ngayBatDau, String ngayKetThuc, String gioHoc, int status,
 			String created_by, String created_at, String updated_at) {
 		super();
 		this.id = id;
@@ -37,11 +37,11 @@ public class lichHocDTO {
 		this.id = id;
 	}
 
-	public int getIdLopTc() {
+	public String getIdLopTc() {
 		return idLopTc;
 	}
 
-	public void setIdLopTc(int idLopTc) {
+	public void setIdLopTc(String idLopTc) {
 		this.idLopTc = idLopTc;
 	}
 

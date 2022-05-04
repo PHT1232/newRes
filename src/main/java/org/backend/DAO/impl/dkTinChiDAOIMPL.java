@@ -32,7 +32,7 @@ public class dkTinChiDAOIMPL implements dkTinChiDAO{
 					dkTinChi dtc = new dkTinChi();
 					dtc.setId(rs.getInt("id"));
 					dtc.setMaSV(rs.getString("maSV"));
-					dtc.setIdLopTC(rs.getInt("idLopTC"));
+					dtc.setIdLopTC(rs.getString("idLopTC"));
 					dtc.setStatus(rs.getInt("status"));
 					dtc.setCreated_by(rs.getString("created_by"));
 					dtc.setCreated_at(rs.getString("created_at"));
@@ -76,7 +76,7 @@ public class dkTinChiDAOIMPL implements dkTinChiDAO{
 				while (rs.next()) {
 					dtc.setId(rs.getInt("id"));
 					dtc.setMaSV(rs.getString("maSV"));
-					dtc.setIdLopTC(rs.getInt("idLopTC"));
+					dtc.setIdLopTC(rs.getString("idLopTC"));
 					dtc.setStatus(rs.getInt("status"));
 					dtc.setCreated_by(rs.getString("created_by"));
 					dtc.setCreated_at(rs.getString("created_at"));
