@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 26, 2022 at 06:12 PM
+-- Generation Time: May 04, 2022 at 04:31 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.3.30
 
@@ -164,7 +164,7 @@ INSERT INTO `danghoc` (`id`, `classid`, `idMon`, `idTeacher`) VALUES
 CREATE TABLE `dktinchi` (
   `id` int(11) NOT NULL,
   `maSV` varchar(50) DEFAULT NULL,
-  `idLopTC` int(11) DEFAULT NULL,
+  `idLopTC` varchar(50) DEFAULT NULL,
   `status` int(11) DEFAULT 0,
   `created_by` varchar(50) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
@@ -209,7 +209,7 @@ CREATE TABLE `giangvien` (
   `id` int(20) NOT NULL,
   `mgv` varchar(60) DEFAULT NULL,
   `tenGV` varchar(80) DEFAULT NULL,
-  `idkhoa` int(11) DEFAULT NULL,
+  `idkhoa` varchar(50) DEFAULT NULL,
   `idBangCap` int(11) DEFAULT NULL,
   `quequan` varchar(60) DEFAULT NULL,
   `avatar` varchar(60) DEFAULT NULL,
@@ -251,7 +251,7 @@ INSERT INTO `giaovien` (`id`, `name`, `age`, `address`, `picture`, `sdt`) VALUES
 --
 
 CREATE TABLE `khoa` (
-  `id` int(20) NOT NULL,
+  `id` varchar(50) NOT NULL DEFAULT '',
   `tenKhoa` varchar(60) DEFAULT NULL,
   `STATUS` int(1) DEFAULT NULL,
   `created_by` varchar(50) DEFAULT NULL,
@@ -266,7 +266,7 @@ CREATE TABLE `khoa` (
 --
 
 CREATE TABLE `khoahoc` (
-  `id` int(11) NOT NULL,
+  `id` varchar(50) NOT NULL DEFAULT 'AUTO_INCREMENT',
   `TenKhoa` varchar(50) DEFAULT '0',
   `status` int(11) DEFAULT 0,
   `created_by` varchar(50) DEFAULT NULL,
@@ -332,7 +332,7 @@ INSERT INTO `lophoc` (`id`, `name`) VALUES
 --
 
 CREATE TABLE `lopql` (
-  `id` int(20) NOT NULL,
+  `id` varchar(50) NOT NULL DEFAULT '',
   `tenLop` varchar(60) DEFAULT NULL,
   `khoaHoc` int(20) DEFAULT NULL,
   `khoa` int(20) DEFAULT NULL,
@@ -350,11 +350,11 @@ CREATE TABLE `lopql` (
 --
 
 CREATE TABLE `loptinchi` (
-  `id` int(11) NOT NULL,
+  `id` varchar(50) NOT NULL DEFAULT 'AUTO_INCREMENT',
   `TenLopTC` varchar(50) DEFAULT NULL,
-  `idKhoa` int(11) DEFAULT NULL,
-  `idKhoaHoc` int(11) DEFAULT NULL,
-  `idMon` int(11) DEFAULT NULL,
+  `idKhoa` varchar(50) DEFAULT NULL,
+  `idKhoaHoc` varchar(50) DEFAULT NULL,
+  `idMon` varchar(50) DEFAULT NULL,
   `MaGV` varchar(50) DEFAULT NULL,
   `status` int(11) DEFAULT -1,
   `created_by` varchar(50) DEFAULT NULL,
@@ -369,9 +369,9 @@ CREATE TABLE `loptinchi` (
 --
 
 CREATE TABLE `mon` (
-  `id` int(20) NOT NULL,
+  `id` varchar(50) NOT NULL DEFAULT '',
   `tenMon` varchar(60) DEFAULT NULL,
-  `idkhoa` int(11) DEFAULT NULL,
+  `idkhoa` varchar(50) DEFAULT NULL,
   `soTinChi` int(30) DEFAULT NULL,
   `soTietHoc` int(30) DEFAULT NULL,
   `STATUS` int(1) DEFAULT NULL,
@@ -452,6 +452,26 @@ INSERT INTO `sinhvien` (`id`, `name`, `age`, `address`, `picture`, `sdt`, `class
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `sinhvien2`
+--
+
+CREATE TABLE `sinhvien2` (
+  `id` varchar(50) DEFAULT NULL,
+  `msv` varchar(50) DEFAULT NULL,
+  `idkhoahoc` varchar(50) DEFAULT NULL,
+  `idkhoa` varchar(50) DEFAULT NULL,
+  `quequan` varchar(50) DEFAULT NULL,
+  `avatar` varchar(50) DEFAULT NULL,
+  `STATUS` int(11) DEFAULT NULL,
+  `birthday` varchar(50) DEFAULT NULL,
+  `created_by` varchar(50) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `studentbaitap`
 --
 
@@ -480,7 +500,7 @@ INSERT INTO `studentbaitap` (`id`, `username`, `baiTapId`, `lienket`) VALUES
 CREATE TABLE `svlopql` (
   `id` int(20) NOT NULL,
   `MASV` varchar(60) DEFAULT NULL,
-  `maLopQL` int(11) DEFAULT NULL,
+  `maLopQL` varchar(50) DEFAULT NULL,
   `STATUS` int(1) DEFAULT NULL,
   `created_by` varchar(50) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
@@ -495,7 +515,7 @@ CREATE TABLE `svlopql` (
 
 CREATE TABLE `tailieuhoc` (
   `id` int(11) NOT NULL,
-  `idLopTC` int(11) NOT NULL,
+  `idLopTC` varchar(50) NOT NULL DEFAULT '',
   `TenFile` varchar(50) NOT NULL,
   `status` int(11) NOT NULL DEFAULT 0,
   `created_by` varchar(50) DEFAULT NULL,
@@ -707,21 +727,9 @@ ALTER TABLE `files`
   MODIFY `id` int(60) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
--- AUTO_INCREMENT for table `khoahoc`
---
-ALTER TABLE `khoahoc`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `lichhoc`
 --
 ALTER TABLE `lichhoc`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `loptinchi`
---
-ALTER TABLE `loptinchi`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
