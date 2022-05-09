@@ -8,8 +8,11 @@ import org.springframework.stereotype.Repository;
 
 public interface studentBaiTapDAO {
 	List<studentBaiTap> getAll();
-	boolean insert(studentBaiTap sbt);
-	boolean update(String id, studentBaiTap sbt);
-	boolean delete(String id);
-	baiTap getById(String id);
+	List<studentBaiTap> getByUserName(String username);
+
+	List<studentBaiTap> getByBaiTapId(int id);
+
+	int getLastId();
+	boolean insertWithFile(studentBaiTap sbt);
+
 }

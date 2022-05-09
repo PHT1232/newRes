@@ -47,15 +47,15 @@ public class dkTinChiDAOIMPL implements dkTinChiDAO{
 	@Override
 	public boolean insert(dkTinChi dktc) {
 		// TODO Auto-generated method stub
-		String sql = "Insert into dkTinChi (`maSV`,`idLopTC`,`status`,`created_by`,`created_at`,`updated_at`) values (?,?,?,?,?,?)";
-		return jdbcTemplate.update(sql, dktc.getMaSV(), dktc.getIdLopTC(), dktc.getStatus(), dktc.getCreated_by(), dktc.getCreated_at(), dktc.getUpdated_at()) > 0;
+		String sql = "Insert into dkTinChi (`maSV`,`idLopTC`,`status`,`created_by`) values (?,?,?,?)";
+		return jdbcTemplate.update(sql, dktc.getMaSV(), dktc.getIdLopTC(), dktc.getStatus(), dktc.getCreated_by()) > 0;
 	}
 
 	@Override
 	public boolean update(String id, dkTinChi dktc) {
 		// TODO Auto-generated method stub
-		String sql = "Update dkTinChi set maSV = ?, idLopTC = ?, status = ?, created_by = ?, created_at = ?, updated_at = ? where id = ?";
-		return jdbcTemplate.update(sql, dktc.getMaSV(), dktc.getIdLopTC(), dktc.getStatus(), dktc.getCreated_by(), dktc.getCreated_at(), dktc.getUpdated_at(), id) > 0;
+		String sql = "Update dkTinChi set maSV = ?, idLopTC = ?, status = ?, created_by = ? where id = ?";
+		return jdbcTemplate.update(sql, dktc.getMaSV(), dktc.getIdLopTC(), dktc.getStatus(), dktc.getCreated_by(), id) > 0;
 	}
 
 	@Override

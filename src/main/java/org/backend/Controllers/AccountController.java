@@ -80,7 +80,6 @@ public class AccountController {
     public String index(ModelMap map) {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         AccountDTO acd = accountService.getByUserName(username);
-        SinhVienDTO std = studentService.getById(acd.getStudentId());
         List<MonDTO> sdtl = new ArrayList<>();
         List<loptinchiDTO> cdtol = new ArrayList<>();
         if (acd.getStudentId() == null) {
@@ -96,6 +95,7 @@ public class AccountController {
             map.addAttribute("urlToClasse", "Teacher");
             map.addAttribute("name", gvd.getTenGV());
         } else {
+        	SinhVienDTO std = studentService.getById(acd.getStudentId());
             svLopQLDTO slqd = new svLopQLDTO();
             for (svLopQLDTO slqdt : svlqs.getAll()) {
                 if (slqdt.getMasv().equals(std.getMasv())) {

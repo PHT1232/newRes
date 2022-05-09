@@ -45,15 +45,15 @@ public class bangCapDAOIMPL implements bangCapDAO{
 	@Override
 	public boolean insert(bangCap bc) {
 		// TODO Auto-generated method stub
-		String sql = "Insert into bangCap (`TenBangCap` , `created_by`, `created_at`, `updated_at`) values (?,?,?,?)";
-		return jdbcTemplate.update(sql, bc.getTenBangCap(), bc.getCreated_by(), bc.getCreated_at(), bc.getUpdated_at()) > 0;
+		String sql = "Insert into bangCap (`TenBangCap` , `created_by`) values (?,?,?,?)";
+		return jdbcTemplate.update(sql, bc.getTenBangCap(), bc.getCreated_by()) > 0;
 	}
 
 	@Override
 	public boolean update(bangCap bc, String id) {
 		// TODO Auto-generated method stub
-		String sql = "Update bangCap set TenBangCap = ?, created_by = ?, created_at = ?, updated_at = ? where id = ?";
-		return jdbcTemplate.update(sql, bc.getTenBangCap(), bc.getCreated_by(), bc.getCreated_at(), bc.getUpdated_at(), id) > 0;
+		String sql = "Update bangCap set TenBangCap = ?, created_by = ? where id = ?";
+		return jdbcTemplate.update(sql, bc.getTenBangCap(), bc.getCreated_by(), id) > 0;
 	}
 
 	@Override

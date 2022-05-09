@@ -47,7 +47,7 @@ public class baiTapDAOIMPL implements baiTapDAO{
 	@Override
 	public boolean insert(baiTap bt) {
 		// TODO Auto-generated method stub
-		String sql = "Insert into baiTap values(`name`, `username`, `deadline`, `tenBaiTap`, `noiDungBaiTap`, `classId`, `monhocId`) values (?,?,?,?,?,?,?)";
+		String sql = "Insert into baiTap (`name`, `username`, `deadline`, `tenBaiTap`, `noiDungBaiTap`, `classId`, `monhocId`) values (?,?,?,?,?,?,?)";
 		return jdbcTemplate.update(sql, bt.getName(), bt.getUsername(), bt.getDeadline(), bt.getTenBaiTap(), bt.getNoiDungBaiTap(), bt.getClassId(), bt.getMonhocId()) > 0;
 	}
 
@@ -55,7 +55,7 @@ public class baiTapDAOIMPL implements baiTapDAO{
 	public boolean update(String id, baiTap bt) {
 		// TODO Auto-generated method stub
 		String sql = "Update baiTap set name = ?, username = ?, deadline = ?, tenBaiTap = ?, noiDungBaiTap = ?, classId = ?, monhocId = ? where id = ?";
-		return jdbcTemplate.update(bt.getName(), bt.getUsername(), bt.getDeadline(), bt.getTenBaiTap(), bt.getNoiDungBaiTap(), bt.getClassId(), bt.getMonhocId(), id) > 0;
+		return jdbcTemplate.update(sql, bt.getName(), bt.getUsername(), bt.getDeadline(), bt.getTenBaiTap(), bt.getNoiDungBaiTap(), bt.getClassId(), bt.getMonhocId(), id) > 0;
 	}
 
 	@Override

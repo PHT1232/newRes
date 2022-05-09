@@ -49,15 +49,15 @@ public class loptinchiDAOIMPL implements loptinchiDAO{
 	@Override
 	public boolean insert(loptinchi ltc) {
 		// TODO Auto-generated method stub
-		String sql = "Insert loptinchi(`id`,`TenLopTC`,`idKhoa`,`idKhoaHoc`,`idMon`,`MaGV`,`status`,`created_by`,`created_at`,`updated_at`) values(?,?,?,?,?,?,?,?,?,?)";
-		return jdbcTemplate.update(sql, ltc.getId(), ltc.getTenLopTC(), ltc.getIdKhoa(), ltc.getIdKhoaHoc(), ltc.getIdMon(), ltc.getMaGV(), ltc.getStatus(), ltc.getCreated_by(), ltc.getCreated_at(), ltc.getUpdated_at()) > 0;
+		String sql = "Insert into loptinchi (`id`,`TenLopTC`,`idKhoa`,`idKhoaHoc`,`idMon`,`MaGV`,`status`,`created_by`) values (?,?,?,?,?,?,?,?)";
+		return jdbcTemplate.update(sql, ltc.getId(), ltc.getTenLopTC(), ltc.getIdKhoa(), ltc.getIdKhoaHoc(), ltc.getIdMon(), ltc.getMaGV(), ltc.getStatus(), ltc.getCreated_by()) > 0;
 	}
 
 	@Override
 	public boolean update(String id, loptinchi ltc) {
 		// TODO Auto-generated method stub
-		String sql = "Update loptinchi set TenLopTC = ?, idKhoa = ?, idKhoaHoc = ?, idMon = ?, MaGV = ?, status = ?, created_by = ?, created_at = ?, updated_at = ? where id = ?";
-		return jdbcTemplate.update(sql, ltc.getTenLopTC(), ltc.getIdKhoa(), ltc.getIdKhoaHoc(), ltc.getIdMon(), ltc.getMaGV(), ltc.getStatus(), ltc.getCreated_by(), ltc.getCreated_at(), ltc.getUpdated_at(), ltc.getId()) > 0;
+		String sql = "Update loptinchi set TenLopTC = ?, idKhoa = ?, idKhoaHoc = ?, idMon = ?, MaGV = ?, status = ?, created_by = ? where id = ?";
+		return jdbcTemplate.update(sql, ltc.getTenLopTC(), ltc.getIdKhoa(), ltc.getIdKhoaHoc(), ltc.getIdMon(), ltc.getMaGV(), ltc.getStatus(), ltc.getCreated_by(), ltc.getId()) > 0;
 	}
 
 	@Override
@@ -86,7 +86,7 @@ public class loptinchiDAOIMPL implements loptinchiDAO{
 				ltc.setUpdated_at(rs.getString("updated_at"));
 				return ltc;
 			}
-		});
+		}, id);
 	}
 
 }

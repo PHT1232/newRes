@@ -51,15 +51,15 @@ public class giangVienDAOIMPL implements giangVienDAO{
 	@Override
 	public boolean insert(giangVien gv) {
 		// TODO Auto-generated method stub
-		String sql = "Insert into giangVien values(`mgv`,`tenGV`,`idKhoa`,`idBangCap`,`quequan`,`avatar`,`STATUS`,`birthday`,`created_by`,`created_at`,`updated_at`) values (?,?,?,?,?,?,?,?,?,?,?)";
-		return jdbcTemplate.update(sql, gv.getMagv(), gv.getTenGV(), gv.getKhoa(), gv.getIdBangCap(), gv.getQuequan(), gv.getAvatar(), gv.getStatus(), gv.getBirthday(), gv.getCreated_by(), gv.getCreated_at(), gv.getUpdated_at()) > 0;
+		String sql = "Insert into giangVien (`mgv`,`tenGV`,`idKhoa`,`idBangCap`,`quequan`,`avatar`,`STATUS`,`birthday`,`created_by`) values (?,?,?,?,?,?,?,?,?)";
+		return jdbcTemplate.update(sql, gv.getMagv(), gv.getTenGV(), gv.getKhoa(), gv.getIdBangCap(), gv.getQuequan(), gv.getAvatar(), gv.getStatus(), gv.getBirthday(), gv.getCreated_by()) > 0;
 	}
 
 	@Override
 	public boolean update(String mgv, giangVien gv) {
 		// TODO Auto-generated method stub
-		String sql = "Update giangVien set tenGV = ?, idKhoa = ?, idBangCap = ?, quequan = ?, avatar = ?, STATUS = ?, birthday = ?, created_by = ?, created_at = ?, updated_at = ? where mgv = ?";
-		return jdbcTemplate.update(sql, gv.getMagv(), gv.getTenGV(), gv.getKhoa(), gv.getIdBangCap(), gv.getQuequan(), gv.getAvatar(), gv.getStatus(), gv.getBirthday(), gv.getCreated_by(), gv.getCreated_at(), gv.getUpdated_at(), mgv) > 0;
+		String sql = "Update giangVien set tenGV = ?, idKhoa = ?, idBangCap = ?, quequan = ?, avatar = ?, STATUS = ?, birthday = ?, created_by = ? where mgv = ?";
+		return jdbcTemplate.update(sql, gv.getTenGV(), gv.getKhoa(), gv.getIdBangCap(), gv.getQuequan(), gv.getAvatar(), gv.getStatus(), gv.getBirthday(), gv.getCreated_by(), mgv) > 0;
 	}
 
 	@Override

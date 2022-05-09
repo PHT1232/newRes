@@ -46,15 +46,15 @@ public class khoaDAOIMPL implements khoaDAO{
 	@Override
 	public boolean insert(khoa kh) {
 		// TODO Auto-generated method stub
-		String sql = "Insert into khoa (`tenKhoa`,`STATUS`,`created_by`,`created_at`,`updated_at`) values (?,?,?,?,?)";
-		return jdbcTemplate.update(sql, kh.getTenKhoa(), kh.getStatus(), kh.getCreated_by(), kh.getCreated_at(), kh.getUpdated_at()) > 0;
+		String sql = "Insert into khoa (`tenKhoa`,`STATUS`,`created_by`) values (?,?,?)";
+		return jdbcTemplate.update(sql, kh.getTenKhoa(), kh.getStatus(), kh.getCreated_by()) > 0;
 	}
 
 	@Override
 	public boolean update(khoa kh, String mkh) {
 		// TODO Auto-generated method stub
-		String sql = "Update khoa set tenKhoa = ?, STATUS = ?, created_by = ?, created_at = ?, updated_at = ? where id = ?";
-		return jdbcTemplate.update(sql, kh.getTenKhoa(), kh.getStatus(), kh.getCreated_by(), kh.getCreated_at(), kh.getUpdated_at(), mkh) > 0;
+		String sql = "Update khoa set tenKhoa = ?, STATUS = ?, created_by = ? where id = ?";
+		return jdbcTemplate.update(sql, kh.getTenKhoa(), kh.getStatus(), kh.getCreated_by(), mkh) > 0;
 	}
 
 	@Override

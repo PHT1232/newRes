@@ -50,15 +50,15 @@ public class lichHocDAOIMPL implements lichHocDAO{
 	@Override
 	public boolean insert(lichHoc lh) {
 		// TODO Auto-generated method stub
-		String sql = "Insert into lichHoc (`idLopTC`,`NgayBatDau`,`NgayKetThuc`,`GioHoc`,`status`,`created_by`,`created_at`,`updated_at`) values (?,?,?,?,?,?,?,?)";
-		return jdbcTemplate.update(sql, lh.getIdLopTc(), lh.getNgayBatDau(), lh.getNgayKetThuc(), lh.getGioHoc(), lh.getStatus(), lh.getCreated_by(), lh.getCreated_at(), lh.getUpdated_at()) > 0;
+		String sql = "Insert into lichHoc (`idLopTC`,`NgayBatDau`,`NgayKetThuc`,`GioHoc`,`status`,`created_by`) values (?,?,?,?,?,?)";
+		return jdbcTemplate.update(sql, lh.getIdLopTc(), lh.getNgayBatDau(), lh.getNgayKetThuc(), lh.getGioHoc(), lh.getStatus(), lh.getCreated_by()) > 0;
 	}
 
 	@Override
 	public boolean update(String id, lichHoc lh) {
 		// TODO Auto-generated method stub
-		String sql = "Update lichHoc set idLopTC = ?, NgayBatDau = ?, NgayKetThuc = ?, GioHoc = ?, status = ?, created_by = ?, created_at = ?, updated_at = ? where id = ?";
-		return jdbcTemplate.update(sql, lh.getIdLopTc(), lh.getNgayBatDau(), lh.getNgayKetThuc(), lh.getGioHoc(), lh.getStatus(), lh.getCreated_by(), lh.getCreated_at(), lh.getUpdated_at(), id) > 0;
+		String sql = "Update lichHoc set idLopTC = ?, NgayBatDau = ?, NgayKetThuc = ?, GioHoc = ?, status = ?, created_by = ? where id = ?";
+		return jdbcTemplate.update(sql, lh.getIdLopTc(), lh.getNgayBatDau(), lh.getNgayKetThuc(), lh.getGioHoc(), lh.getStatus(), lh.getCreated_by(), id) > 0;
 	}
 
 	@Override
@@ -70,7 +70,7 @@ public class lichHocDAOIMPL implements lichHocDAO{
 	@Override
 	public lichHoc getById(String id) {
 		// TODO Auto-generated method stub
-		String sql = "Select * from lichHoc where id = ?";
+		String sql = "Select * from lichHoc where idLopTC = ?";
 		return jdbcTemplate.query(sql, new ResultSetExtractor<lichHoc>() {
 			@Override
 			public lichHoc extractData(ResultSet rs) throws SQLException, DataAccessException {

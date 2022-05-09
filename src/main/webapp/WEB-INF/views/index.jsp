@@ -52,7 +52,7 @@
             </div>
         </div>
 
-        <div class="row d-flex">
+        <div class="row d-flex" style="padding-left: 30px">
             <!-- Card -->
             <c:choose>
                 <c:when test="${urlToClasse.equals('Student')}">
@@ -77,7 +77,7 @@
                             <div class="card">
                                 <img class="card-img-top" src="<c:url value="/resource/img/demo.jpg"></c:url>" alt="Card image cap">
                                 <div class="card-body">
-                                    <h3 class="card-title">${sList.name}</h3><br>
+                                    <h3 class="card-title">${sList.tenMon}</h3><br>
                                     <p class="card-text">${sList.id}</p>
                                     <p class="card-text">
                                             <%--                            <small class="text-muted">14/10/2021</small>--%>

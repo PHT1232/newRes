@@ -8,6 +8,7 @@ public class SinhVienDTO {
 	private String khoa;
 	private String quequan;
 	private String avatar;
+	private String birthday;
 	private int status;
 	private String created_by;
 	private String created_at;
@@ -32,7 +33,15 @@ public class SinhVienDTO {
 		this.created_at = created_at;
 		this.updated_at = updated_at;
 	}
-	
+
+	public String getBirthday() {
+		return birthday;
+	}
+
+	public void setBirthday(String birthday) {
+		this.birthday = birthday;
+	}
+
 	public int getId() {
 		return id;
 	}

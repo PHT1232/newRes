@@ -2,12 +2,15 @@ package org.backend.Service;
 
 import java.util.List;
 
+import org.backend.Entity.studentBaiTap;
 import org.backend.Models.studentBaiTapDTO;
 
 public interface studentBaiTapService {
 	List<studentBaiTapDTO> getAll();
-	boolean insert(studentBaiTapDTO sbtd);
-	boolean update(studentBaiTapDTO sbtd);
-	boolean delete(String id);
-	studentBaiTapDTO getById(String id);
+	List<studentBaiTapDTO> getByUserName(String username);
+
+	List<studentBaiTapDTO> getByBaiTapId(int id);
+
+	int getLastId();
+	boolean insertWithFile(studentBaiTapDTO sbt);
 }
