@@ -22,7 +22,6 @@ public class giangVienServiceImpl implements giangVienService{
 		List<giangVienDTO> ls = new ArrayList();
 		for (giangVien gv : gvd.getAll()) {
 			giangVienDTO gvdt = new giangVienDTO();
-			gvdt.setId(gv.getId());
 			gvdt.setIdBangCap(gv.getIdBangCap());
 			gvdt.setAvatar(gv.getAvatar());
 			gvdt.setKhoa(gv.getKhoa());
@@ -42,7 +41,6 @@ public class giangVienServiceImpl implements giangVienService{
 	public boolean insert(giangVienDTO gvdt) {
 		// TODO Auto-generated method stub
 		giangVien gv = new giangVien();
-		gv.setId(gvdt.getId());
 		gv.setIdBangCap(gvdt.getIdBangCap());
 		gv.setAvatar(gvdt.getAvatar());
 		gv.setKhoa(gvdt.getKhoa());
@@ -60,7 +58,6 @@ public class giangVienServiceImpl implements giangVienService{
 	public boolean update(giangVienDTO gvdt, String id) {
 		// TODO Auto-generated method stub
 		giangVien gv = new giangVien();
-		gv.setId(gvdt.getId());
 		gv.setIdBangCap(gvdt.getIdBangCap());
 		gv.setAvatar(gvdt.getAvatar());
 		gv.setKhoa(gvdt.getKhoa());
@@ -85,7 +82,6 @@ public class giangVienServiceImpl implements giangVienService{
 		// TODO Auto-generated method stub
 		giangVien gv = gvd.getById(id);
 		giangVienDTO gvdt = new giangVienDTO();
-		gvdt.setId(gv.getId());
 		gvdt.setIdBangCap(gv.getIdBangCap());
 		gvdt.setAvatar(gv.getAvatar());
 		gvdt.setKhoa(gv.getKhoa());

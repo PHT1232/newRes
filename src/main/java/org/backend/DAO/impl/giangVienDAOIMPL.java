@@ -30,7 +30,6 @@ public class giangVienDAOIMPL implements giangVienDAO{
 				List<giangVien> ls = new ArrayList();
 				while (rs.next()) {
 					giangVien gv = new giangVien();
-					gv.setId(rs.getInt("id"));
 					gv.setMagv(rs.getString("mgv"));
 					gv.setTenGV(rs.getString("tenGV"));
 					gv.setKhoa(rs.getString("idKhoa"));
@@ -78,7 +77,6 @@ public class giangVienDAOIMPL implements giangVienDAO{
 				// TODO Auto-generated method stub
 				giangVien gv = new giangVien();
 				while (rs.next()) {
-					gv.setId(rs.getInt("id"));
 					gv.setMagv(rs.getString("mgv"));
 					gv.setTenGV(rs.getString("tenGV"));
 					gv.setKhoa(rs.getString("idKhoa"));

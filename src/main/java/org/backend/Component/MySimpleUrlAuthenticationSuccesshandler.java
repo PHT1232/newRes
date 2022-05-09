@@ -26,7 +26,8 @@ public class MySimpleUrlAuthenticationSuccesshandler implements AuthenticationSu
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 			Authentication authentication) throws IOException, ServletException {
 		// TODO Auto-generated method stub
-		
+		handle(request, response, authentication);
+		clearAuthenticationAttributes(request);
 	}
 	
 	protected void handle(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException {

@@ -23,12 +23,12 @@
 
     <bean class="org.backend.Config.SpringSecurityInitializer"/>
 
-    <mvc:interceptors>
-        <mvc:interceptor>
-            <mvc:mapping path="/api/**"/>
-            <bean id="interceptor" class="org.backend.inceptor.inceptor"/>
-        </mvc:interceptor>
-    </mvc:interceptors>
+<!--    <mvc:interceptors>-->
+<!--        <mvc:interceptor>-->
+<!--            <mvc:mapping path="/api/**"/>-->
+<!--            <bean id="interceptor" class="org.backend.inceptor.inceptor"/>-->
+<!--        </mvc:interceptor>-->
+<!--    </mvc:interceptors>-->
 
     <bean id="multipartResolver"
           class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
