@@ -36,6 +36,12 @@ public class AccountController {
     @Autowired
     SinhVienService studentService;
 
+    @Autowired
+    dkTinChiService dtcs;
+
+    @Autowired
+    svLopQLService svlqs;
+
     @RequestMapping(value = "/login")
     public String login(@RequestParam(value = "error", required = false) String error,
                         @RequestParam(value = "logout", required = false) String logout,
@@ -78,8 +84,6 @@ public class AccountController {
         List<loptinchiDTO> cdtol = new ArrayList<>();
         if (acd.getStudentId() == null) {
             giangVienDTO gvd = teacherService.getById(acd.getTeacherId());
-//        	List<MonDTO> mhtd = monservice.getAll();
-
         	List<loptinchiDTO> ltcd = lopHocService.getAll();
             for (loptinchiDTO ld : ltcd) {
                 if (ld.getMaGV().equals(gvd.getMagv())) {
@@ -91,18 +95,27 @@ public class AccountController {
             map.addAttribute("urlToClasse", "Teacher");
             map.addAttribute("name", gvd.getTenGV());
         } else {
-            List<dangHocDTO> ltd = learningService.getAll();
-            for (dangHocDTO ld : ltd) {
-                if (std.getMasv().equals()) {
-                    MonDTO sdto = subjectsService.getById(ld.getIdMon());
-                    loptinchiDTO cdt = lopHocService.getById(ld.getClassId());
-                    sdtl.add(sdto);
+            svLopQLDTO slqd = new svLopQLDTO();
+            for (svLopQLDTO slqdt : svlqs.getAll()) {
+                if (slqdt.getMasv().equals(std.getMasv())) {
+                    slqd = slqdt;
+                }
+            }
+            List<dkTinChiDTO> dktcd = dtcs.getAll();
+            for (dkTinChiDTO ld : dktcd) {
+                if (std.getMasv().equals(ld.getMaSV())) {
+                    loptinchiDTO cdt = lopHocService.getById(ld.getIdLopTC());
+                    for (MonDTO mdto : subjectsService.getAll()) {
+                        if (cdt.getIdMon().equals(mdto.getId())) {
+                            sdtl.add(mdto);
+                        }
+                    }
                     cdtol.add(cdt);
                 }
             }
             map.addAttribute("urlToClasse", "Student");
-            map.addAttribute("name", studentService.getByUser(username).getName());
-            map.addAttribute("classStudent", studentService.getByUser(username).getClassId());
+            map.addAttribute("name", std.getTenSV());
+            map.addAttribute("classStudent", slqd.getMaLopQL());
         }
         map.addAttribute("subjectList", sdtl);
         map.addAttribute("classList", cdtol);
