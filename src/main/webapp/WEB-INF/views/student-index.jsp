@@ -47,22 +47,22 @@
         <div class="page-header">
             <div class="row align-items-center">
                 <div class="col-sm mb-2 mb-sm-0">
-                    <h1 class="page-header-title">Môn học</h1>
+                    <h1 class="page-header-title">Lớp</h1>
                 </div>
             </div>
         </div>
 
         <div class="row d-flex">
             <!-- Card -->
-            <c:forEach var="sList" items="${subjectList}">
-                <a href="/projectAPI_war/${urlToClasse}/index?monhoc=${sList.id}">
+            <c:forEach var="sList" items="${classList}">
+                <a href="/projectAPI_war/${urlToClasse}/Class?id=${sList.id}&xhcn=${monhoc}">
                     <div class="card">
                         <img class="card-img-top" src="<c:url value="/resource/img/demo.jpg"></c:url>" alt="Card image cap">
                         <div class="card-body">
                             <h3 class="card-title">${sList.name}</h3><br>
                             <p class="card-text">${sList.id}</p>
                             <p class="card-text">
-    <%--                            <small class="text-muted">14/10/2021</small>--%>
+                                    <%--                            <small class="text-muted">14/10/2021</small>--%>
                             </p>
                         </div>
                     </div>

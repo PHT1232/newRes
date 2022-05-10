@@ -62,7 +62,7 @@ public class chamDiemDAOIMPL implements chamDiemDAO{
 	}
 
 	@Override
-	public chamDiem getById(String id) {
+	public chamDiem getById(int id) {
 		// TODO Auto-generated method stub
 		String sql = "Select * from chamDiem where id = ?";
 		return jdbcTemplate.query(sql, new ResultSetExtractor<chamDiem>() {

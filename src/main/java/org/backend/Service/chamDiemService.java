@@ -10,5 +10,5 @@ public interface chamDiemService {
 	boolean insert(chamDiemDTO cdt);
 	boolean update(chamDiemDTO cdt, String id);
 	boolean delete(String id);
-	chamDiemDTO getById(String id);
+	chamDiemDTO getById(int id);
 }

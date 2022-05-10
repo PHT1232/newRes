@@ -7,15 +7,15 @@ public class baiTapDTO {
 	private String deadline;
 	private String tenBaiTap;
 	private String noiDungBaiTap;
-	private String classId;
-	private String monhocId;
+	private String loptinchi;
+	private String lopql;
 	
 	public baiTapDTO() {
 		
 	}
 
 	public baiTapDTO(int id, String name, String username, String deadline, String tenBaiTap, String noiDungBaiTap,
-			String classId, String monhocId) {
+			String loptinchi, String lopql) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -23,8 +23,8 @@ public class baiTapDTO {
 		this.deadline = deadline;
 		this.tenBaiTap = tenBaiTap;
 		this.noiDungBaiTap = noiDungBaiTap;
-		this.classId = classId;
-		this.monhocId = monhocId;
+		this.loptinchi = loptinchi;
+		this.lopql = lopql;
 	}
 
 	public int getId() {
@@ -75,20 +75,19 @@ public class baiTapDTO {
 		this.noiDungBaiTap = noiDungBaiTap;
 	}
 
-	public String getClassId() {
-		return classId;
+	public String getLoptinchi() {
+		return loptinchi;
 	}
 
-	public void setClassId(String classId) {
-		this.classId = classId;
+	public void setLoptinchi(String loptinchi) {
+		this.loptinchi = loptinchi;
 	}
 
-	public String getMonhocId() {
-		return monhocId;
+	public String getLopql() {
+		return lopql;
 	}
 
-	public void setMonhocId(String monhocId) {
-		this.monhocId = monhocId;
+	public void setLopql(String lopql) {
+		this.lopql = lopql;
 	}
-	
 }

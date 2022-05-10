@@ -10,5 +10,5 @@ public interface chamDiemDAO {
 	boolean insert(chamDiem cd);
 	boolean update(chamDiem cd, String id);
 	boolean delete(String id);
-	chamDiem getById(String id);
+	chamDiem getById(int id);
 }

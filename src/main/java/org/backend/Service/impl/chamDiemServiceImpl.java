@@ -60,7 +60,7 @@ public class chamDiemServiceImpl implements chamDiemService{
 	}
 
 	@Override
-	public chamDiemDTO getById(String id) {
+	public chamDiemDTO getById(int id) {
 		// TODO Auto-generated method stub
 		chamDiemDTO cdt = new chamDiemDTO();
 		chamDiem cd = cddi.getById(id);

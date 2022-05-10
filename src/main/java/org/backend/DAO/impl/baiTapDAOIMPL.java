@@ -35,8 +35,8 @@ public class baiTapDAOIMPL implements baiTapDAO{
                     bt.setDeadline(rs.getString("deadline"));
                     bt.setTenBaiTap(rs.getString("tenBaiTap"));
                     bt.setNoiDungBaiTap(rs.getString("noiDungBaiTap"));
-                    bt.setClassId(rs.getString("classID"));
-                    bt.setMonhocId(rs.getString("monhocID"));
+                    bt.setLoptinchi(rs.getString("loptinchiid"));
+                    bt.setLopql(rs.getString("lopql"));
                     ls.add(bt);
                 }
                 return ls;
@@ -47,15 +47,15 @@ public class baiTapDAOIMPL implements baiTapDAO{
 	@Override
 	public boolean insert(baiTap bt) {
 		// TODO Auto-generated method stub
-		String sql = "Insert into baiTap (`name`, `username`, `deadline`, `tenBaiTap`, `noiDungBaiTap`, `classId`, `monhocId`) values (?,?,?,?,?,?,?)";
-		return jdbcTemplate.update(sql, bt.getName(), bt.getUsername(), bt.getDeadline(), bt.getTenBaiTap(), bt.getNoiDungBaiTap(), bt.getClassId(), bt.getMonhocId()) > 0;
+		String sql = "Insert into baiTap (`name`, `username`, `deadline`, `tenBaiTap`, `noiDungBaiTap`, `loptinchiid`, `lopql`) values (?,?,?,?,?,?,?)";
+		return jdbcTemplate.update(sql, bt.getName(), bt.getUsername(), bt.getDeadline(), bt.getTenBaiTap(), bt.getNoiDungBaiTap(), bt.getLoptinchi(), bt.getLopql()) > 0;
 	}
 
 	@Override
 	public boolean update(String id, baiTap bt) {
 		// TODO Auto-generated method stub
-		String sql = "Update baiTap set name = ?, username = ?, deadline = ?, tenBaiTap = ?, noiDungBaiTap = ?, classId = ?, monhocId = ? where id = ?";
-		return jdbcTemplate.update(sql, bt.getName(), bt.getUsername(), bt.getDeadline(), bt.getTenBaiTap(), bt.getNoiDungBaiTap(), bt.getClassId(), bt.getMonhocId(), id) > 0;
+		String sql = "Update baiTap set name = ?, username = ?, deadline = ?, tenBaiTap = ?, noiDungBaiTap = ?, loptinchiid = ?, lopql = ? where id = ?";
+		return jdbcTemplate.update(sql, bt.getName(), bt.getUsername(), bt.getDeadline(), bt.getTenBaiTap(), bt.getNoiDungBaiTap(), bt.getLoptinchi(), bt.getLopql(), id) > 0;
 	}
 
 	@Override
@@ -77,8 +77,8 @@ public class baiTapDAOIMPL implements baiTapDAO{
                     bt.setDeadline(rs.getString("deadline"));
                     bt.setTenBaiTap(rs.getString("tenBaiTap"));
                     bt.setNoiDungBaiTap(rs.getString("noiDungBaiTap"));
-                    bt.setClassId(rs.getString("classID"));
-                    bt.setMonhocId(rs.getString("monhocID"));
+                    bt.setLoptinchi(rs.getString("loptinchiid"));
+                    bt.setLopql(rs.getString("lopql"));
                 }
                 return bt;
 			}
