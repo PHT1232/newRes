@@ -22,7 +22,27 @@
     <link rel="stylesheet" href="<c:url value="/resource/css/style.css"></c:url>">
     <link rel="stylesheet" href="<c:url value="/resource/css/myStyle.css"></c:url>">
     <link rel="stylesheet" href="<c:url value="/resource/css/phong.css"></c:url>">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <style>
+        .container {
+            max-width: 100%;
+        }
 
+        input[type="file"] {
+            display: none;
+        }
+
+        .custom-file-upload {
+            display: inline-block;
+            padding: 6px 12px;
+            cursor: pointer;
+        }
+    </style>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css"
+          integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
 
     <!-- CSS Front Template -->
     <link rel="stylesheet" href="<c:url value="/resource/css/theme.min.css?v=1.0"></c:url>">
@@ -149,10 +169,180 @@
     <!-- End Footer -->
 </main>
 
+<!-- Main mới -->
+<form action="/projectAPI_war/uploadBaiTap" method="post" enctype="multipart/form-data">
+    <main class="container">
+        <div class="row m-1">
+            <div class="col col-1 mt-2 mb-2">
+                <div class="row">
+                    <button type="button" class="btn btn-outline-light text-dark">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="col col-6 mt-auto mb-auto">
+                <div class="row font-weight-bold">
+                    Bài tập
+                </div>
+            </div>
+            <div class="col col-5 mt-auto mb-auto">
+                <div class="row float-right">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-success border-right">Giao bài</button>
+                        <button type="button" class="btn btn-success dropdown-toggle dropdown-toggle-split border-left"
+                                id="dropdownMenuReference" data-toggle="dropdown" aria-expanded="false"
+                                data-reference="parent">
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuReference">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Separated link</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row m-1 border-top">
+            <div class="col-1 pt-2">
+                <div class="row">
+                    <button type="button" class="btn btn-outline-light text-dark">
+                        <i class="fas fa-clipboard-list"></i>
+                    </button>
+                </div>
+
+                <div class="row mt-5">
+                    <button type="button" class="btn btn-outline-light text-dark">
+                        <i class="fas fa-list"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="col-6 border-right pt-2">
+                <div class="row mr-1">
+                    <div class="card border-0" style="width: 100%;">
+                        <div class="card-body p-0">
+                            <div class="form-group">
+                                <label for="title">Tiêu đề</label>
+                                <input type="text" class="form-control" name="title" id="title"
+                                       aria-describedby="titleHid" placeholder="">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="tutorial">Hướng dẫn (Tùy chọn)</label>
+                                <textarea class="form-control" name="tutorial" id="tutorial" rows="5"></textarea>
+                            </div>
+                        </div>
+                        <div class="card-footer text-muted p-0 border-0 bg-transparent">
+                            <label for="file-upload" class="custom-file-upload text-success border rounded">
+                                <i class="fas fa-plus"></i> Tiêu chí chấm điểm
+                            </label>
+                            <input id="file-upload" name="" type="file" />
+                            <a name="" id="" class="btn btn-outline-light text-success font-weight-bold ml-3" href="#"
+                               role="button" style="margin-bottom: 5px;">
+                                <i class="fas fa-plus"></i> Tạo
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-5 pt-2">
+                <div class="card border-0" style="width: 100%;">
+                    <div class="card-body p-0">
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="inputEmail4">Dành cho</label>
+                                <select class="form-control" id="exampleFormControlSelect1">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="inputPassword4">&nbsp;</label>
+                                <select class="form-control" id="exampleFormControlSelect1">
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="">Điểm</label>
+                            <select class="form-control col-md-6" id="">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="">Đến hạn</label>
+                            <select class="form-control" id="">
+                                <option>Không có ngày đến hạn</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="">Chủ đề</label>
+                            <select class="form-control" id="">
+                                <option>Không có chủ đề</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="">Tiêu chí chấm điểm</label>
+
+                        </div>
+                    </div>
+                    <div class="card-footer text-muted p-0 border-0 bg-transparent">
+<%--                        <label for="file-upload" class="custom-file-upload text-success border rounded">--%>
+<%--                            <i class="fas fa-plus"></i> Tiêu chí chấm điểm--%>
+<%--                        </label>--%>
+<%--                        <input id="file-upload" name="" type="file" />--%>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+</form>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+
 <!-- JS Implementing Plugins -->
 <script src="<c:url value="/resource/js/vendor.min.js"></c:url>"></script>
 <script src="<c:url value="/resource/js/theme.min.js"></c:url>"></script>
 <script src="<c:url value="/resource/js/index.js"></c:url>"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
 <script>
     $(document).ready(function () {
         var x = 1;

@@ -34,6 +34,24 @@ public class baiTapServiceImpl implements baiTapService{
         return ls;
 	}
 
+    @Override
+	public List<baiTapDTO> getAll() {
+		List<baiTapDTO> ls = new ArrayList<>();
+        for (baiTap bt : btda.getAll()) {
+            baiTapDTO btd = new baiTapDTO();
+            btd.setId(bt.getId());
+            btd.setName(bt.getName());
+            btd.setUsername(bt.getUsername());
+            btd.setDeadline(bt.getDeadline());
+            btd.setTenBaiTap(bt.getTenBaiTap());
+            btd.setNoiDungBaiTap(bt.getNoiDungBaiTap());
+            btd.setLoptinchi(bt.getLoptinchi());
+            btd.setLopql(bt.getLopql());
+            ls.add(btd);
+        }
+        return ls;
+	}
+
 	@Override
 	public boolean insert(baiTapDTO btd) {
         baiTap bt = new baiTap();

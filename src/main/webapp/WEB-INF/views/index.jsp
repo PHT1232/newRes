@@ -55,7 +55,7 @@
         <div class="row d-flex">
             <!-- Card -->
             <c:forEach var="sList" items="${subjectList}">
-                <a href="/projectAPI_war/${urlToClasse}/index?monhoc=${sList.id}">
+                <a href="/projectAPI_war/${urlToClasse}/baiTap?monhoc=${sList.id}">
                     <div class="card">
                         <img class="card-img-top" src="<c:url value="/resource/img/demo.jpg"></c:url>" alt="Card image cap">
                         <div class="card-body">

@@ -45,6 +45,31 @@ public class baiTapDAOIMPL implements baiTapDAO{
 	}
 
 	@Override
+	public List<baiTap> getAll() {
+		// TODO Auto-generated method stub
+		String sql = "Select * from baiTap";
+		return jdbcTemplate.query(sql, new ResultSetExtractor<List<baiTap>>() {
+			@Override
+			public List<baiTap> extractData(ResultSet rs) throws SQLException, DataAccessException {
+				List<baiTap> ls = new ArrayList();
+                while (rs.next()) {
+                    baiTap bt = new baiTap();
+                    bt.setId(rs.getInt("id"));
+                    bt.setName(rs.getString("name"));
+                    bt.setUsername(rs.getString("username"));
+                    bt.setDeadline(rs.getString("deadline"));
+                    bt.setTenBaiTap(rs.getString("tenBaiTap"));
+                    bt.setNoiDungBaiTap(rs.getString("noiDungBaiTap"));
+                    bt.setLoptinchi(rs.getString("loptinchiid"));
+                    bt.setLopql(rs.getString("lopql"));
+                    ls.add(bt);
+                }
+                return ls;
+			}
+		});
+	}
+
+	@Override
 	public boolean insert(baiTap bt) {
 		// TODO Auto-generated method stub
 		String sql = "Insert into baiTap (`name`, `username`, `deadline`, `tenBaiTap`, `noiDungBaiTap`, `loptinchiid`, `lopql`) values (?,?,?,?,?,?,?)";

@@ -263,31 +263,31 @@ public class TeacherController {
 //
     @RequestMapping(value = "/Class")
     public String Class(ModelMap map, @RequestParam("lopql") String lopql, @RequestParam("loptinchi") String loptinchi) {
-        String username = SecurityContextHolder.getContext().getAuthentication().getName();
-        AccountDTO acd = accountService.getByUserName(username);
-        List<baiTapDTO> btd = bts.getListById(id, xhcn);
-////        List<SubjectsDTO> sdtl = new ArrayList<>();
-////        List<ClassesDTO> cdtol = new ArrayList<>();
-        if (acd.getStudentId() == null) {
-//            List<LearningDTO> ltd = learningService.getByTeacherId(acd.getTeacherId());
-//            for (LearningDTO ld : ltd) {
-//                SubjectsDTO sdto = subjectsService.getBySingleId(ld.getIdMon());
-//                ClassesDTO cdt = classesService.getBySingleId(ld.getClassId());
-//                sdtl.add(sdto);
-//                cdtol.add(cdt);
-//            }
-            map.addAttribute("urlToClasse", "Teacher");
-            map.addAttribute("name", teacherService.getByUser(username).getName());
-        } else {
-            map.addAttribute("urlToClasse", "Student");
-            map.addAttribute("name", studentService.getByUser(username).getName());
-        }
-        map.addAttribute("subjectList", sdtl);
-        map.addAttribute("classList", cdtol);
-        map.addAttribute("baiTapLists", btd);
-        map.addAttribute("username", username);
-        map.addAttribute("classId", id);
-        map.addAttribute("monhoc", xhcn);
+//        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+//        AccountDTO acd = accountService.getByUserName(username);
+//
+//////        List<SubjectsDTO> sdtl = new ArrayList<>();
+//////        List<ClassesDTO> cdtol = new ArrayList<>();
+//        if (acd.getStudentId() == null) {
+////            List<LearningDTO> ltd = learningService.getByTeacherId(acd.getTeacherId());
+////            for (LearningDTO ld : ltd) {
+////                SubjectsDTO sdto = subjectsService.getBySingleId(ld.getIdMon());
+////                ClassesDTO cdt = classesService.getBySingleId(ld.getClassId());
+////                sdtl.add(sdto);
+////                cdtol.add(cdt);
+////            }
+//            map.addAttribute("urlToClasse", "Teacher");
+//            map.addAttribute("name", teacherService.getByUser(username).getName());
+//        } else {
+//            map.addAttribute("urlToClasse", "Student");
+//            map.addAttribute("name", studentService.getByUser(username).getName());
+//        }
+//        map.addAttribute("subjectList", sdtl);
+//        map.addAttribute("classList", cdtol);
+//        map.addAttribute("baiTapLists", btd);
+//        map.addAttribute("username", username);
+//        map.addAttribute("classId", id);
+//        map.addAttribute("monhoc", xhcn);
         return "baiTap";
     }
 
