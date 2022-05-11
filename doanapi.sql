@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.1.3
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: May 10, 2022 at 08:17 AM
--- Server version: 10.4.21-MariaDB
--- PHP Version: 7.3.30
+-- Host: localhost
+-- Generation Time: May 11, 2022 at 12:47 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.1.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -40,6 +40,7 @@ CREATE TABLE `account` (
 --
 
 INSERT INTO `account` (`username`, `password`, `teacherId`, `studentId`, `enabled`) VALUES
+('NguyenTanTai', '$2a$12$uW2dzBMe0YdweshT/ZAqWOicX7.B7jAM64auD0GvtBG43N/0RU2Su', '1231', NULL, 1),
 ('NguyenThiHoang', '$2a$12$uW2dzBMe0YdweshT/ZAqWOicX7.B7jAM64auD0GvtBG43N/0RU2Su', NULL, '0212001', 1),
 ('NguyenThiNga', '$2a$12$uW2dzBMe0YdweshT/ZAqWOicX7.B7jAM64auD0GvtBG43N/0RU2Su', '1222', NULL, NULL);
 
@@ -59,33 +60,35 @@ CREATE TABLE `authorities` (
 --
 
 INSERT INTO `authorities` (`username`, `authority`) VALUES
+('NguyenTanTai', 'TEACHER'),
 ('NguyenThiHoang', 'STUDENT'),
 ('NguyenThiNga', 'TEACHER');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `baitap`
+-- Table structure for table `baiTap`
 --
 
-CREATE TABLE `baitap` (
+CREATE TABLE `baiTap` (
   `id` int(60) NOT NULL,
   `name` varchar(100) DEFAULT NULL,
   `username` varchar(60) DEFAULT NULL,
   `deadline` varchar(30) DEFAULT NULL,
   `tenBaiTap` varchar(150) DEFAULT NULL,
   `noidungbaitap` varchar(255) DEFAULT NULL,
-  `classID` varchar(50) DEFAULT NULL,
-  `monhocID` varchar(50) DEFAULT NULL
+  `loptinchiid` varchar(50) DEFAULT NULL,
+  `lopql` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `baitap`
+-- Dumping data for table `baiTap`
 --
 
-INSERT INTO `baitap` (`id`, `name`, `username`, `deadline`, `tenBaiTap`, `noidungbaitap`, `classID`, `monhocID`) VALUES
-(7, NULL, 'NguyenThiNga', '2022-01-21', 'Bài Tập AI', '<p>Hello, World!</p>', 'C5', 'XHCN'),
-(8, NULL, 'NguyenThiNga', '2022-01-20', 'Luyện tập java', '<p>Hello, World!</p>', 'C2', 'CNJV');
+INSERT INTO `baiTap` (`id`, `name`, `username`, `deadline`, `tenBaiTap`, `noidungbaitap`, `loptinchiid`, `lopql`) VALUES
+(7, NULL, 'NguyenThiNga', '2022-01-21', 'Bài Tập AI', '<p>Hello, World!</p>', 'JAVA1902E', ''),
+(8, NULL, 'NguyenThiNga', '2022-01-20', 'Luyện tập java', '<p>Hello, World!</p>', 'JAVA1902E', ''),
+(9, NULL, 'NguyenThiNga', '2022-01-22', 'Luyen thi triet hoc', '<p>Hay ke ten cac nha triet hoc noi tieng</p>', 'XHKH', NULL);
 
 -- --------------------------------------------------------
 
@@ -100,6 +103,13 @@ CREATE TABLE `bangcap` (
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `bangcap`
+--
+
+INSERT INTO `bangcap` (`id`, `TenBangCap`, `created_by`, `created_at`, `updated_at`) VALUES
+(1, 'Cu nhan', NULL, '2022-05-11 08:07:23', '2022-05-11 08:07:23');
 
 -- --------------------------------------------------------
 
@@ -166,7 +176,7 @@ CREATE TABLE `dktinchi` (
 --
 
 INSERT INTO `dktinchi` (`id`, `maSV`, `idLopTC`, `status`, `created_by`, `created_at`, `updated_at`) VALUES
-(1, '1222', 'JAVA1902E', 0, NULL, '2022-05-08 15:32:35', '2022-05-09 10:19:35');
+(1, '0212001', 'JAVA1902E', 0, NULL, '2022-05-08 15:32:35', '2022-05-10 09:42:12');
 
 -- --------------------------------------------------------
 
@@ -199,10 +209,10 @@ INSERT INTO `files` (`id`, `filename`, `baiTapId`, `nopBaiTapId`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `giangvien`
+-- Table structure for table `giangVien`
 --
 
-CREATE TABLE `giangvien` (
+CREATE TABLE `giangVien` (
   `mgv` varchar(50) NOT NULL,
   `tenGV` varchar(80) DEFAULT NULL,
   `idkhoa` varchar(50) DEFAULT NULL,
@@ -217,11 +227,12 @@ CREATE TABLE `giangvien` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `giangvien`
+-- Dumping data for table `giangVien`
 --
 
-INSERT INTO `giangvien` (`mgv`, `tenGV`, `idkhoa`, `idBangCap`, `quequan`, `avatar`, `STATUS`, `birthday`, `created_by`, `created_at`, `updated_at`) VALUES
-('1222', 'Nguyễn Thị Nga', 'cntt', 1, 'Hà Nội', NULL, 1, '1992-05-07 01:09:53', NULL, '2022-05-06 18:09:33', '2022-05-09 10:45:21');
+INSERT INTO `giangVien` (`mgv`, `tenGV`, `idkhoa`, `idBangCap`, `quequan`, `avatar`, `STATUS`, `birthday`, `created_by`, `created_at`, `updated_at`) VALUES
+('1222', 'Nguyễn Thị Nga', 'cntt', 1, 'Hà Nội', NULL, 1, '1992-05-07 01:09:53', NULL, '2022-05-06 18:09:33', '2022-05-09 10:45:21'),
+('1231', 'Nguyen Tan Tai', 'CNTT', 1, 'Ha Noi', NULL, 1, '1980-09-12 00:00:00', NULL, '2022-05-11 08:08:24', '2022-05-11 08:08:24');
 
 -- --------------------------------------------------------
 
@@ -267,7 +278,8 @@ CREATE TABLE `khoa` (
 --
 
 INSERT INTO `khoa` (`id`, `tenKhoa`, `STATUS`, `created_by`, `created_at`, `updated_at`) VALUES
-('CNTT', 'Công nghệ thông tin', 1, NULL, '2022-05-06 18:58:52', '2022-05-06 18:58:53');
+('CNTT', 'Công nghệ thông tin', 1, NULL, '2022-05-06 18:58:52', '2022-05-06 18:58:53'),
+('THTG', 'Triet hoc the gioi', 1, NULL, '2022-05-11 07:50:25', '2022-05-11 07:50:25');
 
 -- --------------------------------------------------------
 
@@ -384,7 +396,9 @@ CREATE TABLE `loptinchi` (
 --
 
 INSERT INTO `loptinchi` (`id`, `TenLopTC`, `idKhoa`, `idKhoaHoc`, `idMon`, `MaGV`, `status`, `created_by`, `created_at`, `updated_at`) VALUES
-('JAVA1902E', 'Lớp JAVA 1902E', 'CNTT', NULL, 'CNJV', '1222', 1, NULL, '2022-05-06 18:59:41', '2022-05-06 19:00:39');
+('JAVA1022', 'Lop java 1022', 'CNTT', NULL, 'CNJV', '1231', 1, NULL, '2022-05-11 08:11:04', '2022-05-11 08:11:04'),
+('JAVA1902E', 'Lớp JAVA 1902E', 'CNTT', NULL, 'CNJV', '1222', 1, NULL, '2022-05-06 18:59:41', '2022-05-06 19:00:39'),
+('XHKH', 'Xa hoi chu nghia', 'THTG', NULL, 'MLIN', '1222', 1, NULL, '2022-05-11 07:53:03', '2022-05-11 08:00:41');
 
 -- --------------------------------------------------------
 
@@ -409,7 +423,8 @@ CREATE TABLE `mon` (
 --
 
 INSERT INTO `mon` (`id`, `tenMon`, `idkhoa`, `soTinChi`, `soTietHoc`, `STATUS`, `created_by`, `created_at`, `updated_at`) VALUES
-('CNJV', 'Công nghệ java', 'CNTT', 3, 12, 1, NULL, '2022-05-06 18:58:07', '2022-05-06 18:58:26');
+('CNJV', 'Công nghệ java', 'CNTT', 3, 12, 1, NULL, '2022-05-06 18:58:07', '2022-05-06 18:58:26'),
+('MLIN', 'Mac Lenin', 'THTG', 3, 16, 1, NULL, '2022-05-11 07:52:03', '2022-05-11 07:52:03');
 
 -- --------------------------------------------------------
 
@@ -510,10 +525,10 @@ INSERT INTO `sinhvien2` (`msv`, `tensv`, `idkhoahoc`, `idkhoa`, `quequan`, `avat
 -- --------------------------------------------------------
 
 --
--- Table structure for table `studentbaitap`
+-- Table structure for table `studentBaiTap`
 --
 
-CREATE TABLE `studentbaitap` (
+CREATE TABLE `studentBaiTap` (
   `id` int(60) NOT NULL,
   `username` varchar(60) DEFAULT NULL,
   `baiTapId` int(60) DEFAULT NULL,
@@ -521,10 +536,10 @@ CREATE TABLE `studentbaitap` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `studentbaitap`
+-- Dumping data for table `studentBaiTap`
 --
 
-INSERT INTO `studentbaitap` (`id`, `username`, `baiTapId`, `lienket`) VALUES
+INSERT INTO `studentBaiTap` (`id`, `username`, `baiTapId`, `lienket`) VALUES
 (1, 'tanPhat', 7, 'https://google.com'),
 (2, 'NguyenThiHuyen', 7, ''),
 (3, 'tanPhat', 8, '');
@@ -604,9 +619,9 @@ ALTER TABLE `authorities`
   ADD UNIQUE KEY `ix_auth_username` (`username`,`authority`);
 
 --
--- Indexes for table `baitap`
+-- Indexes for table `baiTap`
 --
-ALTER TABLE `baitap`
+ALTER TABLE `baiTap`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -642,9 +657,9 @@ ALTER TABLE `files`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `giangvien`
+-- Indexes for table `giangVien`
 --
-ALTER TABLE `giangvien`
+ALTER TABLE `giangVien`
   ADD PRIMARY KEY (`mgv`);
 
 --
@@ -714,9 +729,9 @@ ALTER TABLE `sinhvien2`
   ADD PRIMARY KEY (`msv`);
 
 --
--- Indexes for table `studentbaitap`
+-- Indexes for table `studentBaiTap`
 --
-ALTER TABLE `studentbaitap`
+ALTER TABLE `studentBaiTap`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -742,16 +757,16 @@ ALTER TABLE `user`
 --
 
 --
--- AUTO_INCREMENT for table `baitap`
+-- AUTO_INCREMENT for table `baiTap`
 --
-ALTER TABLE `baitap`
-  MODIFY `id` int(60) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+ALTER TABLE `baiTap`
+  MODIFY `id` int(60) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `bangcap`
 --
 ALTER TABLE `bangcap`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `chamdiem`
@@ -784,9 +799,9 @@ ALTER TABLE `lichhoc`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `studentbaitap`
+-- AUTO_INCREMENT for table `studentBaiTap`
 --
-ALTER TABLE `studentbaitap`
+ALTER TABLE `studentBaiTap`
   MODIFY `id` int(60) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
@@ -803,7 +818,7 @@ ALTER TABLE `tailieuhoc`
 -- Constraints for table `account`
 --
 ALTER TABLE `account`
-  ADD CONSTRAINT `FK_account_giangvien` FOREIGN KEY (`teacherId`) REFERENCES `giangvien` (`mgv`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `FK_account_giangvien` FOREIGN KEY (`teacherId`) REFERENCES `giangVien` (`mgv`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `FK_account_sinhvien2` FOREIGN KEY (`studentId`) REFERENCES `sinhvien2` (`msv`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
