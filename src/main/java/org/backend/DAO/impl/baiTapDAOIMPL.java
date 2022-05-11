@@ -90,7 +90,7 @@ public class baiTapDAOIMPL implements baiTapDAO{
 	}
 	
 	@Override
-	public baiTap getById(String id) {
+	public baiTap getById(int id) {
 		// TODO Auto-generated method stub
 		String sql = "Select * from baiTap where id = ?";
 		return jdbcTemplate.query(sql, new ResultSetExtractor<baiTap>() {

@@ -11,5 +11,5 @@ public interface baiTapDAO {
 	boolean insert(baiTap bt);
 	boolean update(String id, baiTap bt);
 	boolean delete(String id);
-	baiTap getById(String id);
+	baiTap getById(int id);
 }

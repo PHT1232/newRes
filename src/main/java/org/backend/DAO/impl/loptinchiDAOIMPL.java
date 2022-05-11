@@ -74,16 +74,19 @@ public class loptinchiDAOIMPL implements loptinchiDAO{
 			@Override
 			public loptinchi extractData(ResultSet rs) throws SQLException, DataAccessException {
 				loptinchi ltc = new loptinchi();
-				ltc.setId(rs.getString("id"));
-				ltc.setTenLopTC(rs.getString("TenLopTC"));
-				ltc.setIdKhoa(rs.getString("idKhoa"));
-				ltc.setIdKhoaHoc(rs.getString("idKhoaHoc"));
-				ltc.setIdMon(rs.getString("idMon"));
-				ltc.setMaGV(rs.getString("MaGV"));
-				ltc.setStatus(rs.getInt("status"));
-				ltc.setCreated_by(rs.getString("created_by"));
-				ltc.setCreated_at(rs.getString("created_at"));
-				ltc.setUpdated_at(rs.getString("updated_at"));
+				while (rs.next()) {
+					ltc.setId(rs.getString("id"));
+					ltc.setTenLopTC(rs.getString("TenLopTC"));
+					ltc.setIdKhoa(rs.getString("idKhoa"));
+					ltc.setIdKhoaHoc(rs.getString("idKhoaHoc"));
+					ltc.setIdMon(rs.getString("idMon"));
+					ltc.setMaGV(rs.getString("MaGV"));
+					ltc.setStatus(rs.getInt("status"));
+					ltc.setCreated_by(rs.getString("created_by"));
+					ltc.setCreated_at(rs.getString("created_at"));
+					ltc.setUpdated_at(rs.getString("updated_at"));
+				}
+			
 				return ltc;
 			}
 		}, id);

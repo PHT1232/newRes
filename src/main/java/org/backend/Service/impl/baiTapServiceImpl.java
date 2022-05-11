@@ -87,7 +87,7 @@ public class baiTapServiceImpl implements baiTapService{
 	}
 
 	@Override
-	public baiTapDTO getById(String id) {
+	public baiTapDTO getById(int id) {
         baiTapDTO btd = new baiTapDTO();
         baiTap bt = btda.getById(id); 
         btd.setId(bt.getId());

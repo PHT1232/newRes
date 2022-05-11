@@ -209,7 +209,7 @@ public class TeacherController {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         List<MonDTO> sdtl = new ArrayList<>();
         List<loptinchiDTO> cdtol = new ArrayList<>();
-        AccountDTO acd = accountService.getByUserName(username);
+         AccountDTO acd = accountService.getByUserName(username);
         List<loptinchiDTO> ltd = classesService.getAll();
         for (loptinchiDTO ld : ltd) {
             if (ld.getMaGV().equals(acd.getTeacherId())) {
@@ -261,8 +261,8 @@ public class TeacherController {
         return "chamDiem";
     }
 //
-    @RequestMapping(value = "/Class")
-    public String Class(ModelMap map, @RequestParam("lopql") String lopql, @RequestParam("loptinchi") String loptinchi) {
+//    @RequestMapping(value = "/Class")
+//    public String Class(ModelMap map, @RequestParam("lopql") String lopql, @RequestParam("loptinchi") String loptinchi) {
 //        String username = SecurityContextHolder.getContext().getAuthentication().getName();
 //        AccountDTO acd = accountService.getByUserName(username);
 //
@@ -288,8 +288,8 @@ public class TeacherController {
 //        map.addAttribute("username", username);
 //        map.addAttribute("classId", id);
 //        map.addAttribute("monhoc", xhcn);
-        return "baiTap";
-    }
+//        return "baiTap";
+//    }
 
     @RequestMapping("/hienThiSinhVien")
     public String hienThiSV(ModelMap map, @RequestParam("id") String id, @RequestParam("monhoc") String monhoc) {
@@ -309,41 +309,54 @@ public class TeacherController {
     @RequestMapping(value = "/baiTap", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
     public String addBaiTap(ModelMap map, HttpServletRequest request) throws IOException, ParseException {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
-        int id = Integer.parseInt(request.getParameter("id"));
-        String requestContext = request.getContextPath();
-        String requestServerName = request.getServerName();
-        int requestServerPort = request.getServerPort();
-        String s = "http://" + requestServerName + ":" + requestServerPort + requestContext + "/getBaiTap?id=" + id;
-        URL url;
-        Scanner sc;
-        String str;
-        url = new URL(s);
-
-        sc = new Scanner(url.openStream(), "UTF-8");
-        str = new String();
-        while (sc.hasNext()) {
-            str += sc.nextLine();
+        String id = request.getParameter("idloptinchi");
+        baiTapDTO btd = new baiTapDTO();
+        filesDTO fdt = new filesDTO();
+        loptinchiDTO ltcdt = classesService.getById(id);
+        for (baiTapDTO bt : bts.getAll()) {
+            if (bt.getLoptinchi().equals(ltcdt.getId())) {
+                btd = bt;
+            }
         }
-        sc.close();
-        JSONArray array = new JSONArray(str);
+        for (filesDTO fd : fs.getAll()) {
+            if (fd.getBaiTapId() == btd.getId()) {
+                fdt = fd;
+            }
+        }
+//        String requestContext = request.getContextPath();
+//        String requestServerName = request.getServerName();
+//        int requestServerPort = request.getServerPort();
+//        String s = "http://" + requestServerName + ":" + requestServerPort + requestContext + "/getBaiTap?id=" + id;
+//        URL url;
+//        Scanner sc;
+//        String str;
+//        url = new URL(s);
+//
+//        sc = new Scanner(url.openStream(), "UTF-8");
+//        str = new String();
+//        while (sc.hasNext()) {
+//            str += sc.nextLine();
+//        }
+//        sc.close();
+//        JSONArray array = new JSONArray(str);
         final String new_format = "dd-MM-yyyy";
         final String old_format = "yyyy-MM-dd";
-        List<String> filename = new ArrayList<>();
-        for (int i = 1; i < array.length(); i++) {
-            JSONObject obj2 = array.getJSONObject(i);
-            filename.add(obj2.getString("filename"));
-        }
-        JSONObject obj = array.getJSONObject(0);
-        String old_dateS = obj.getString("deadline");
+//        List<String> filename = new ArrayList<>();
+//        for (int i = 1; i < array.length(); i++) {
+//            JSONObject obj2 = array.getJSONObject(i);
+//            filename.add(obj2.getString("filename"));
+//        }
+//        JSONObject obj = array.getJSONObject(0);
+        String old_dateS = btd.getDeadline();
         SimpleDateFormat sdf = new SimpleDateFormat(old_format);
         Date d = sdf.parse(old_dateS);
         sdf.applyPattern(new_format);
         String newStringDate = sdf.format(d);
         map.addAttribute("urlToClasse", "Teacher");
-        map.addAttribute("myFile", filename);
-        map.addAttribute("tenBaiTap", obj.getString("tenBaiTap"));
+        map.addAttribute("myFile", fdt.getFilename());
+        map.addAttribute("tenBaiTap", btd.getTenBaiTap());
         map.addAttribute("denHan", newStringDate);
-        map.addAttribute("noiDungBaiTap", obj.getString("noiDungBaiTap"));
+        map.addAttribute("noiDungBaiTap", btd.getNoiDungBaiTap());
         map.addAttribute("id", id);
         map.addAttribute("username", username);
         return "BaiTapDisplay";

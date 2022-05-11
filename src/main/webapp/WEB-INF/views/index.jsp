@@ -54,19 +54,25 @@
 
         <div class="row d-flex">
             <!-- Card -->
-            <c:forEach var="sList" items="${subjectList}">
-                <a href="/projectAPI_war/${urlToClasse}/baiTap?monhoc=${sList.id}">
-                    <div class="card">
-                        <img class="card-img-top" src="<c:url value="/resource/img/demo.jpg"></c:url>" alt="Card image cap">
-                        <div class="card-body">
-                            <h3 class="card-title">${sList.name}</h3><br>
-                            <p class="card-text">${sList.id}</p>
-                            <p class="card-text">
-    <%--                            <small class="text-muted">14/10/2021</small>--%>
-                            </p>
-                        </div>
-                    </div>
-                </a>
+            <c:forEach var="cList" items="${classList}">
+                <c:forEach var="sList" items="${subjectList}">
+                    <c:choose>
+                        <c:when test="${cList.idMon == sList.id}">
+                            <a href="/projectAPI/${urlToClasse}/baiTap?idloptinchi=${cList.id}" style="padding-left: 10px">
+                                <div class="card">
+                                    <img class="card-img-top" src="<c:url value="/resource/img/demo.jpg"></c:url>" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h3 class="card-title">${sList.tenMon}</h3><br>
+                                        <p class="card-text">${sList.id}</p>
+                                        <p class="card-text">
+                                                <%--                            <small class="text-muted">14/10/2021</small>--%>
+                                        </p>
+                                    </div>
+                                </div>
+                            </a>
+                        </c:when>
+                    </c:choose>
+                </c:forEach>
             </c:forEach>
             <!-- End Card -->
 
