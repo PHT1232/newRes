@@ -261,35 +261,64 @@ public class TeacherController {
         return "chamDiem";
     }
 //
-//    @RequestMapping(value = "/Class")
-//    public String Class(ModelMap map, @RequestParam("lopql") String lopql, @RequestParam("loptinchi") String loptinchi) {
-//        String username = SecurityContextHolder.getContext().getAuthentication().getName();
-//        AccountDTO acd = accountService.getByUserName(username);
-//
-//////        List<SubjectsDTO> sdtl = new ArrayList<>();
-//////        List<ClassesDTO> cdtol = new ArrayList<>();
-//        if (acd.getStudentId() == null) {
-////            List<LearningDTO> ltd = learningService.getByTeacherId(acd.getTeacherId());
-////            for (LearningDTO ld : ltd) {
-////                SubjectsDTO sdto = subjectsService.getBySingleId(ld.getIdMon());
-////                ClassesDTO cdt = classesService.getBySingleId(ld.getClassId());
-////                sdtl.add(sdto);
-////                cdtol.add(cdt);
-////            }
-//            map.addAttribute("urlToClasse", "Teacher");
-//            map.addAttribute("name", teacherService.getByUser(username).getName());
-//        } else {
-//            map.addAttribute("urlToClasse", "Student");
-//            map.addAttribute("name", studentService.getByUser(username).getName());
-//        }
-//        map.addAttribute("subjectList", sdtl);
-//        map.addAttribute("classList", cdtol);
-//        map.addAttribute("baiTapLists", btd);
-//        map.addAttribute("username", username);
-//        map.addAttribute("classId", id);
-//        map.addAttribute("monhoc", xhcn);
-//        return "baiTap";
-//    }
+    @RequestMapping(value = "/Class")
+    public String Class(ModelMap map, @RequestParam("loptinchi") String loptinchi) {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        AccountDTO acd = accountService.getByUserName(username);
+        String monhoc = "";
+        List<MonDTO> sdtl = new ArrayList<>();
+        List<loptinchiDTO> cdtol = new ArrayList<>();
+        List<baiTapDTO> btdt = new ArrayList<>();
+        if (acd.getStudentId() == null) {
+//            List<LearningDTO> ltd = learningService.getByTeacherId(acd.getTeacherId());
+//            for (LearningDTO ld : ltd) {
+//                SubjectsDTO sdto = subjectsService.getBySingleId(ld.getIdMon());
+//                ClassesDTO cdt = classesService.getBySingleId(ld.getClassId());
+//                sdtl.add(sdto);
+//                cdtol.add(cdt);
+//            }
+            for (loptinchiDTO ltd : classesService.getAll()) {
+                if (ltd.getId().equals(loptinchi)) {
+                    if (ltd.getMaGV().equals(acd.getTeacherId())) {
+                        monhoc = ltd.getIdMon();
+                        for (baiTapDTO btd : bts.getAll()) {
+                            if (btd.getLoptinchi().equals(ltd.getId())) {
+//                                System.out.println("sai username");
+                                btdt.add(btd);
+                            }
+                        }
+                        MonDTO sdto = subjectsService.getById(ltd.getIdMon());
+//                    loptinchiDTO cdt = classesService.getById(ltd.getId());
+                        sdtl.add(sdto);
+//                    cdtol.add(cdt);
+                        cdtol.add(ltd);
+                    } else {
+                        if (acd != null) {
+                            map.addAttribute("message", "Hi " + acd.getUsername()
+                                    + "<br> You do not have permission to access this page!");
+                        } else {
+                            map.addAttribute("msg",
+                                    "You do not have permission to access this page!");
+                        }
+                        return "/403page";
+                    }
+                }
+            }
+            map.addAttribute("urlToClasse", "Teacher");
+            map.addAttribute("name", teacherService.getById(acd.getTeacherId()).getTenGV());
+        } else {
+            map.addAttribute("urlToClasse", "Student");
+            map.addAttribute("name", studentService.getById(acd.getStudentId()).getTenSV());
+        }
+
+        map.addAttribute("subjectList", sdtl);
+        map.addAttribute("classList", cdtol);
+        map.addAttribute("baiTapLists", btdt);
+        map.addAttribute("username", username);
+        map.addAttribute("classId", loptinchi);
+        map.addAttribute("monhoc", monhoc);
+        return "baiTap";
+    }
 
     @RequestMapping("/hienThiSinhVien")
     public String hienThiSV(ModelMap map, @RequestParam("id") String id, @RequestParam("monhoc") String monhoc) {

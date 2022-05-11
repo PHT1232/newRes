@@ -591,18 +591,18 @@
                                 aria-labelledby="dashboardsDropdown"
                                 style="min-width: 16rem; animation-duration: 300ms;">
                                 <li>
-                                    <a class="dropdown-item" href="/projectAPI_war/index">
+                                    <a class="dropdown-item" href="/projectAPI/index">
                                         <span class="tio-circle nav-indicator-icon"></span> Môn Học
                                     </a>
                                 </li>
 <%--                                <li>--%>
-<%--                                    <a class="dropdown-item" href="/projectAPI_war/${urlToClasse}/index?monhoc=${monhoc}">--%>
+<%--                                    <a class="dropdown-item" href="/projectAPI/${urlToClasse}/index?monhoc=${monhoc}">--%>
 <%--                                        <span class="tio-circle nav-indicator-icon"></span> Lớp--%>
 <%--                                    </a>--%>
 <%--                                </li>--%>
                                 <c:if test="${urlToClasse.equals('Teacher')}">
                                     <li>
-                                        <a class="dropdown-item" href="/projectAPI_war/${urlToClasse}/addBaiTap">
+                                        <a class="dropdown-item" href="/projectAPI/${urlToClasse}/addBaiTap">
                                             <span class="tio-circle nav-indicator-icon"></span> Thêm bài tập
                                         </a>
                                     </li>

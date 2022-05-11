@@ -22,6 +22,10 @@
     <link rel="stylesheet" href="<c:url value="/resource/css/style.css"></c:url>">
     <link rel="stylesheet" href="<c:url value="/resource/css/myStyle.css"></c:url>">
     <link rel="stylesheet" href="<c:url value="/resource/css/phong.css"></c:url>">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css"
+          integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <style>
         .container {
@@ -39,10 +43,6 @@
         }
     </style>
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css"
-          integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
 
     <!-- CSS Front Template -->
     <link rel="stylesheet" href="<c:url value="/resource/css/theme.min.css?v=1.0"></c:url>">
@@ -57,6 +57,7 @@
 </head>
 
 <body class="   footer-offset">
+
 <script src="<c:url value="/resource/js/hs-navbar-vertical-aside-mini-cache.js"></c:url>"></script>
 <jsp:include page="headerFrontend.jsp"></jsp:include>
 <%--<div class="container">--%>
@@ -88,89 +89,89 @@
 <!-- End Navbar Vertical -->
 
 
-<main id="content" role="main" class="main pointer-event">
-    <c:if test="${success != null}">
-        <h3 style="color: red">Thêm bài tập thành công</h3>
-    </c:if>
-    <form action="/projectAPI_war/uploadBaiTap" method="post" enctype="multipart/form-data">
-        <div class="content container-fluid">
-            <div class="card col-12" style="padding: 20px 15px!important;">
-                <div class="row">
-                    <div class="col-md-6">
-                        <%--                        <div class="label">--%>
-                        <%--                            Lớp: ${className}--%>
-                        <%--                        </div>--%>
-                        <%--                        <input type="text" value="${class}" name="classId" style="display: none;"/>--%>
-                        <%--                            <input type="text" value="${username}" name="username" style="display: none;"/>--%>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="label">
-                            Lớp:
-                        </div>
-                        <select name="classID" class="form-select">
-                            <c:forEach var="classDT" items="${classesDT}">
-                                <option value="${classDT.id}">${classDT.name}</option>
-                            </c:forEach>
+<%--<main id="content" role="main" class="main pointer-event">--%>
+<%--    <c:if test="${success != null}">--%>
+<%--        <h3 style="color: red">Thêm bài tập thành công</h3>--%>
+<%--    </c:if>--%>
+<%--    <form action="/projectAPI_war/uploadBaiTap" method="post" enctype="multipart/form-data">--%>
+<%--        <div class="content container-fluid">--%>
+<%--            <div class="card col-12" style="padding: 20px 15px!important;">--%>
+<%--                <div class="row">--%>
+<%--                    <div class="col-md-6">--%>
+<%--                        &lt;%&ndash;                        <div class="label">&ndash;%&gt;--%>
+<%--                        &lt;%&ndash;                            Lớp: ${className}&ndash;%&gt;--%>
+<%--                        &lt;%&ndash;                        </div>&ndash;%&gt;--%>
+<%--                        &lt;%&ndash;                        <input type="text" value="${class}" name="classId" style="display: none;"/>&ndash;%&gt;--%>
+<%--                        &lt;%&ndash;                            <input type="text" value="${username}" name="username" style="display: none;"/>&ndash;%&gt;--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--                <div class="row">--%>
+<%--                    <div class="col-md-6">--%>
+<%--                        <div class="label">--%>
+<%--                            Lớp:--%>
+<%--                        </div>--%>
+<%--                        <select name="classID" class="form-select">--%>
+<%--                            <c:forEach var="classDT" items="${classesDT}">--%>
+<%--                                <option value="${classDT.id}">${classDT.name}</option>--%>
+<%--                            </c:forEach>--%>
 
-                        </select>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="label">
-                            Tên môn học:
-                        </div>
-                        <select name="monhocID" class="form-select">
-                            <c:forEach var="subjectDT" items="${subjectsDT}">
-                                <option value="${subjectDT.id}">${subjectDT.name}</option>
-                            </c:forEach>
-                        </select>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="label">
-                            Hạn nộp:
-                        </div>
-                        <input type="date" class="form-select" id="hanNop" name="deadline"/>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="label">
-                            File:
-                        </div>
-                        <input type="file" name="files" class="btn btn-sm btn-white">
-                        <div id="container">
+<%--                        </select>--%>
+<%--                    </div>--%>
+<%--                    <div class="col-md-6">--%>
+<%--                        <div class="label">--%>
+<%--                            Tên môn học:--%>
+<%--                        </div>--%>
+<%--                        <select name="monhocID" class="form-select">--%>
+<%--                            <c:forEach var="subjectDT" items="${subjectsDT}">--%>
+<%--                                <option value="${subjectDT.id}">${subjectDT.name}</option>--%>
+<%--                            </c:forEach>--%>
+<%--                        </select>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--                <div class="row">--%>
+<%--                    <div class="col-md-6">--%>
+<%--                        <div class="label">--%>
+<%--                            Hạn nộp:--%>
+<%--                        </div>--%>
+<%--                        <input type="date" class="form-select" id="hanNop" name="deadline"/>--%>
+<%--                    </div>--%>
+<%--                    <div class="col-md-6">--%>
+<%--                        <div class="label">--%>
+<%--                            File:--%>
+<%--                        </div>--%>
+<%--                        <input type="file" name="files" class="btn btn-sm btn-white">--%>
+<%--                        <div id="container">--%>
 
-                        </div>
-                        <input id="btnNop" type="button"
-                               style="width: 278px; margin-top: 15px; text-align: center; padding: 0px; height: 35px"
-                               value="Thêm hoặc tạo +" class="btn btn-sm btn-white">
-                    </div>
-                </div>
+<%--                        </div>--%>
+<%--                        <input id="btnNop" type="button"--%>
+<%--                               style="width: 278px; margin-top: 15px; text-align: center; padding: 0px; height: 35px"--%>
+<%--                               value="Thêm hoặc tạo +" class="btn btn-sm btn-white">--%>
+<%--                    </div>--%>
+<%--                </div>--%>
 
-                <div class="label">
-                    Tên bài tập:
-                </div>
-                <input type="text" name="tenBaiTap" class="form-control">
+<%--                <div class="label">--%>
+<%--                    Tên bài tập:--%>
+<%--                </div>--%>
+<%--                <input type="text" name="tenBaiTap" class="form-control">--%>
 
-                <div class="label">
-                    Nội dung bài tập:
-                </div>
-                <textarea id="mytextarea" name="noiDungBaiTap">Hello, World!</textarea>
+<%--                <div class="label">--%>
+<%--                    Nội dung bài tập:--%>
+<%--                </div>--%>
+<%--                <textarea id="mytextarea" name="noiDungBaiTap">Hello, World!</textarea>--%>
 
-                <button type="submit" class="btn btn-primary save-btn">Tạo</button>
-            </div>
-        </div>
-    </form>
+<%--                <button type="submit" class="btn btn-primary save-btn">Tạo</button>--%>
+<%--            </div>--%>
+<%--        </div>--%>
+<%--    </form>--%>
 
-    <!-- Footer -->
+<%--    <!-- Footer -->--%>
 
-    <jsp:include page="footer.jsp"></jsp:include>
-    <!-- End Footer -->
-</main>
+<%--    <jsp:include page="footer.jsp"></jsp:include>--%>
+<%--    <!-- End Footer -->--%>
+<%--</main>--%>
 
 <!-- Main mới -->
-<form action="/projectAPI_war/uploadBaiTap" method="post" enctype="multipart/form-data">
+<form action="/projectAPI/uploadBaiTap" method="post" enctype="multipart/form-data">
     <main class="container">
         <div class="row m-1">
             <div class="col col-1 mt-2 mb-2">
@@ -239,11 +240,15 @@
                             <label for="file-upload" class="custom-file-upload text-success border rounded">
                                 <i class="fas fa-plus"></i> Tiêu chí chấm điểm
                             </label>
-                            <input id="file-upload" name="" type="file" />
-                            <a name="" id="" class="btn btn-outline-light text-success font-weight-bold ml-3" href="#"
+                            <input id="file-upload" name="files" type="file" />
+                            <div id="containerFile">
+
+                            </div>
+                            <a name="" id="btnNop" class="btn btn-outline-light text-success font-weight-bold ml-3" href="#"
                                role="button" style="margin-bottom: 5px;">
                                 <i class="fas fa-plus"></i> Tạo
                             </a>
+                            <div id="input"></div>
                         </div>
                     </div>
                 </div>
@@ -322,7 +327,7 @@
                 </div>
             </div>
         </div>
-
+        <jsp:include page="footer.jsp"></jsp:include>
     </main>
 </form>
 
@@ -334,27 +339,38 @@
 <script src="<c:url value="/resource/js/vendor.min.js"></c:url>"></script>
 <script src="<c:url value="/resource/js/theme.min.js"></c:url>"></script>
 <script src="<c:url value="/resource/js/index.js"></c:url>"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
+<%--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"--%>
+<%--        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"--%>
+<%--        crossorigin="anonymous"></script>--%>
+<%--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"--%>
+<%--        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"--%>
+<%--        crossorigin="anonymous"></script>--%>
+<%--<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"--%>
+<%--        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"--%>
+<%--        crossorigin="anonymous"></script>--%>
 <script>
     $(document).ready(function () {
         var x = 1;
         var max_fields = 10;
+        var container = document.getElementById("containerFile");
         $('#btnNop').click(function (e) {
+            var label = document.createElement("label");
+            var i = document.createElement("i");
             var input = document.createElement("input");
+            // var input = document.createElement("<label for='file-upload' class='custom-file-upload text-success border rounded'>" + "<i class='fas fa-plus'></i> Tiêu chí chấm điểm</label>" + "<input id='file-upload' name='files' type='file' />");
+            // var input = document.getElementById("input");
+            // input.innerHTML = "<label for='file-upload' class='custom-file-upload text-success border rounded'>" + "<i class='fas fa-plus'></i> Tiêu chí chấm điểm</label>" + "<input id='file-upload' name='files' type='file' />";
             e.preventDefault();
             if (x < max_fields) {
                 x++;
+                label.htmlFor = "file-upload"
+                label.className = "custom-file-upload text-success border rounded";
+                label.innerHTML = "<i class='fas fa-plus'></i> Tieu chi cham diem"
                 input.type = "file";
                 input.name = "files";
-                input.className = "btn btn-sm btn-white";
+                input.id = "file-upload"
+                // input.className = "btn btn-sm btn-white";
+                container.append(label);
                 container.append(input);
             }
         });

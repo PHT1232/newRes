@@ -58,7 +58,7 @@
                 <c:forEach var="sList" items="${subjectList}">
                     <c:choose>
                         <c:when test="${cList.idMon == sList.id}">
-                            <a href="/projectAPI/${urlToClasse}/baiTap?idloptinchi=${cList.id}" style="padding-left: 10px">
+                            <a href="/projectAPI/${urlToClasse}/Class?loptinchi=${cList.id}" style="padding-left: 10px">
                                 <div class="card">
                                     <img class="card-img-top" src="<c:url value="/resource/img/demo.jpg"></c:url>" alt="Card image cap">
                                     <div class="card-body">
