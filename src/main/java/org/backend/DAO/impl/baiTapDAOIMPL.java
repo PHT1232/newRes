@@ -62,6 +62,7 @@ public class baiTapDAOIMPL implements baiTapDAO{
                     bt.setNoiDungBaiTap(rs.getString("noiDungBaiTap"));
                     bt.setLoptinchi(rs.getString("loptinchiid"));
                     bt.setLopql(rs.getString("lopql"));
+					bt.setThangDiem(rs.getInt("thangDiem"));
                     ls.add(bt);
                 }
                 return ls;
@@ -72,15 +73,15 @@ public class baiTapDAOIMPL implements baiTapDAO{
 	@Override
 	public boolean insert(baiTap bt) {
 		// TODO Auto-generated method stub
-		String sql = "Insert into baiTap (`name`, `username`, `deadline`, `tenBaiTap`, `noiDungBaiTap`, `loptinchiid`, `lopql`) values (?,?,?,?,?,?,?)";
-		return jdbcTemplate.update(sql, bt.getName(), bt.getUsername(), bt.getDeadline(), bt.getTenBaiTap(), bt.getNoiDungBaiTap(), bt.getLoptinchi(), bt.getLopql()) > 0;
+		String sql = "Insert into baiTap (`name`, `username`, `deadline`, `tenBaiTap`, `noiDungBaiTap`, `loptinchiid`, `lopql`, `thangDiem`) values (?,?,?,?,?,?,?,?)";
+		return jdbcTemplate.update(sql, bt.getName(), bt.getUsername(), bt.getDeadline(), bt.getTenBaiTap(), bt.getNoiDungBaiTap(), bt.getLoptinchi(), bt.getLopql(), bt.getThangDiem()) > 0;
 	}
 
 	@Override
 	public boolean update(String id, baiTap bt) {
 		// TODO Auto-generated method stub
-		String sql = "Update baiTap set name = ?, username = ?, deadline = ?, tenBaiTap = ?, noiDungBaiTap = ?, loptinchiid = ?, lopql = ? where id = ?";
-		return jdbcTemplate.update(sql, bt.getName(), bt.getUsername(), bt.getDeadline(), bt.getTenBaiTap(), bt.getNoiDungBaiTap(), bt.getLoptinchi(), bt.getLopql(), id) > 0;
+		String sql = "Update baiTap set name = ?, username = ?, deadline = ?, tenBaiTap = ?, noiDungBaiTap = ?, loptinchiid = ?, lopql = ?, thangDiem = ? where id = ?";
+		return jdbcTemplate.update(sql, bt.getName(), bt.getUsername(), bt.getDeadline(), bt.getTenBaiTap(), bt.getNoiDungBaiTap(), bt.getLoptinchi(), bt.getLopql(), bt.getThangDiem(), id) > 0;
 	}
 
 	@Override
@@ -91,7 +92,7 @@ public class baiTapDAOIMPL implements baiTapDAO{
 
 	@Override
 	public int getLastId() {
-		String sql = "SELECT max(id) as 'id' FROM baitap";
+		String sql = "SELECT max(id) as 'id' FROM baiTap";
 		return jdbcTemplate.query(sql, new ResultSetExtractor<Integer>() {
 			@Override
 			public Integer extractData(ResultSet rs) throws SQLException, DataAccessException {
@@ -119,6 +120,7 @@ public class baiTapDAOIMPL implements baiTapDAO{
                     bt.setNoiDungBaiTap(rs.getString("noiDungBaiTap"));
                     bt.setLoptinchi(rs.getString("loptinchiid"));
                     bt.setLopql(rs.getString("lopql"));
+					bt.setThangDiem(rs.getInt("thangDiem"));
                 }
                 return bt;
 			}

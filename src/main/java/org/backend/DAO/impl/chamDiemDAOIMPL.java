@@ -34,6 +34,7 @@ public class chamDiemDAOIMPL implements chamDiemDAO{
 					cd.setStudentId(rs.getString("studentId"));
 					cd.setBaitapid(rs.getInt("baitapId"));
 					cd.setDiem(rs.getInt("diem"));
+					cd.setThangDiem(rs.getInt("thangDiem"));
 					ls.add(cd);
 				}
 				return ls;
@@ -44,15 +45,15 @@ public class chamDiemDAOIMPL implements chamDiemDAO{
 	@Override
 	public boolean insert(chamDiem cd) {
 		// TODO Auto-generated method stub
-		String sql = "Insert into chamDiem (`diem`, `baitapId`, `studentId`) values(?,?,?)";
-		return jdbcTemplate.update(sql, cd.getDiem(), cd.getBaitapid(), cd.getStudentId()) > 0;
+		String sql = "Insert into chamDiem (`diem`, `thangDiem`, `baitapId`, `studentId`) values(?,?,?,?)";
+		return jdbcTemplate.update(sql, cd.getDiem(), cd.getThangDiem(), cd.getBaitapid(), cd.getStudentId()) > 0;
 	}
 
 	@Override
 	public boolean update(chamDiem cd, String id) {
 		// TODO Auto-generated method stub
-		String sql = "Update chamDiem set diem = ?, baitapId = ?, studentId = ? where id = ?";
-		return jdbcTemplate.update(sql, cd.getDiem(), cd.getBaitapid(), cd.getStudentId()) > 0;
+		String sql = "Update chamDiem set diem = ?, thangDiem = ?, baitapId = ?, studentId = ? where id = ?";
+		return jdbcTemplate.update(sql, cd.getDiem(), cd.getThangDiem(), cd.getBaitapid(), cd.getStudentId()) > 0;
 	}
 
 	@Override
@@ -75,6 +76,7 @@ public class chamDiemDAOIMPL implements chamDiemDAO{
 					cd.setStudentId(rs.getString("studentId"));
 					cd.setBaitapid(rs.getInt("baitapId"));
 					cd.setDiem(rs.getInt("diem"));
+					cd.setThangDiem(rs.getInt("thangDiem"));
 				}
 				return cd;
 			}

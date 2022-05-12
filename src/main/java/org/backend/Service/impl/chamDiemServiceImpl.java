@@ -26,6 +26,7 @@ public class chamDiemServiceImpl implements chamDiemService{
 			cdt.setStudentId(cd.getStudentId());
 			cdt.setBaitapid(cd.getBaitapid());
 			cdt.setDiem(cd.getDiem());
+			cdt.setThangDiem(cd.getThangDiem());
 			ls.add(cdt);
 		}
 		return ls;
@@ -39,6 +40,7 @@ public class chamDiemServiceImpl implements chamDiemService{
 		cd.setStudentId(cdt.getStudentId());
 		cd.setBaitapid(cdt.getBaitapid());
 		cd.setDiem(cdt.getDiem());
+		cd.setThangDiem(cdt.getThangDiem());
 		return cddi.insert(cd);
 	}
 
@@ -50,6 +52,7 @@ public class chamDiemServiceImpl implements chamDiemService{
 		cd.setStudentId(cdt.getStudentId());
 		cd.setBaitapid(cdt.getBaitapid());
 		cd.setDiem(cdt.getDiem());
+		cd.setThangDiem(cdt.getThangDiem());
 		return cddi.update(cd, id);
 	}
 
@@ -68,6 +71,7 @@ public class chamDiemServiceImpl implements chamDiemService{
 		cdt.setStudentId(cd.getStudentId());
 		cdt.setBaitapid(cd.getBaitapid());
 		cdt.setDiem(cd.getDiem());
+		cdt.setThangDiem(cd.getThangDiem());
 		return cdt;
 	}
 

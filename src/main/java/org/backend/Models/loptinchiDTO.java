@@ -2,7 +2,7 @@ package org.backend.Models;
 
 public class loptinchiDTO {
 	private String id;
-	private String TenLopTC;
+	private String tenLopTC;
 	private String idKhoa;
 	private String idKhoaHoc;
 	private String idMon;
@@ -20,7 +20,7 @@ public class loptinchiDTO {
 			String created_by, String created_at, String updated_at) {
 		super();
 		this.id = id;
-		TenLopTC = tenLopTC;
+		this.tenLopTC = tenLopTC;
 		this.idKhoa = idKhoa;
 		this.idKhoaHoc = idKhoaHoc;
 		this.idMon = idMon;
@@ -40,11 +40,11 @@ public class loptinchiDTO {
 	}
 
 	public String getTenLopTC() {
-		return TenLopTC;
+		return tenLopTC;
 	}
 
 	public void setTenLopTC(String tenLopTC) {
-		TenLopTC = tenLopTC;
+		this.tenLopTC = tenLopTC;
 	}
 
 	public String getIdKhoa() {

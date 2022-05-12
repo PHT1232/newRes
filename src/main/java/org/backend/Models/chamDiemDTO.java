@@ -3,6 +3,7 @@ package org.backend.Models;
 public class chamDiemDTO {
 	private int id;
 	private int diem;
+	private int thangDiem;
 	private int baitapid;
 	private String studentId;
 	
@@ -10,10 +11,11 @@ public class chamDiemDTO {
 		
 	}
 
-	public chamDiemDTO(int id, int diem, int baitapid, String studentId) {
+	public chamDiemDTO(int id, int diem, int thangDiem, int baitapid, String studentId) {
 		super();
 		this.id = id;
 		this.diem = diem;
+		this.thangDiem = thangDiem;
 		this.baitapid = baitapid;
 		this.studentId = studentId;
 	}
@@ -28,6 +30,14 @@ public class chamDiemDTO {
 
 	public int getDiem() {
 		return diem;
+	}
+
+	public int getThangDiem() {
+		return thangDiem;
+	}
+
+	public void setThangDiem(int thangDiem) {
+		this.thangDiem = thangDiem;
 	}
 
 	public void setDiem(int diem) {

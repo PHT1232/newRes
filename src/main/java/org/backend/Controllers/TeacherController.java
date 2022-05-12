@@ -237,11 +237,12 @@ public class TeacherController {
     }
 
     @RequestMapping(value = "/giaoVienChamDiem")
-    public RedirectView chamDiem(@RequestParam("id") int id, @RequestParam("Diem") int diem, @RequestParam("masv") String[] masv) {
+    public RedirectView chamDiem(@RequestParam("id") int id, @RequestParam("thangDiem") int thangDiem, @RequestParam("Diem") int diem, @RequestParam("masv") String[] masv) {
         for (String msv : masv) {
             chamDiemDTO cdt = new chamDiemDTO();
             cdt.setBaitapid(id);
             cdt.setDiem(diem);
+            cdt.setThangDiem(thangDiem);
             cdt.setStudentId(msv);
             cds.insert(cdt);
         }
@@ -253,6 +254,7 @@ public class TeacherController {
         List<studentBaiTapDTO> stbtd = sbts.getByBaiTapId(id);
         List<filesDTO> fileNops = fs.getAll();
         List<baiTapNop> fileNops1 = new ArrayList<>();
+        int thangDiem = bts.getById(id).getThangDiem();
         int i = 0;
         for (studentBaiTapDTO stbt : stbtd) {
             baiTapNop fn = new baiTapNop();
@@ -274,14 +276,14 @@ public class TeacherController {
             map.addAttribute("success", "Yes");
         }
         map.addAttribute("baiTapid", id);
-//        map.addAttribute("filenop", fileNops1);
+        map.addAttribute("thangDiem", thangDiem);
         map.addAttribute("baitapnop", fileNops1);
         map.addAttribute("urlToClasse", "Teacher");
         return "chamDiem";
     }
 
     @RequestMapping(value = "/uploadBaiTap", method = RequestMethod.POST)
-    public RedirectView uploadBaiTap(@RequestParam(value = "loptinchi") String loptinchi, @RequestParam(value = "deadline") String deadline, @RequestParam("files") MultipartFile[] files, @RequestParam(value = "tenBaiTap") String tenbaitap, @RequestParam(value = "noiDungBaiTap") String noiDungBaiTap) throws IOException {
+    public RedirectView uploadBaiTap(@RequestParam(value = "thangDiem") int thangDiem, @RequestParam(value = "loptinchi") String loptinchi, @RequestParam("thangDiem") int thangdiem, @RequestParam(value = "deadline") String deadline, @RequestParam("files") MultipartFile[] files, @RequestParam(value = "tenBaiTap") String tenbaitap, @RequestParam(value = "noiDungBaiTap") String noiDungBaiTap) throws IOException {
         baiTapDTO btd = new baiTapDTO();
         filesDTO fdt = new filesDTO();
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -290,27 +292,29 @@ public class TeacherController {
         btd.setTenBaiTap(tenbaitap);
         btd.setNoiDungBaiTap(noiDungBaiTap);
         btd.setLoptinchi(loptinchi);
-        bts.insert(btd);
+        btd.setThangDiem(thangDiem);
+//        bts.insert(btd);
 
-        String uploadDir = "\\home\\phat\\Documents\\projectAPI\\uploads\\" + loptinchi + "\\BaiTap";
-
-        Path uploadPath = Paths.get(uploadDir);
-
-        if (!Files.exists(uploadPath)) {
-            Files.createDirectories(uploadPath);
-        }
+//        String uploadDir = "\\home\\phat\\Documents\\projectAPI\\uploads\\" + loptinchi + "\\BaiTap";
+//
+//        Path uploadPath = Paths.get(uploadDir);
+//
+//        if (!Files.exists(uploadPath)) {
+//            Files.createDirectories(uploadPath);
+//        }
 
         for (MultipartFile file : files) {
             fdt.setFilename(file.getOriginalFilename());
-            try (InputStream inputStream = file.getInputStream()) {
-                Path filePath = uploadPath.resolve(file.getOriginalFilename());
-                Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            fdt.setBaiTapId(bts.getLastId());
-            fdt.setNopBaiTapId(0);
-            fs.insert(fdt);
+//            try (InputStream inputStream = file.getInputStream()) {
+//                Path filePath = uploadPath.resolve(file.getOriginalFilename());
+//                Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//            fdt.setBaiTapId(bts.getLastId());
+//            fdt.setNopBaiTapId(0);
+//            fs.insert(fdt);
+            System.out.println(file.getOriginalFilename());
         }
         return new RedirectView("Teacher/addBaiTap?success=true");
     }

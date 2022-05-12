@@ -29,6 +29,7 @@ public class baiTapServiceImpl implements baiTapService{
             btd.setNoiDungBaiTap(bt.getNoiDungBaiTap());
             btd.setLoptinchi(bt.getLoptinchi());
             btd.setLopql(bt.getLopql());
+            btd.setThangDiem(bt.getThangDiem());
             ls.add(btd);
         }
         return ls;
@@ -47,6 +48,7 @@ public class baiTapServiceImpl implements baiTapService{
             btd.setNoiDungBaiTap(bt.getNoiDungBaiTap());
             btd.setLoptinchi(bt.getLoptinchi());
             btd.setLopql(bt.getLopql());
+            btd.setThangDiem(bt.getThangDiem());
             ls.add(btd);
         }
         return ls;
@@ -63,6 +65,7 @@ public class baiTapServiceImpl implements baiTapService{
         bt.setNoiDungBaiTap(btd.getNoiDungBaiTap());
         bt.setLoptinchi(btd.getLoptinchi());
         bt.setLopql(btd.getLopql());
+        bt.setThangDiem(btd.getThangDiem());
 		return btda.insert(bt);
 	}
 
@@ -77,6 +80,7 @@ public class baiTapServiceImpl implements baiTapService{
         bt.setNoiDungBaiTap(btd.getNoiDungBaiTap());
         bt.setLoptinchi(btd.getLoptinchi());
         bt.setLopql(btd.getLopql());
+        bt.setThangDiem(btd.getThangDiem());
 		return btda.update(id, bt);
 	}
 
@@ -103,7 +107,7 @@ public class baiTapServiceImpl implements baiTapService{
         btd.setNoiDungBaiTap(bt.getNoiDungBaiTap());
         btd.setLoptinchi(bt.getLoptinchi());
         btd.setLopql(bt.getLopql());
+        btd.setThangDiem(bt.getThangDiem());
 		return btd;
 	}
-
 }

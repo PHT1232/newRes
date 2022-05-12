@@ -9,13 +9,13 @@ public class baiTapDTO {
 	private String noiDungBaiTap;
 	private String loptinchi;
 	private String lopql;
-	
+	private int thangDiem;
 	public baiTapDTO() {
 		
 	}
 
 	public baiTapDTO(int id, String name, String username, String deadline, String tenBaiTap, String noiDungBaiTap,
-			String loptinchi, String lopql) {
+			String loptinchi, String lopql, int thangDiem) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -25,6 +25,7 @@ public class baiTapDTO {
 		this.noiDungBaiTap = noiDungBaiTap;
 		this.loptinchi = loptinchi;
 		this.lopql = lopql;
+		this.thangDiem = thangDiem;
 	}
 
 	public int getId() {
@@ -89,5 +90,13 @@ public class baiTapDTO {
 
 	public void setLopql(String lopql) {
 		this.lopql = lopql;
+	}
+
+	public int getThangDiem() {
+		return thangDiem;
+	}
+
+	public void setThangDiem(int thangDiem) {
+		this.thangDiem = thangDiem;
 	}
 }

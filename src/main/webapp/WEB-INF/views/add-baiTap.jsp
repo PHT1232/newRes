@@ -173,6 +173,9 @@
 <!-- Main mới -->
 <form action="/projectAPI/uploadBaiTap" method="post" enctype="multipart/form-data">
     <main class="container">
+        <c:if test="${success != null}">
+            <h3 style="color: blue">Thêm bài tập thành công</h3>
+        </c:if>
         <div class="row m-1">
             <div class="col col-1 mt-2 mb-2">
                 <div class="row">
@@ -189,18 +192,15 @@
             <div class="col col-5 mt-auto mb-auto">
                 <div class="row float-right">
                     <div class="btn-group">
-                        <button type="button" class="btn btn-success border-right">Giao bài</button>
+                        <button type="submit" class="btn btn-success border-right">Giao bài</button>
                         <button type="button" class="btn btn-success dropdown-toggle dropdown-toggle-split border-left"
                                 id="dropdownMenuReference" data-toggle="dropdown" aria-expanded="false"
                                 data-reference="parent">
                             <span class="sr-only">Toggle Dropdown</span>
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuReference">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Separated link</a>
+                            <a class="dropdown-item" href="#">Bài tập</a>
+                            <a class="dropdown-item" href="#">Kiểm tra</a>
                         </div>
                     </div>
                 </div>
@@ -226,30 +226,30 @@
                     <div class="card border-0" style="width: 100%;">
                         <div class="card-body p-0">
                             <div class="form-group">
-                                <label for="title">Tiêu đề</label>
-                                <input type="text" class="form-control" name="title" id="title"
+                                <label for="title">Tên bài tập</label>
+                                <input type="text" class="form-control" name="tenBaiTap" id="title"
                                        aria-describedby="titleHid" placeholder="">
                             </div>
 
                             <div class="form-group">
-                                <label for="tutorial">Hướng dẫn (Tùy chọn)</label>
-                                <textarea class="form-control" name="tutorial" id="tutorial" rows="5"></textarea>
+                                <label for="tutorial">Nội dung bài tập</label>
+<%--                                <textarea class="form-control" name="tutorial" id="tutorial" rows="5" name=""></textarea>--%>
+                                <textarea id="mytextarea" name="noiDungBaiTap">Hello, World!</textarea>
                             </div>
                         </div>
                         <div class="card-footer text-muted p-0 border-0 bg-transparent">
-                            <label for="file-upload" class="custom-file-upload text-success border rounded">
-                                <i class="fas fa-plus"></i> Tiêu chí chấm điểm
-                            </label>
-                            <input id="file-upload" name="files" type="file" />
-                            <div id="containerFile">
-
-                            </div>
+<%--                            <label for="file-upload" class="custom-file-upload text-success border rounded">--%>
+<%--                                <i class="fas fa-plus"></i> File hướng dẫn--%>
+<%--                            </label>--%>
+<%--                            <input id="file-upload" name="files" type="file" />--%>
+							<div id="containerFile"></div>
                             <a name="" id="btnNop" class="btn btn-outline-light text-success font-weight-bold ml-3" href="#"
                                role="button" style="margin-bottom: 5px;">
-                                <i class="fas fa-plus"></i> Tạo
+                                <i class="fas fa-plus"></i> Thêm
                             </a>
                             <div id="input"></div>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -260,62 +260,51 @@
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="inputEmail4">Dành cho</label>
-                                <select class="form-control" id="exampleFormControlSelect1">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
+                                <select name="loptinchi" class="form-control" id="exampleFormControlSelect1">
+                                    <c:forEach var="classDT" items="${classesDT}">
+                                        <option value="${classDT.id}">${classDT.tenLopTC}</option>
+                                    </c:forEach>
                                 </select>
                             </div>
-                            <div class="form-group col-md-6">
-                                <label for="inputPassword4">&nbsp;</label>
-                                <select class="form-control" id="exampleFormControlSelect1">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                </select>
-                            </div>
+<%--                            <div class="form-controlgroup col-md-6">--%>
+<%--                                <label for="inputPassword4">&nbsp;</label>--%>
+<%--                                <select class="form-control" id="exampleFormControlSelect1">--%>
+<%--                                    <option>1</option>--%>
+<%--                                    <option>2</option>--%>
+<%--                                    <option>3</option>--%>
+<%--                                    <option>4</option>--%>
+<%--                                    <option>5</option>--%>
+<%--                                </select>--%>
+<%--                            </div>--%>
                         </div>
 
                         <div class="form-group">
-                            <label for="">Điểm</label>
-                            <select class="form-control col-md-6" id="">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
+                            <label for="">Thang điểm</label>
+                            <select name="thangDiem" class="form-control col-md-6" id="">
+                                <option>10</option>
+                                <option>20</option>
+                                <option>30</option>
+                                <option>40</option>
+                                <option>50</option>
+                                <option>60</option>
+                                <option>70</option>
+                                <option>80</option>
+                                <option>90</option>
+                                <option>100</option>
+                                <option>200</option>
                             </select>
                         </div>
 
                         <div class="form-group">
                             <label for="">Đến hạn</label>
-                            <select class="form-control" id="">
-                                <option>Không có ngày đến hạn</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="">Chủ đề</label>
-                            <select class="form-control" id="">
-                                <option>Không có chủ đề</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="">Tiêu chí chấm điểm</label>
-
+                            <input type="date" class="form-control" id="hanNop" name="deadline"/>
+<%--                            <select class="form-control" id="">--%>
+<%--                                <option>Không có ngày đến hạn</option>--%>
+<%--                                <option>2</option>--%>
+<%--                                <option>3</option>--%>
+<%--                                <option>4</option>--%>
+<%--                                <option>5</option>--%>
+<%--                            </select>--%>
                         </div>
                     </div>
                     <div class="card-footer text-muted p-0 border-0 bg-transparent">
@@ -355,7 +344,6 @@
         var container = document.getElementById("containerFile");
         $('#btnNop').click(function (e) {
             var label = document.createElement("label");
-            var i = document.createElement("i");
             var input = document.createElement("input");
             // var input = document.createElement("<label for='file-upload' class='custom-file-upload text-success border rounded'>" + "<i class='fas fa-plus'></i> Tiêu chí chấm điểm</label>" + "<input id='file-upload' name='files' type='file' />");
             // var input = document.getElementById("input");
@@ -363,12 +351,14 @@
             e.preventDefault();
             if (x < max_fields) {
                 x++;
-                label.htmlFor = "file-upload"
+                label.htmlFor = "file-upload";
+                label.htmlFor += x;
                 label.className = "custom-file-upload text-success border rounded";
                 label.innerHTML = "<i class='fas fa-plus'></i> Tieu chi cham diem"
                 input.type = "file";
                 input.name = "files";
                 input.id = "file-upload"
+                input.id += x;
                 // input.className = "btn btn-sm btn-white";
                 container.append(label);
                 container.append(input);

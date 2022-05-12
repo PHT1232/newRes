@@ -9,11 +9,12 @@ public class baiTap {
 	private String noiDungBaiTap;
 	private String loptinchi;
 	private String lopql;
+	private int thangDiem;
 
 	public baiTap() {
 	}
 
-	public baiTap(int id, String name, String username, String deadline, String tenBaiTap, String noiDungBaiTap, String loptinchi, String lopql) {
+	public baiTap(int id, String name, String username, String deadline, String tenBaiTap, String noiDungBaiTap, String loptinchi, String lopql, int thangDiem) {
 		this.id = id;
 		this.name = name;
 		this.username = username;
@@ -22,6 +23,7 @@ public class baiTap {
 		this.noiDungBaiTap = noiDungBaiTap;
 		this.loptinchi = loptinchi;
 		this.lopql = lopql;
+		this.thangDiem = thangDiem;
 	}
 
 	public int getId() {
@@ -86,5 +88,13 @@ public class baiTap {
 
 	public void setLopql(String lopql) {
 		this.lopql = lopql;
+	}
+
+	public int getThangDiem() {
+		return thangDiem;
+	}
+
+	public void setThangDiem(int thangDiem) {
+		this.thangDiem = thangDiem;
 	}
 }
