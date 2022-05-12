@@ -88,7 +88,22 @@ public class baiTapDAOIMPL implements baiTapDAO{
 		// TODO Auto-generated method stub
 		return false;
 	}
-	
+
+	@Override
+	public int getLastId() {
+		String sql = "SELECT max(id) as 'id' FROM baitap";
+		return jdbcTemplate.query(sql, new ResultSetExtractor<Integer>() {
+			@Override
+			public Integer extractData(ResultSet rs) throws SQLException, DataAccessException {
+				int id = 0;
+				while (rs.next()) {
+					id = rs.getInt("id");
+				}
+				return id;
+			}
+		});
+	}
+
 	@Override
 	public baiTap getById(int id) {
 		// TODO Auto-generated method stub

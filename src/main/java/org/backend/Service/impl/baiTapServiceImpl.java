@@ -86,7 +86,12 @@ public class baiTapServiceImpl implements baiTapService{
 		return false;
 	}
 
-	@Override
+    @Override
+    public int getLastId() {
+        return btda.getLastId();
+    }
+
+    @Override
 	public baiTapDTO getById(int id) {
         baiTapDTO btd = new baiTapDTO();
         baiTap bt = btda.getById(id); 

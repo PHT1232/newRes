@@ -11,11 +11,18 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -229,6 +236,18 @@ public class TeacherController {
         return "add-baiTap";
     }
 
+    @RequestMapping(value = "/giaoVienChamDiem")
+    public RedirectView chamDiem(@RequestParam("id") int id, @RequestParam("Diem") int diem, @RequestParam("masv") String[] masv) {
+        for (String msv : masv) {
+            chamDiemDTO cdt = new chamDiemDTO();
+            cdt.setBaitapid(id);
+            cdt.setDiem(diem);
+            cdt.setStudentId(msv);
+            cds.insert(cdt);
+        }
+        return new RedirectView("Teacher/chamDiem?id=" + id + "&success=true");
+    }
+
     @RequestMapping(value = "/chamDiem")
     public String chamDiem(@RequestParam(value = "success", required = false) String success, ModelMap map, HttpServletRequest request, @RequestParam(value = "id", required = false) int id) throws IOException {
         List<studentBaiTapDTO> stbtd = sbts.getByBaiTapId(id);
@@ -260,7 +279,42 @@ public class TeacherController {
         map.addAttribute("urlToClasse", "Teacher");
         return "chamDiem";
     }
-//
+
+    @RequestMapping(value = "/uploadBaiTap", method = RequestMethod.POST)
+    public RedirectView uploadBaiTap(@RequestParam(value = "loptinchi") String loptinchi, @RequestParam(value = "deadline") String deadline, @RequestParam("files") MultipartFile[] files, @RequestParam(value = "tenBaiTap") String tenbaitap, @RequestParam(value = "noiDungBaiTap") String noiDungBaiTap) throws IOException {
+        baiTapDTO btd = new baiTapDTO();
+        filesDTO fdt = new filesDTO();
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        btd.setUsername(username);
+        btd.setDeadline(deadline);
+        btd.setTenBaiTap(tenbaitap);
+        btd.setNoiDungBaiTap(noiDungBaiTap);
+        btd.setLoptinchi(loptinchi);
+        bts.insert(btd);
+
+        String uploadDir = "\\home\\phat\\Documents\\projectAPI\\uploads\\" + loptinchi + "\\BaiTap";
+
+        Path uploadPath = Paths.get(uploadDir);
+
+        if (!Files.exists(uploadPath)) {
+            Files.createDirectories(uploadPath);
+        }
+
+        for (MultipartFile file : files) {
+            fdt.setFilename(file.getOriginalFilename());
+            try (InputStream inputStream = file.getInputStream()) {
+                Path filePath = uploadPath.resolve(file.getOriginalFilename());
+                Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            fdt.setBaiTapId(bts.getLastId());
+            fdt.setNopBaiTapId(0);
+            fs.insert(fdt);
+        }
+        return new RedirectView("Teacher/addBaiTap?success=true");
+    }
+
     @RequestMapping(value = "/Class")
     public String Class(ModelMap map, @RequestParam("loptinchi") String loptinchi) {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
