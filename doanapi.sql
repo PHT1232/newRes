@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 11, 2022 at 12:47 PM
+-- Generation Time: May 13, 2022 at 12:18 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.5
 
@@ -78,17 +78,19 @@ CREATE TABLE `baiTap` (
   `tenBaiTap` varchar(150) DEFAULT NULL,
   `noidungbaitap` varchar(255) DEFAULT NULL,
   `loptinchiid` varchar(50) DEFAULT NULL,
-  `lopql` varchar(50) DEFAULT NULL
+  `lopql` varchar(50) DEFAULT NULL,
+  `thangDiem` int(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `baiTap`
 --
 
-INSERT INTO `baiTap` (`id`, `name`, `username`, `deadline`, `tenBaiTap`, `noidungbaitap`, `loptinchiid`, `lopql`) VALUES
-(7, NULL, 'NguyenThiNga', '2022-01-21', 'Bài Tập AI', '<p>Hello, World!</p>', 'JAVA1902E', ''),
-(8, NULL, 'NguyenThiNga', '2022-01-20', 'Luyện tập java', '<p>Hello, World!</p>', 'JAVA1902E', ''),
-(9, NULL, 'NguyenThiNga', '2022-01-22', 'Luyen thi triet hoc', '<p>Hay ke ten cac nha triet hoc noi tieng</p>', 'XHKH', NULL);
+INSERT INTO `baiTap` (`id`, `name`, `username`, `deadline`, `tenBaiTap`, `noidungbaitap`, `loptinchiid`, `lopql`, `thangDiem`) VALUES
+(7, NULL, 'NguyenThiNga', '2022-01-21', 'Bài Tập AI', '<p>Hello, World!</p>', 'JAVA1902E', '', 0),
+(8, NULL, 'NguyenThiNga', '2022-01-20', 'Luyện tập java', '<p>Hello, World!</p>', 'JAVA1902E', '', 0),
+(9, NULL, 'NguyenThiNga', '2022-01-22', 'Luyen thi triet hoc', '<p>Hay ke ten cac nha triet hoc noi tieng</p>', 'XHKH', NULL, 0),
+(12, NULL, 'NguyenThiNga', '2022-05-18', 'Bài tập ngày 12/5', '<p>C&aacute;c em h&atilde;y t&igrave;m hiểu th&ecirc;m về c&aacute;c nh&agrave; triết học nổi tiếng của Việt Nam</p>', 'XHKH', NULL, 80);
 
 -- --------------------------------------------------------
 
@@ -109,7 +111,7 @@ CREATE TABLE `bangcap` (
 --
 
 INSERT INTO `bangcap` (`id`, `TenBangCap`, `created_by`, `created_at`, `updated_at`) VALUES
-(1, 'Cu nhan', NULL, '2022-05-11 08:07:23', '2022-05-11 08:07:23');
+(1, 'Cử nhân', NULL, '2022-05-11 08:07:23', '2022-05-12 08:34:37');
 
 -- --------------------------------------------------------
 
@@ -120,6 +122,7 @@ INSERT INTO `bangcap` (`id`, `TenBangCap`, `created_by`, `created_at`, `updated_
 CREATE TABLE `chamdiem` (
   `id` int(60) NOT NULL,
   `diem` int(100) DEFAULT NULL,
+  `thangDiem` int(30) NOT NULL,
   `baitapId` int(60) DEFAULT NULL,
   `studentId` varchar(60) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -128,9 +131,9 @@ CREATE TABLE `chamdiem` (
 -- Dumping data for table `chamdiem`
 --
 
-INSERT INTO `chamdiem` (`id`, `diem`, `baitapId`, `studentId`) VALUES
-(1, 50, 7, '1912'),
-(2, 66, 8, '1912');
+INSERT INTO `chamdiem` (`id`, `diem`, `thangDiem`, `baitapId`, `studentId`) VALUES
+(1, 50, 0, 7, '1912'),
+(2, 66, 0, 8, '1912');
 
 -- --------------------------------------------------------
 
@@ -158,10 +161,10 @@ INSERT INTO `danghoc` (`id`, `classid`, `idMon`, `idTeacher`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `dktinchi`
+-- Table structure for table `dkTinChi`
 --
 
-CREATE TABLE `dktinchi` (
+CREATE TABLE `dkTinChi` (
   `id` int(11) NOT NULL,
   `maSV` varchar(50) DEFAULT NULL,
   `idLopTC` varchar(50) DEFAULT NULL,
@@ -172,10 +175,10 @@ CREATE TABLE `dktinchi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `dktinchi`
+-- Dumping data for table `dkTinChi`
 --
 
-INSERT INTO `dktinchi` (`id`, `maSV`, `idLopTC`, `status`, `created_by`, `created_at`, `updated_at`) VALUES
+INSERT INTO `dkTinChi` (`id`, `maSV`, `idLopTC`, `status`, `created_by`, `created_at`, `updated_at`) VALUES
 (1, '0212001', 'JAVA1902E', 0, NULL, '2022-05-08 15:32:35', '2022-05-10 09:42:12');
 
 -- --------------------------------------------------------
@@ -204,7 +207,9 @@ INSERT INTO `files` (`id`, `filename`, `baiTapId`, `nopBaiTapId`) VALUES
 (11, 'GraphicEQ.txt', 0, 2),
 (12, 'JAVA1902E_Nhom 4.rar', 8, 0),
 (13, '240_Nguyễn Tấn Phát_Trí tuệ nhân tạo.pdf', 0, 3),
-(14, '243_Nguyễn Tấn Phát_Lập trình hướng đối tượng.pdf', 0, 3);
+(14, '243_Nguyễn Tấn Phát_Lập trình hướng đối tượng.pdf', 0, 3),
+(17, 'Screenshot from 2022-05-12 10.12.11.png', 12, 0),
+(18, 'Screenshot from 2022-05-12 09.55.47.png', 12, 0);
 
 -- --------------------------------------------------------
 
@@ -279,7 +284,7 @@ CREATE TABLE `khoa` (
 
 INSERT INTO `khoa` (`id`, `tenKhoa`, `STATUS`, `created_by`, `created_at`, `updated_at`) VALUES
 ('CNTT', 'Công nghệ thông tin', 1, NULL, '2022-05-06 18:58:52', '2022-05-06 18:58:53'),
-('THTG', 'Triet hoc the gioi', 1, NULL, '2022-05-11 07:50:25', '2022-05-11 07:50:25');
+('THTG', 'Triết học thế giới', 1, NULL, '2022-05-11 07:50:25', '2022-05-12 08:36:02');
 
 -- --------------------------------------------------------
 
@@ -398,7 +403,7 @@ CREATE TABLE `loptinchi` (
 INSERT INTO `loptinchi` (`id`, `TenLopTC`, `idKhoa`, `idKhoaHoc`, `idMon`, `MaGV`, `status`, `created_by`, `created_at`, `updated_at`) VALUES
 ('JAVA1022', 'Lop java 1022', 'CNTT', NULL, 'CNJV', '1231', 1, NULL, '2022-05-11 08:11:04', '2022-05-11 08:11:04'),
 ('JAVA1902E', 'Lớp JAVA 1902E', 'CNTT', NULL, 'CNJV', '1222', 1, NULL, '2022-05-06 18:59:41', '2022-05-06 19:00:39'),
-('XHKH', 'Xa hoi chu nghia', 'THTG', NULL, 'MLIN', '1222', 1, NULL, '2022-05-11 07:53:03', '2022-05-11 08:00:41');
+('XHKH', 'Xã hội chủ nghĩa', 'THTG', NULL, 'MLIN', '1222', 1, NULL, '2022-05-11 07:53:03', '2022-05-12 08:34:20');
 
 -- --------------------------------------------------------
 
@@ -645,9 +650,9 @@ ALTER TABLE `danghoc`
   ADD KEY `idTeacher` (`idTeacher`);
 
 --
--- Indexes for table `dktinchi`
+-- Indexes for table `dkTinChi`
 --
-ALTER TABLE `dktinchi`
+ALTER TABLE `dkTinChi`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -760,7 +765,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `baiTap`
 --
 ALTER TABLE `baiTap`
-  MODIFY `id` int(60) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(60) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `bangcap`
@@ -781,16 +786,16 @@ ALTER TABLE `danghoc`
   MODIFY `id` int(40) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT for table `dktinchi`
+-- AUTO_INCREMENT for table `dkTinChi`
 --
-ALTER TABLE `dktinchi`
+ALTER TABLE `dkTinChi`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `files`
 --
 ALTER TABLE `files`
-  MODIFY `id` int(60) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(60) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `lichhoc`
