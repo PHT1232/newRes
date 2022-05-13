@@ -400,41 +400,13 @@ public class TeacherController {
         int id = Integer.parseInt(request.getParameter("id"));
         baiTapDTO btd = bts.getById(id);
         List<filesDTO> fdt = new ArrayList<>();
-//        loptinchiDTO ltcdt = classesService.getById(id)id;
-//        for (baiTapDTO bt : bts.getAll()) {
-//            if (bt.getLoptinchi().equals(ltcdt.getId())) {
-//                btd = bt;
-//            }
-//        }
         for (filesDTO fd : fs.getAll()) {
             if (fd.getBaiTapId() == id) {
                 fdt.add(fd);
             }
         }
-//        String requestContext = request.getContextPath();
-//        String requestServerName = request.getServerName();
-//        int requestServerPort = request.getServerPort();
-//        String s = "http://" + requestServerName + ":" + requestServerPort + requestContext + "/getBaiTap?id=" + id;
-//        URL url;
-//        Scanner sc;
-//        String str;
-//        url = new URL(s);
-//
-//        sc = new Scanner(url.openStream(), "UTF-8");
-//        str = new String();
-//        while (sc.hasNext()) {
-//            str += sc.nextLine();
-//        }
-//        sc.close();
-//        JSONArray array = new JSONArray(str);
         final String new_format = "dd-MM-yyyy";
         final String old_format = "yyyy-MM-dd";
-//        List<String> filename = new ArrayList<>();
-//        for (int i = 1; i < array.length(); i++) {
-//            JSONObject obj2 = array.getJSONObject(i);
-//            filename.add(obj2.getString("filename"));
-//        }
-//        JSONObject obj = array.getJSONObject(0);
         String old_dateS = btd.getDeadline();
         String newStringDate = "";
         SimpleDateFormat sdf = new SimpleDateFormat(old_format);
