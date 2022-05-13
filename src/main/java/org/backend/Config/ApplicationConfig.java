@@ -28,7 +28,8 @@ public class ApplicationConfig implements WebMvcConfigurer {
 	        String folder = "C:\\Users\\phatn\\eclipse-workspace\\dh9c5_mvc";
 	        registry.addResourceHandler("/resource/**").addResourceLocations("/resources/");
 	        registry.addResourceHandler("/backend/**").addResourceLocations("/backend/");
-	        registry.addResourceHandler("/upload/**").addResourceLocations("file:///" + folder + "/");
+//	        registry.addResourceHandler("/upload/**").addResourceLocations("file:///" + folder + "/");
+	        registry.addResourceHandler("/upload/**").addResourceLocations("/uploads/");
 	 }
 	 
 	 @Bean

@@ -80,16 +80,18 @@ public class SinhVienDAOIMPL implements SinhVienDAO{
 			@Override
 			public SinhVien extractData(ResultSet rs) throws SQLException, DataAccessException {
 				SinhVien sv = new SinhVien();
-				sv.setMasv(rs.getString("msv"));
-				sv.setKhoa(rs.getString("idkhoa"));
-				sv.setKhoaHoc(rs.getString("idkhoahoc"));
-				sv.setQuequan(rs.getString("quequan"));
-				sv.setAvatar(rs.getString("avatar"));
-				sv.setStatus(rs.getInt("STATUS"));
-				sv.setBirthday(rs.getString("birthday"));
-				sv.setCreated_by(rs.getString("created_by"));
-				sv.setCreated_at(rs.getString("created_at"));
-				sv.setUpdated_at(rs.getString("updated_at"));
+				while (rs.next()) {
+					sv.setMasv(rs.getString("msv"));
+					sv.setKhoa(rs.getString("idkhoa"));
+					sv.setKhoaHoc(rs.getString("idkhoahoc"));
+					sv.setQuequan(rs.getString("quequan"));
+					sv.setAvatar(rs.getString("avatar"));
+					sv.setStatus(rs.getInt("STATUS"));
+					sv.setBirthday(rs.getString("birthday"));
+					sv.setCreated_by(rs.getString("created_by"));
+					sv.setCreated_at(rs.getString("created_at"));
+					sv.setUpdated_at(rs.getString("updated_at"));
+				}
 				return sv;
 			}
 		}, masv);

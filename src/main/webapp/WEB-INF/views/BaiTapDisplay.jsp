@@ -80,7 +80,7 @@
     <div class="content container-fluid">
         <div class="row">
             <div class="col-9">
-                <a href="/projectAPI_war/${urlToClasse}/baiTap?id=${id}" style="width: 235px; margin-top: 15px; text-align: center; padding: 0px; height: 50px" class="btn btn-sm btn-white">
+                <a href="/projectAPI/${urlToClasse}/baiTap?id=${id}" style="width: 235px; margin-top: 15px; text-align: center; padding: 0px; height: 50px" class="btn btn-sm btn-white">
                                             <span style="
     margin-top: 5px;
     font-size: 20px;
@@ -88,7 +88,7 @@
                 </a>
                 <c:if test="${urlToClasse.equals('Teacher')}">
 
-                    <a href="/projectAPI_war/${urlToClasse}/chamDiem?id=${id}" style="width: 235px; margin-top: 15px; text-align: center; padding: 0px; height: 50px" class="btn btn-sm btn-white">
+                    <a href="/projectAPI/${urlToClasse}/chamDiem?id=${id}" style="width: 235px; margin-top: 15px; text-align: center; padding: 0px; height: 50px" class="btn btn-sm btn-white">
                         <span style="
     margin-top: 5px;
     font-size: 20px;
@@ -102,7 +102,7 @@
                         color: black;">Điểm sinh viên</span>
                 </a>
             </div>
-        <div class="row">
+        <div class="row" style="margin-top: 30px">
             <div class="col-8">
                 <div class="row">
                     <div class="col">
@@ -115,16 +115,16 @@
                     </div>
                 </div>
                 ${noiDungBaiTap}
-                <c:forEach var="filename" items="${myFile}">
-                    <a href="<c:url value="/upload/baiTap/${filename}"></c:url>" download>
-                        <span style="color: blue">${filename}</span>
+                <c:forEach var="file" items="${myFile}">
+                    <a href="<c:url value="/upload/baiTap/${file.filename}"></c:url>" download>
+                        <span style="color: blue">${file.filename}</span>
                     </a><br/>
                 </c:forEach>
             </div>
             <div class="col-4">
                 <c:choose>
                     <c:when test="${role.equals('STUDENT')}">
-                        <form action="/projectAPI_war/nopBaiTap?id=${id}" id="formNop" method="post"
+                        <form action="/projectAPI/nopBaiTap?id=${id}" id="formNop" method="post"
                               enctype="multipart/form-data">
                             <div class="row">
                                 <div class="col">

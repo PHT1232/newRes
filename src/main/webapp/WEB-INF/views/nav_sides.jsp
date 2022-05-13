@@ -6,7 +6,7 @@
         <div class="sb-sidenav-menu">
             <div class="nav">
                 <div class="sb-sidenav-menu-heading">Core</div>
-                <a class="nav-link" href="/projectAPI_war/admin/index">
+                <a class="nav-link" href="/projectAPI/admin/index">
                     <div class="sb-nav-link-icon">
                         <i class="fas fa-tachometer-alt"></i>
                     </div>
@@ -15,37 +15,37 @@
             </div>
             <div class="nav">
                 <div class="sb-sidenav-menu-heading">Table</div>
-                <a class="nav-link" href="/projectAPI_war/admin/teachers">
+                <a class="nav-link" href="/projectAPI/admin/teachers">
                     <div class="sb-nav-link-icon">
                         <i class="fas fa-table"></i>
                     </div>
                     Teacher
                 </a>
-                <a class="nav-link" href="/projectAPI_war/admin/students">
+                <a class="nav-link" href="/projectAPI/admin/students">
                     <div class="sb-nav-link-icon">
                         <i class="fas fa-table"></i>
                     </div>
                     Students
                 </a>
-                <a class="nav-link" href="/projectAPI_war/admin/classes">
+                <a class="nav-link" href="/projectAPI/admin/classes">
                     <div class="sb-nav-link-icon">
                         <i class="fas fa-table"></i>
                     </div>
                     Classes
                 </a>
-                <a class="nav-link" href="/projectAPI_war/admin/subjects">
+                <a class="nav-link" href="/projectAPI/admin/subjects">
                     <div class="sb-nav-link-icon">
                         <i class="fas fa-table"></i>
                     </div>
                     Subjects
                 </a>
-                <a class="nav-link" href="/projectAPI_war/admin/learning">
+                <a class="nav-link" href="/projectAPI/admin/learning">
                     <div class="sb-nav-link-icon">
                         <i class="fas fa-table"></i>
                     </div>
                     Learning
                 </a>
-                <a class="nav-link" href="/projectAPI_war/admin/users">
+                <a class="nav-link" href="/projectAPI/admin/users">
                     <div class="sb-nav-link-icon">
                         <i class="fas fa-table"></i>
                     </div>

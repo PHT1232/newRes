@@ -80,23 +80,23 @@
     <c:if test="${success != null}">
         <h3 style="color: red">Chấm điểm thành công</h3>
     </c:if>
-    <form action="/projectAPI_war/chamDiem?id=${baiTapid}" method="post">
+    <form action="/projectAPI/chamDiem?id=${baiTapid}" method="post">
         <div class="content container-fluid">
             <div class="row">
                 <div class="col-9">
-                    <a href="/projectAPI_war/${urlToClasse}/baiTap?id=${baiTapid}" style="width: 235px; margin-top: 15px; text-align: center; padding: 0px; height: 50px" class="btn btn-sm btn-white">
+                    <a href="/projectAPI/${urlToClasse}/baiTap?id=${baiTapid}" style="width: 235px; margin-top: 15px; text-align: center; padding: 0px; height: 50px" class="btn btn-sm btn-white">
                                             <span style="
     margin-top: 5px;
     font-size: 20px;
     color: black;">Chi tiết bài tập</span>
                     </a>
-                    <a href="/projectAPI_war/${urlToClasse}/chamDiem?id=${baiTapid}" style="width: 235px; margin-top: 15px; text-align: center; padding: 0px; height: 50px" class="btn btn-sm btn-white">
+                    <a href="/projectAPI/${urlToClasse}/chamDiem?id=${baiTapid}" style="width: 235px; margin-top: 15px; text-align: center; padding: 0px; height: 50px" class="btn btn-sm btn-white">
                         <span style="
     margin-top: 5px;
     font-size: 20px;
     color: black;">Chấm điểm sinh viên</span>
                     </a>
-                    <a href="/projectAPI_war/${urlToClasse}/diem?id=${baiTapid}" style="width: 235px; margin-top: 15px; text-align: center; padding: 0px; height: 50px" class="btn btn-sm btn-white">
+                    <a href="/projectAPI/${urlToClasse}/diem?id=${baiTapid}" style="width: 235px; margin-top: 15px; text-align: center; padding: 0px; height: 50px" class="btn btn-sm btn-white">
                         <span style="
     margin-top: 5px;
     font-size: 20px;
@@ -112,7 +112,7 @@
                     </select>
                     <input style="margin-bottom: 5px;" type="submit" class="btn btn-primary" value="Chấm điểm">
                 </div>
-                <div class="row">
+                <div class="row" style="margin-top: 50px;">
                     <h3>Các học viên đã nộp bài tập</h3>
                     <table class="table">
                         <thead>

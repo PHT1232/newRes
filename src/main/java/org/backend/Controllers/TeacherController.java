@@ -26,6 +26,7 @@ import java.nio.file.StandardCopyOption;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.zip.DataFormatException;
 
 @Controller
 @RequestMapping(value = "/Teacher")
@@ -293,30 +294,30 @@ public class TeacherController {
         btd.setNoiDungBaiTap(noiDungBaiTap);
         btd.setLoptinchi(loptinchi);
         btd.setThangDiem(thangDiem);
-//        bts.insert(btd);
+        bts.insert(btd);
 
-//        String uploadDir = "\\home\\phat\\Documents\\projectAPI\\uploads\\" + loptinchi + "\\BaiTap";
-//
-//        Path uploadPath = Paths.get(uploadDir);
-//
-//        if (!Files.exists(uploadPath)) {
-//            Files.createDirectories(uploadPath);
-//        }
+        String uploadDir = "/home/phat/Documents/projectAPI/uploads/" + loptinchi + "/BaiTap";
+
+        Path uploadPath = Paths.get(uploadDir);
+
+        if (!Files.exists(uploadPath)) {
+            Files.createDirectories(uploadPath);
+        }
 
         for (MultipartFile file : files) {
             fdt.setFilename(file.getOriginalFilename());
-//            try (InputStream inputStream = file.getInputStream()) {
-//                Path filePath = uploadPath.resolve(file.getOriginalFilename());
-//                Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//            fdt.setBaiTapId(bts.getLastId());
-//            fdt.setNopBaiTapId(0);
-//            fs.insert(fdt);
+            try (InputStream inputStream = file.getInputStream()) {
+                Path filePath = uploadPath.resolve(file.getOriginalFilename());
+                Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            fdt.setBaiTapId(bts.getLastId());
+            fdt.setNopBaiTapId(0);
+            fs.insert(fdt);
             System.out.println(file.getOriginalFilename());
         }
-        return new RedirectView("Teacher/addBaiTap?success=true");
+        return new RedirectView("addBaiTap?success=true");
     }
 
     @RequestMapping(value = "/Class")
@@ -396,18 +397,18 @@ public class TeacherController {
     @RequestMapping(value = "/baiTap", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
     public String addBaiTap(ModelMap map, HttpServletRequest request) throws IOException, ParseException {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
-        String id = request.getParameter("idloptinchi");
-        baiTapDTO btd = new baiTapDTO();
-        filesDTO fdt = new filesDTO();
-        loptinchiDTO ltcdt = classesService.getById(id);
-        for (baiTapDTO bt : bts.getAll()) {
-            if (bt.getLoptinchi().equals(ltcdt.getId())) {
-                btd = bt;
-            }
-        }
+        int id = Integer.parseInt(request.getParameter("id"));
+        baiTapDTO btd = bts.getById(id);
+        List<filesDTO> fdt = new ArrayList<>();
+//        loptinchiDTO ltcdt = classesService.getById(id)id;
+//        for (baiTapDTO bt : bts.getAll()) {
+//            if (bt.getLoptinchi().equals(ltcdt.getId())) {
+//                btd = bt;
+//            }
+//        }
         for (filesDTO fd : fs.getAll()) {
-            if (fd.getBaiTapId() == btd.getId()) {
-                fdt = fd;
+            if (fd.getBaiTapId() == id) {
+                fdt.add(fd);
             }
         }
 //        String requestContext = request.getContextPath();
@@ -435,12 +436,17 @@ public class TeacherController {
 //        }
 //        JSONObject obj = array.getJSONObject(0);
         String old_dateS = btd.getDeadline();
+        String newStringDate = "";
         SimpleDateFormat sdf = new SimpleDateFormat(old_format);
-        Date d = sdf.parse(old_dateS);
-        sdf.applyPattern(new_format);
-        String newStringDate = sdf.format(d);
+        try {
+            Date d = sdf.parse(old_dateS);
+            sdf.applyPattern(new_format);
+            newStringDate = sdf.format(d);
+        } catch (Exception dfe) {
+            dfe.printStackTrace();
+        }
         map.addAttribute("urlToClasse", "Teacher");
-        map.addAttribute("myFile", fdt.getFilename());
+        map.addAttribute("myFile", fdt);
         map.addAttribute("tenBaiTap", btd.getTenBaiTap());
         map.addAttribute("denHan", newStringDate);
         map.addAttribute("noiDungBaiTap", btd.getNoiDungBaiTap());

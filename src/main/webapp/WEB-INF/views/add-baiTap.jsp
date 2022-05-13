@@ -171,7 +171,7 @@
 <%--</main>--%>
 
 <!-- Main mới -->
-<form action="/projectAPI/uploadBaiTap" method="post" enctype="multipart/form-data">
+<form action="/projectAPI/Teacher/uploadBaiTap" method="post" enctype="multipart/form-data">
     <main class="container">
         <c:if test="${success != null}">
             <h3 style="color: blue">Thêm bài tập thành công</h3>
