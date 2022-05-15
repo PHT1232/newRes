@@ -63,12 +63,12 @@ public class TeacherController {
 
     @Autowired
     svLopQLService svqls;
+
     public class baiTapNop {
         int id;
         String masv;
         String username;
         String name;
-
         String fileName;
 
         public int getId() {
@@ -296,7 +296,7 @@ public class TeacherController {
         btd.setThangDiem(thangDiem);
         bts.insert(btd);
 
-        String uploadDir = "/home/phat/Documents/projectAPI/uploads/" + loptinchi + "/BaiTap";
+        String uploadDir = "C:\\Users\\phatn\\eclipse-workspace\\projectAPI\\uploads\\" + loptinchi + "\\BaiTap";
 
         Path uploadPath = Paths.get(uploadDir);
 

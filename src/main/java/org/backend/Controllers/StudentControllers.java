@@ -171,9 +171,15 @@ public class StudentControllers {
             map.addAttribute("urlToClasse", "Teacher");
             map.addAttribute("name", teacherService.getById(acd.getTeacherId()).getTenGV());
         } else {
+            for (dkTinChiDTO dtcd : learningService.getAll()) {
+                if (dtcd.getMaSV().equals(acd.getStudentId())) {
+                    if (!dtcd.getIdLopTC().equals(loptinchi)) {
+                        return "403page";
+                    }
+                }
+            }
             for (loptinchiDTO ltd : classesService.getAll()) {
                 if (ltd.getId().equals(loptinchi)) {
-                    if (ltd.get().equals(acd.getTeacherId())) {
                         monhoc = ltd.getIdMon();
                         for (baiTapDTO btd : bts.getAll()) {
                             if (btd.getLoptinchi().equals(ltd.getId())) {
@@ -186,16 +192,6 @@ public class StudentControllers {
                         sdtl.add(sdto);
 //                    cdtol.add(cdt);
                         cdtol.add(ltd);
-                    } else {
-                        if (acd != null) {
-                            map.addAttribute("message", "Hi " + acd.getUsername()
-                                    + "<br> You do not have permission to access this page!");
-                        } else {
-                            map.addAttribute("msg",
-                                    "You do not have permission to access this page!");
-                        }
-                        return "/403page";
-                    }
                 }
                 map.addAttribute("urlToClasse", "Student");
                 map.addAttribute("name", studentService.getById(acd.getStudentId()).getTenSV());
@@ -211,19 +207,37 @@ public class StudentControllers {
         map.addAttribute("monhoc", monhoc);
         return "baiTap";
     }
+
     @RequestMapping("/hienThiSinhVien")
-    public String hienThiSV(ModelMap map, @RequestParam("id") String id, @RequestParam("monhoc") String monhoc) {
-        List<StudentDTO> stl = studentService.getByClassId(id);
-        map.addAttribute("baitapnop", stl);
+    public String hienThiSV(ModelMap map, @RequestParam("id") String id) {
+        List<SinhVienDTO> svds = new ArrayList<>();
+        loptinchiDTO ltcd = classesService.getById(id);
+        dkTinChiDTO dtcdt = new dkTinChiDTO();
+        for (dkTinChiDTO dtcd : learningService.getAll()) {
+            if (ltcd.getId().equals(dtcd.getIdLopTC())) {
+                dtcdt = dtcd;
+            }
+        }
+        for (SinhVienDTO svdt : studentService.getAll()) {
+            if (svdt.getMasv().equals(dtcdt.getMaSV())) {
+                svds.add(svdt);
+            }
+        }
+        map.addAttribute("baitapnop", svds);
         map.addAttribute("classId", id);
-        map.addAttribute("monhoc", monhoc);
+        map.addAttribute("monhoc", ltcd.getIdMon());
         map.addAttribute("urlToClasse", "Student");
         return "hienThiSinhVien";
     }
 
     @RequestMapping(value = "diem")
     public String hienThiDiem(ModelMap map, @RequestParam("id") int id) {
-        List<chamDiemDTO> chamDiemDTOS = cds.getListByBaiTapId(id);
+        List<chamDiemDTO> chamDiemDTOS = new ArrayList<>();
+        for (chamDiemDTO cdto : cds.getAll()) {
+            if (cdto.getBaitapid() == id) {
+                chamDiemDTOS.add(cdto);
+            }
+        }
         List<StudentDTO> studentDTOS = new ArrayList<>();
         for (chamDiemDTO cdt : chamDiemDTOS) {
             StudentDTO stdo = studentService.getByStudentId(cdt.getStudentId());
