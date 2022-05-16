@@ -114,6 +114,7 @@ public class StudentControllers {
         map.addAttribute("noiDungBaiTap", btd.getNoiDungBaiTap());
         map.addAttribute("id", id);
         map.addAttribute("username", username);
+        map.addAttribute("urlToClasse","Student");
         return "BaiTapDisplay";
     }
 
@@ -238,9 +239,9 @@ public class StudentControllers {
                 chamDiemDTOS.add(cdto);
             }
         }
-        List<StudentDTO> studentDTOS = new ArrayList<>();
+        List<SinhVienDTO> studentDTOS = new ArrayList<>();
         for (chamDiemDTO cdt : chamDiemDTOS) {
-            StudentDTO stdo = studentService.getByStudentId(cdt.getStudentId());
+            SinhVienDTO stdo = studentService.getById(cdt.getStudentId());
             studentDTOS.add(stdo);
         }
         map.addAttribute("diems", chamDiemDTOS);

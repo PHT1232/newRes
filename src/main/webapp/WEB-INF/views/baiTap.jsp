@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%--
   Created by IntelliJ IDEA.
   User: phatn
@@ -68,22 +69,45 @@
 
         <div class="row d-flex">
             <h3>Danh sách bài tập</h3>
-            <c:forEach var="baiTapList" items="${baiTapLists}">
-                <a style="width: 100%; margin-top: 15px; padding: 0px; height: 100px" class="btn btn-sm btn-white" href="/projectAPI/${urlToClasse}/chamDiem?id=${baiTapList.id}">
-                    <div>
-                        <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 0 24 24" width="50px" fill="#FFFFFF"><path d="M0 0h24v24H0z" fill="none"/><path d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm2 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
-                        <span style="    float: left;
+            <c:choose>
+                <c:when test="${urlToClasse == 'Student'}">
+                    <c:forEach var="baiTapList" items="${baiTapLists}">
+                        <a style="width: 100%; margin-top: 15px; padding: 0px; height: 100px" class="btn btn-sm btn-white" href="/projectAPI/${urlToClasse}/baiTap?id=${baiTapList.id}">
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 0 24 24" width="50px" fill="#FFFFFF"><path d="M0 0h24v24H0z" fill="none"/><path d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm2 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+                                <span style="    float: left;
     margin-left: 25px;
     margin-top: 32px;
     font-size: 25px;
     color: black;">${baiTapList.tenBaiTap}</span>
-                        <span style="    float: right;
+                                <span style="    float: right;
     margin-top: 62px;
     font-size: 15px;
     margin-right: 10px;">Đến hạn, ${baiTapList.deadline}</span>
-                    </div>
-                </a>
-            </c:forEach>
+                            </div>
+                        </a>
+                    </c:forEach>
+                </c:when>
+                <c:otherwise>
+                    <c:forEach var="baiTapList" items="${baiTapLists}">
+                        <a style="width: 100%; margin-top: 15px; padding: 0px; height: 100px" class="btn btn-sm btn-white" href="/projectAPI/${urlToClasse}/chamDiem?id=${baiTapList.id}">
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 0 24 24" width="50px" fill="#FFFFFF"><path d="M0 0h24v24H0z" fill="none"/><path d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm2 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+                                <span style="    float: left;
+    margin-left: 25px;
+    margin-top: 32px;
+    font-size: 25px;
+    color: black;">${baiTapList.tenBaiTap}</span>
+                                <span style="    float: right;
+    margin-top: 62px;
+    font-size: 15px;
+    margin-right: 10px;">Đến hạn, ${baiTapList.deadline}</span>
+                            </div>
+                        </a>
+                    </c:forEach>
+                </c:otherwise>
+            </c:choose>
+
         </div>
     </div>
 
