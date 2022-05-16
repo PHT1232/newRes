@@ -380,7 +380,7 @@ public class TeacherController {
     }
 
     @RequestMapping("/hienThiSinhVien")
-    public String hienThiSV(ModelMap map, @RequestParam("id") String id, @RequestParam("monhoc") String monhoc) {
+    public String hienThiSV(ModelMap map, @RequestParam("loptinchi") String id, @RequestParam("monhoc") String monhoc) {
         List<SinhVienDTO> stl = new ArrayList<>();
         for (dkTinChiDTO dtcd : learningService.getAll()) {
             if (dtcd.getIdLopTC().equals(id)) {

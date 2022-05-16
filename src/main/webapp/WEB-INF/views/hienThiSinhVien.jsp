@@ -82,13 +82,13 @@
             <div class="page-header">
                 <div class="row align-items-center">
                     <div class="col-sm mb-2 mb-sm-0">
-                        <a style="width: 235px; margin-top: 15px; text-align: center; padding: 0px; height: 50px" href="/projectAPI_war/${urlToClasse}/Class?id=${classId}&monhoc=${monhoc}" class="btn btn-sm btn-white">
+                        <a style="width: 235px; margin-top: 15px; text-align: center; padding: 0px; height: 50px" href="/projectAPI/${urlToClasse}/Class?loptinchi=${classId}" class="btn btn-sm btn-white">
                                             <span style="
     margin-top: 5px;
     font-size: 20px;
     color: black;">Bài tập</span>
                         </a>
-                        <a href="/projectAPI_war/${urlToClasse}/hienThiSinhVien?id=${classId}&monhoc=${monhoc}" style="width: 235px; margin-top: 15px; text-align: center; padding: 0px; height: 50px" class="btn btn-sm btn-white">
+                        <a href="/projectAPI/${urlToClasse}/hienThiSinhVien?loptinchi=${classId}" style="width: 235px; margin-top: 15px; text-align: center; padding: 0px; height: 50px" class="btn btn-sm btn-white">
                         <span style="
     margin-top: 5px;
     font-size: 20px;
@@ -107,19 +107,19 @@
                         <tr>
                             <th>Mã sinh viên</th>
                             <th>Tên sinh viên</th>
-                            <th>Tuổi</th>
+                            <th>Khoa học</th>
                             <th>Địa chỉ</th>
-                            <th>Số điện thoại</th>
+                            <th>Ngày sinh</th>
                         </tr>
                         </thead>
                         <tbody>
                         <c:forEach var="btn" items="${baitapnop}">
                             <tr>
-                                <td>${btn.id}</td>
-                                <td>${btn.name}</td>
-                                <td>${btn.age}</td>
-                                <td>${btn.address}</td>
-                                <td>${btn.sdt}</td>
+                                <th>${btn.masv}</th>
+                                <th>${btn.tenSV}</th>
+                                <th>${btn.khoa}</th>
+                                <th>${btn.quequan}</th>
+                                <th>${btn.birthday}</th>
                             </tr>
                         </c:forEach>
                         </tbody>

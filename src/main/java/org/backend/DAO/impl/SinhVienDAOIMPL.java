@@ -30,6 +30,7 @@ public class SinhVienDAOIMPL implements SinhVienDAO{
 				while (rs.next()) {
 					SinhVien sv = new SinhVien();
 					sv.setMasv(rs.getString("msv"));
+					sv.setTenSV(rs.getString("tensv"));
 					sv.setKhoa(rs.getString("idkhoa"));
 					sv.setKhoaHoc(rs.getString("idkhoahoc"));
 					sv.setQuequan(rs.getString("quequan"));
@@ -49,8 +50,8 @@ public class SinhVienDAOIMPL implements SinhVienDAO{
 	@Override
 	public boolean insert(SinhVien sv) {
 		// TODO Auto-generated method stub
-		String sql = "Insert into sinhvien2 (`msv`,`idkhoahoc`,`idkhoa`,`quequan`,`avatar`,`STATUS`,`birthday`,`created_by`) values (?,?,?,?,?,?,?,?,?)";
-		return jdbcTemplate.update(sql, sv.getMasv(), sv.getKhoaHoc(), sv.getKhoa(), sv.getQuequan(), sv.getAvatar(), sv.getStatus(), sv.getBirthday(), sv.getCreated_by()) > 0;
+		String sql = "Insert into sinhvien2 (`msv`, `tensv`,`idkhoahoc`,`idkhoa`,`quequan`,`avatar`,`STATUS`,`birthday`,`created_by`) values (?,?,?,?,?,?,?,?,?,?)";
+		return jdbcTemplate.update(sql, sv.getMasv(), sv.getTenSV(), sv.getKhoaHoc(), sv.getKhoa(), sv.getQuequan(), sv.getAvatar(), sv.getStatus(), sv.getBirthday(), sv.getCreated_by()) > 0;
 	}
 
 	@Override
@@ -62,8 +63,8 @@ public class SinhVienDAOIMPL implements SinhVienDAO{
 	@Override
 	public boolean update(SinhVien sv, String masv) {
 		// TODO Auto-generated method stub
-		String sql = "Update sinhvien2 set idkhoahoc = ?, idkhoa = ?, quequan = ?, avatar = ?, STATUS = ?, birthday = ?, created_by = ? where msv = ?";
-		return jdbcTemplate.update(sql, sv.getKhoaHoc(), sv.getKhoa(), sv.getQuequan(), sv.getAvatar(), sv.getStatus(), sv.getBirthday(), sv.getCreated_by(), masv) > 0;
+		String sql = "Update sinhvien2 set tensv = ?, idkhoahoc = ?, idkhoa = ?, quequan = ?, avatar = ?, STATUS = ?, birthday = ?, created_by = ? where msv = ?";
+		return jdbcTemplate.update(sql, sv.getTenSV(), sv.getKhoaHoc(), sv.getKhoa(), sv.getQuequan(), sv.getAvatar(), sv.getStatus(), sv.getBirthday(), sv.getCreated_by(), masv) > 0;
 	}
 
 	@Override
@@ -82,6 +83,7 @@ public class SinhVienDAOIMPL implements SinhVienDAO{
 				SinhVien sv = new SinhVien();
 				while (rs.next()) {
 					sv.setMasv(rs.getString("msv"));
+					sv.setTenSV(rs.getString("tensv"));
 					sv.setKhoa(rs.getString("idkhoa"));
 					sv.setKhoaHoc(rs.getString("idkhoahoc"));
 					sv.setQuequan(rs.getString("quequan"));

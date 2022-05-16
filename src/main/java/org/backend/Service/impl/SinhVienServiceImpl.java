@@ -24,6 +24,7 @@ public class SinhVienServiceImpl implements SinhVienService{
 			SinhVienDTO svdt = new SinhVienDTO();
 			svdt.setId(sv.getId());
 			svdt.setMasv(sv.getMasv());
+			svdt.setTenSV(sv.getTenSV());
 			svdt.setKhoa(sv.getKhoa());
 			svdt.setKhoaHoc(sv.getKhoaHoc());
 			svdt.setQuequan(sv.getQuequan());
@@ -44,6 +45,7 @@ public class SinhVienServiceImpl implements SinhVienService{
 		SinhVien sv = new SinhVien();
 		sv.setId(svdt.getId());
 		sv.setMasv(svdt.getMasv());
+		sv.setTenSV(svdt.getTenSV());
 		sv.setKhoa(svdt.getKhoa());
 		sv.setKhoaHoc(svdt.getKhoaHoc());
 		sv.setQuequan(svdt.getQuequan());
@@ -62,6 +64,7 @@ public class SinhVienServiceImpl implements SinhVienService{
 		SinhVien sv = new SinhVien();
 		sv.setId(svdt.getId());
 		sv.setMasv(svdt.getMasv());
+		sv.setTenSV(svdt.getTenSV());
 		sv.setKhoa(svdt.getKhoa());
 		sv.setKhoaHoc(svdt.getKhoaHoc());
 		sv.setQuequan(svdt.getQuequan());
@@ -87,6 +90,7 @@ public class SinhVienServiceImpl implements SinhVienService{
 		SinhVien sv = svd.getBySinhVienid(id);
 		svdt.setId(sv.getId());
 		svdt.setMasv(sv.getMasv());
+		svdt.setTenSV(sv.getTenSV());
 		svdt.setKhoa(sv.getKhoa());
 		svdt.setKhoaHoc(sv.getKhoaHoc());
 		svdt.setQuequan(sv.getQuequan());
