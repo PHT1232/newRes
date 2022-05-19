@@ -142,319 +142,41 @@
                                                  role="tabpanel" aria-labelledby="notificationNavOne-tab">
                                                 <ul class="list-group list-group-flush navbar-card-list-group">
                                                     <!-- Item -->
-                                                    <li class="list-group-item custom-checkbox-list-wrapper">
-                                                        <div class="row">
-                                                            <div class="col-auto position-static">
-                                                                <div class="d-flex align-items-center">
-                                                                    <div class="custom-control custom-checkbox custom-checkbox-list">
-                                                                        <input type="checkbox"
-                                                                               class="custom-control-input"
-                                                                               id="notificationCheck1" checked="">
-                                                                        <label class="custom-control-label"
-                                                                               for="notificationCheck1"></label>
-                                                                        <span class="custom-checkbox-list-stretched-bg"></span>
-                                                                    </div>
-                                                                    <div class="avatar avatar-sm avatar-circle">
-                                                                        <img class="avatar-img"
-                                                                             src="<c:url value="/resource/img/img3.jpg"></c:url>"
-                                                                             alt="Image Description">
+                                                    <c:forEach var="nt" items="${notification}">
+                                                        <li class="list-group-item custom-checkbox-list-wrapper">
+                                                            <div class="row">
+                                                                <div class="col-auto position-static">
+                                                                    <div class="d-flex align-items-center">
+                                                                        <div class="custom-control custom-checkbox custom-checkbox-list">
+                                                                            <input type="checkbox"
+                                                                                   class="custom-control-input"
+                                                                                   id="notificationCheck1" checked="">
+                                                                            <label class="custom-control-label"
+                                                                                   for="notificationCheck1"></label>
+                                                                            <span class="custom-checkbox-list-stretched-bg"></span>
+                                                                        </div>
+                                                                        <div class="avatar avatar-sm avatar-circle">
+                                                                            <img class="avatar-img"
+                                                                                 src="<c:url value="/resource/img/img3.jpg"></c:url>"
+                                                                                 alt="Image Description">
+                                                                        </div>
                                                                     </div>
                                                                 </div>
+                                                                <div class="col ml-n3">
+                                                                    <span class="card-title h5">${nt.idbaiTap}</span>
+                                                                    <p class="card-text font-size-sm">${nt.tenbaiTap}
+                                                                    <span class="badge badge-success">${nt.deadline}</span>
+                                                                    </p>
+                                                                </div>
+                                                                <small class="col-auto text-muted text-cap">2hr</small>
                                                             </div>
-                                                            <div class="col ml-n3">
-                                                                <span class="card-title h5">Brian Warner</span>
-                                                                <p class="card-text font-size-sm">changed an issue from
-                                                                    "In Progress" to <span class="badge badge-success">Review</span>
-                                                                </p>
-                                                            </div>
-                                                            <small class="col-auto text-muted text-cap">2hr</small>
-                                                        </div>
-                                                        <a class="stretched-link" href="#"></a>
-                                                    </li>
+                                                            <a class="stretched-link" href="#"></a>
+                                                        </li>
+                                                    </c:forEach>
+
                                                     <!-- End Item -->
 
                                                     <!-- Item -->
-                                                    <li class="list-group-item custom-checkbox-list-wrapper">
-                                                        <div class="row">
-                                                            <div class="col-auto position-static">
-                                                                <div class="d-flex align-items-center">
-                                                                    <div class="custom-control custom-checkbox custom-checkbox-list">
-                                                                        <input type="checkbox"
-                                                                               class="custom-control-input"
-                                                                               id="notificationCheck2" checked="">
-                                                                        <label class="custom-control-label"
-                                                                               for="notificationCheck2"></label>
-                                                                        <span class="custom-checkbox-list-stretched-bg"></span>
-                                                                    </div>
-                                                                    <div class="avatar avatar-sm avatar-soft-dark avatar-circle">
-                                                                        <span class="avatar-initials">K</span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col ml-n3">
-                                                                <span class="card-title h5">Klara Hampton</span>
-                                                                <p class="card-text font-size-sm">mentioned you in a
-                                                                    comment</p>
-                                                                <blockquote class="blockquote blockquote-sm">
-                                                                    Nice work, love! You really nailed it. Keep it up!
-                                                                </blockquote>
-                                                            </div>
-                                                            <small class="col-auto text-muted text-cap">10hr</small>
-                                                        </div>
-                                                        <a class="stretched-link" href="#"></a>
-                                                    </li>
-                                                    <!-- End Item -->
-
-                                                    <!-- Item -->
-                                                    <li class="list-group-item custom-checkbox-list-wrapper">
-                                                        <div class="row">
-                                                            <div class="col-auto position-static">
-                                                                <div class="d-flex align-items-center">
-                                                                    <div class="custom-control custom-checkbox custom-checkbox-list">
-                                                                        <input type="checkbox"
-                                                                               class="custom-control-input"
-                                                                               id="notificationCheck4" checked="">
-                                                                        <label class="custom-control-label"
-                                                                               for="notificationCheck4"></label>
-                                                                        <span class="custom-checkbox-list-stretched-bg"></span>
-                                                                    </div>
-                                                                    <div class="avatar avatar-sm avatar-circle">
-                                                                        <img class="avatar-img"
-                                                                             src="<c:url value="/resource/img/img10.jpg"></c:url>"
-                                                                             alt="Image Description">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col ml-n3">
-                                                                <span class="card-title h5">Ruby Walter</span>
-                                                                <p class="card-text font-size-sm">joined the Slack group
-                                                                    HS Team</p>
-                                                            </div>
-                                                            <small class="col-auto text-muted text-cap">3dy</small>
-                                                        </div>
-                                                        <a class="stretched-link" href="#"></a>
-                                                    </li>
-                                                    <!-- End Item -->
-
-
-                                                    <!-- Item -->
-                                                    <li class="list-group-item custom-checkbox-list-wrapper">
-                                                        <div class="row">
-                                                            <div class="col-auto position-static">
-                                                                <div class="d-flex align-items-center">
-                                                                    <div class="custom-control custom-checkbox custom-checkbox-list">
-                                                                        <input type="checkbox"
-                                                                               class="custom-control-input"
-                                                                               id="notificationCheck3">
-                                                                        <label class="custom-control-label"
-                                                                               for="notificationCheck3"></label>
-                                                                        <span class="custom-checkbox-list-stretched-bg"></span>
-                                                                    </div>
-                                                                    <div class="avatar avatar-sm avatar-circle">
-                                                                        <img class="avatar-img"
-                                                                             src="<c:url value="/resource/img/google.svg"></c:url>"
-                                                                             alt="Image Description">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col ml-n3">
-                                                                <span class="card-title h5">from Google</span>
-                                                                <p class="card-text font-size-sm">Start using forms to
-                                                                    capture the information of prospects visiting your
-                                                                    Google website</p>
-                                                            </div>
-                                                            <small class="col-auto text-muted text-cap">17dy</small>
-                                                        </div>
-                                                        <a class="stretched-link" href="#"></a>
-                                                    </li>
-                                                    <!-- End Item -->
-
-                                                    <!-- Item -->
-                                                    <li class="list-group-item custom-checkbox-list-wrapper">
-                                                        <div class="row">
-                                                            <div class="col-auto position-static">
-                                                                <div class="d-flex align-items-center">
-                                                                    <div class="custom-control custom-checkbox custom-checkbox-list">
-                                                                        <input type="checkbox"
-                                                                               class="custom-control-input"
-                                                                               id="notificationCheck5">
-                                                                        <label class="custom-control-label"
-                                                                               for="notificationCheck5"></label>
-                                                                        <span class="custom-checkbox-list-stretched-bg"></span>
-                                                                    </div>
-                                                                    <div class="avatar avatar-sm avatar-circle">
-                                                                        <img class="avatar-img"
-                                                                             src="<c:url value="/resource/img/img7.jpg"></c:url>"
-                                                                             alt="Image Description">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col ml-n3">
-                                                                <span class="card-title h5">Sara Villar</span>
-                                                                <p class="card-text font-size-sm">completed <i
-                                                                        class="tio-folder-bookmarked text-primary"></i>
-                                                                    FD-7 task</p>
-                                                            </div>
-                                                            <small class="col-auto text-muted text-cap">2mn</small>
-                                                        </div>
-                                                        <a class="stretched-link" href="#"></a>
-                                                    </li>
-                                                    <!-- End Item -->
-                                                </ul>
-                                            </div>
-
-                                            <div class="tab-pane fade" id="notificationNavTwo" role="tabpanel"
-                                                 aria-labelledby="notificationNavTwo-tab">
-                                                <ul class="list-group list-group-flush navbar-card-list-group">
-                                                    <!-- Item -->
-                                                    <li class="list-group-item custom-checkbox-list-wrapper">
-                                                        <div class="row">
-                                                            <div class="col-auto position-static">
-                                                                <div class="d-flex align-items-center">
-                                                                    <div class="custom-control custom-checkbox custom-checkbox-list">
-                                                                        <input type="checkbox"
-                                                                               class="custom-control-input"
-                                                                               id="notificationCheck7">
-                                                                        <label class="custom-control-label"
-                                                                               for="notificationCheck7"></label>
-                                                                        <span class="custom-checkbox-list-stretched-bg"></span>
-                                                                    </div>
-                                                                    <div class="avatar avatar-sm avatar-soft-dark avatar-circle">
-                                                                        <span class="avatar-initials">A</span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col ml-n3">
-                                                                <span class="card-title h5">Anne Richard</span>
-                                                                <p class="card-text font-size-sm">accepted your
-                                                                    invitation to join Notion</p>
-                                                            </div>
-                                                            <small class="col-auto text-muted text-cap">1dy</small>
-                                                        </div>
-                                                        <a class="stretched-link" href="#"></a>
-                                                    </li>
-                                                    <!-- End Item -->
-
-                                                    <!-- Item -->
-                                                    <li class="list-group-item custom-checkbox-list-wrapper">
-                                                        <div class="row">
-                                                            <div class="col-auto position-static">
-                                                                <div class="d-flex align-items-center">
-                                                                    <div class="custom-control custom-checkbox custom-checkbox-list">
-                                                                        <input type="checkbox"
-                                                                               class="custom-control-input"
-                                                                               id="notificationCheck6">
-                                                                        <label class="custom-control-label"
-                                                                               for="notificationCheck6"></label>
-                                                                        <span class="custom-checkbox-list-stretched-bg"></span>
-                                                                    </div>
-                                                                    <div class="avatar avatar-sm avatar-circle">
-                                                                        <img class="avatar-img"
-                                                                             src="<c:url value="/resource/img/img5.jpg"></c:url>"
-                                                                             alt="Image Description">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col ml-n3">
-                                                                <span class="card-title h5">Finch Hoot</span>
-                                                                <p class="card-text font-size-sm">left Slack group HS
-                                                                    projects</p>
-                                                            </div>
-                                                            <small class="col-auto text-muted text-cap">3dy</small>
-                                                        </div>
-                                                        <a class="stretched-link" href="#"></a>
-                                                    </li>
-                                                    <!-- End Item -->
-
-                                                    <!-- Item -->
-                                                    <li class="list-group-item custom-checkbox-list-wrapper">
-                                                        <div class="row">
-                                                            <div class="col-auto position-static">
-                                                                <div class="d-flex align-items-center">
-                                                                    <div class="custom-control custom-checkbox custom-checkbox-list">
-                                                                        <input type="checkbox"
-                                                                               class="custom-control-input"
-                                                                               id="notificationCheck8">
-                                                                        <label class="custom-control-label"
-                                                                               for="notificationCheck8"></label>
-                                                                        <span class="custom-checkbox-list-stretched-bg"></span>
-                                                                    </div>
-                                                                    <div class="avatar avatar-sm avatar-dark avatar-circle">
-                                                                        <span class="avatar-initials">HS</span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col ml-n3">
-                                                                <span class="card-title h5">Htmlstream</span>
-                                                                <p class="card-text font-size-sm">you earned a "Top
-                                                                    endorsed" <i class="tio-verified text-primary"></i>
-                                                                    badge</p>
-                                                            </div>
-                                                            <small class="col-auto text-muted text-cap">6dy</small>
-                                                        </div>
-                                                        <a class="stretched-link" href="#"></a>
-                                                    </li>
-                                                    <!-- End Item -->
-
-                                                    <!-- Item -->
-                                                    <li class="list-group-item custom-checkbox-list-wrapper">
-                                                        <div class="row">
-                                                            <div class="col-auto position-static">
-                                                                <div class="d-flex align-items-center">
-                                                                    <div class="custom-control custom-checkbox custom-checkbox-list">
-                                                                        <input type="checkbox"
-                                                                               class="custom-control-input"
-                                                                               id="notificationCheck9">
-                                                                        <label class="custom-control-label"
-                                                                               for="notificationCheck9"></label>
-                                                                        <span class="custom-checkbox-list-stretched-bg"></span>
-                                                                    </div>
-                                                                    <div class="avatar avatar-sm avatar-circle">
-                                                                        <img class="avatar-img"
-                                                                             src="<c:url value="/resource/img/img8.jpg"></c:url>"
-                                                                             alt="Image Description">
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col ml-n3">
-                                                                <span class="card-title h5">Linda Bates</span>
-                                                                <p class="card-text font-size-sm">Accepted your
-                                                                    connection</p>
-                                                            </div>
-                                                            <small class="col-auto text-muted text-cap">17dy</small>
-                                                        </div>
-                                                        <a class="stretched-link" href="#"></a>
-                                                    </li>
-                                                    <!-- End Item -->
-
-                                                    <!-- Item -->
-                                                    <li class="list-group-item custom-checkbox-list-wrapper">
-                                                        <div class="row">
-                                                            <div class="col-auto position-static">
-                                                                <div class="d-flex align-items-center">
-                                                                    <div class="custom-control custom-checkbox custom-checkbox-list">
-                                                                        <input type="checkbox"
-                                                                               class="custom-control-input"
-                                                                               id="notificationCheck10">
-                                                                        <label class="custom-control-label"
-                                                                               for="notificationCheck10"></label>
-                                                                        <span class="custom-checkbox-list-stretched-bg"></span>
-                                                                    </div>
-                                                                    <div class="avatar avatar-sm avatar-soft-dark avatar-circle">
-                                                                        <span class="avatar-initials">L</span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="col ml-n3">
-                                                                <span class="card-title h5">Lewis Clarke</span>
-                                                                <p class="card-text font-size-sm">completed <i
-                                                                        class="tio-folder-bookmarked text-primary"></i>
-                                                                    FD-134 task</p>
-                                                            </div>
-                                                            <small class="col-auto text-muted text-cap">2mn</small>
-                                                        </div>
-                                                        <a class="stretched-link" href="#"></a>
-                                                    </li>
                                                     <!-- End Item -->
                                                 </ul>
                                             </div>

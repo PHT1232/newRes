@@ -1,4 +1,7 @@
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="java.util.Date" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%--
   Created by IntelliJ IDEA.
   User: phatn
@@ -79,10 +82,17 @@
     margin-top: 32px;
     font-size: 25px;
     color: black;">${baiTapList.tenBaiTap}</span>
-                                <span style="    float: right;
-    margin-top: 62px;
-    font-size: 15px;
-    margin-right: 10px;">Đến hạn, ${baiTapList.deadline}</span>
+                                <jsp:useBean id="now" class="java.util.Date" />
+                                <fmt:setLocale value="en_US" />
+                                <fmt:parseDate value="${baiTapList.deadline}" var="parsedExpDate" pattern="yyyy-MM-dd" />
+                                <c:choose>
+                                    <c:when test="${now.time lt parsedExpDate.time}">
+                                        <span style="float: right; margin-top: 62px; font-size: 15px; margin-right: 10px;">Đến hạn, ${baiTapList.deadline}</span>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <span style="float: right; margin-top: 62px; font-size: 15px; margin-right: 10px;">Đã hết hạn</span>
+                                    </c:otherwise>
+                                </c:choose>
                             </div>
                         </a>
                     </c:forEach>
@@ -98,7 +108,7 @@
     font-size: 25px;
     color: black;">${baiTapList.tenBaiTap}</span>
                                 <span style="    float: right;
-    margin-top: 62px;
+    margin-top: 62px;ạn
     font-size: 15px;
     margin-right: 10px;">Đến hạn, ${baiTapList.deadline}</span>
                             </div>

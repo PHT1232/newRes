@@ -245,7 +245,7 @@
 							<div id="containerFile"></div>
                             <a name="" id="btnNop" class="btn btn-outline-light text-success font-weight-bold ml-3" href="#"
                                role="button" style="margin-bottom: 5px;">
-                                <i class="fas fa-plus"></i> Thêm
+                                <i class="fas fa-plus"></i> Thêm file hướng dẫn
                             </a>
                             <div id="input"></div>
                         </div>
@@ -354,7 +354,7 @@
                 label.htmlFor = "file-upload";
                 label.htmlFor += x;
                 label.className = "custom-file-upload text-success border rounded";
-                label.innerHTML = "<i class='fas fa-plus'></i> Tieu chi cham diem"
+                label.innerHTML = "<i class='fas fa-plus'></i> File hương dẫn"
                 input.type = "file";
                 input.name = "files";
                 input.id = "file-upload"

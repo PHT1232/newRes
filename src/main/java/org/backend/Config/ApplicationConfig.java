@@ -25,7 +25,8 @@ public class ApplicationConfig implements WebMvcConfigurer {
 	
 	 @Override
 	 public void addResourceHandlers(ResourceHandlerRegistry registry) {
-	        String folder = "C:\\Users\\phatn\\eclipse-workspace\\dh9c5_mvc";
+//	        String folder = "C:\\Users\\phatn\\eclipse-workspace\\dh9c5_mvc";
+	        String folder = "/home/phat/Documents/projectAPI/uploads";
 	        registry.addResourceHandler("/resource/**").addResourceLocations("/resources/");
 	        registry.addResourceHandler("/backend/**").addResourceLocations("/backend/");
 	        registry.addResourceHandler("/upload/**").addResourceLocations("file:///" + folder + "/");

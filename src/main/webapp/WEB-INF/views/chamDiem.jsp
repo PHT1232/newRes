@@ -106,7 +106,8 @@
                 <div class="col-2">
                     <select name="Diem" style="width: 42%;
                     display: inline-block;" class="form-select">
-                        <% for (int i = 0; i <= 100; i++) {%>
+                        <% int thangdiem = Integer.parseInt(String.valueOf(request.getAttribute("thangDiem"))); %>
+                        <% for (int i = 0; i <= thangdiem; i++) {%>
                         <option value="<% out.print(i); %>"><% out.print(i); %></option>
                         <% } %>
                     </select>
