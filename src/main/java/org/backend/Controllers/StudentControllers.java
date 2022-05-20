@@ -49,10 +49,9 @@ public class StudentControllers {
 
     @Autowired
     fileService fs;
-
+//    List<notificationBaiTap> notifls = new ArrayList<>();
     //hàm ko liên quan tới mapping
     public notificationBaiTap getNearestDate(List<notificationBaiTap> notibts, Date currentDate) throws ParseException {
-        List<notificationBaiTap> ls = new ArrayList<>();
         long minDiff = -1, currentTime = currentDate.getTime();
         Date minDate = null;
         int id = 0;
@@ -69,9 +68,13 @@ public class StudentControllers {
                 tenbaitap = notibt.getTenbaiTap();
             }
         }
+//        System.out.println(id);
+//        System.out.println(tenbaitap);
+//        System.out.println(minDate);
         notif.setIdbaiTap(id);
         notif.setTenbaiTap(tenbaitap);
         notif.setDeadline(sdf.format(minDate));
+//        notifls.add(notif);
         return notif;
     }
 
@@ -108,31 +111,37 @@ public class StudentControllers {
     public List<notificationBaiTap> checkHetHan() throws ParseException {
         List<notificationBaiTap> ls1 = new ArrayList<>();
         List<notificationBaiTap> ls2 = new ArrayList<>();
+        List<notificationBaiTap> ls3 = new ArrayList<>();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Date deadline;
         Date current = new Date();
-        String loptinchi = "";
+        String loptinchi = bts.getAll().get(0).getLoptinchi();
+        int i = 0;
         for (baiTapDTO bdt : bts.getAll()) {
             notificationBaiTap nbt = new notificationBaiTap();
-//            if (bts.getAll().indexOf(bdt) == 1) {
-//                loptinchi = bdt.getLoptinchi();
-//            }
-            System.out.println(bts.getAll().indexOf(bdt));
-//            System.out.println("loptinchi" + loptinchi);
-//            System.out.println("lopbdt" + bdt.getLoptinchi());
-//            if (loptinchi.equals(bdt.getLoptinchi())) {
-//                deadline = sdf.parse(bdt.getDeadline());
-//                if (current.compareTo(deadline) < 0) {
-//                    nbt.setTenbaiTap(bdt.getTenBaiTap());
-//                    nbt.setIdbaiTap(bdt.getId());
-//                    nbt.setDeadline(bdt.getDeadline());
-//                    ls1.add(nbt);
-//                }
-//            } else {
-//                ls2.add(getNearestDate(ls1, current));
-//                loptinchi = bdt.getLoptinchi();
-//            }
+            deadline = sdf.parse(bdt.getDeadline());
+            if (current.compareTo(deadline) < 0) {
+                if (loptinchi.equals(bdt.getLoptinchi())) {
+                    nbt.setIdbaiTap(bdt.getId());
+                    nbt.setTenbaiTap(bdt.getTenBaiTap());
+                    nbt.setDeadline(bdt.getDeadline());
+                    ls1.add(nbt);
+                } else {
+                    loptinchi = bdt.getLoptinchi();
+                    if (!loptinchi.equals(bts.getAll().get(i).getLoptinchi())) {
+
+                    }
+                    ls1 = new ArrayList<>();
+                    nbt.setIdbaiTap(bdt.getId());
+                    nbt.setTenbaiTap(bdt.getTenBaiTap());
+                    nbt.setDeadline(bdt.getDeadline());
+                    ls1.add(nbt);
+                    getNearestDate(ls1, current);
+                }
+            }
+            i += 1;
         }
+
         return ls2;
     }
 //    @RequestMapping("/Profile")
