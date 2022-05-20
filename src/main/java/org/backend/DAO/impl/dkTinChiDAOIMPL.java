@@ -67,7 +67,7 @@ public class dkTinChiDAOIMPL implements dkTinChiDAO{
 	@Override
 	public dkTinChi getById(String id) {
 		// TODO Auto-generated method stub
-		String sql = "Select * from dktinchi where id = ?";
+		String sql = "Select * from dkTinChi where id = ?";
 		return jdbcTemplate.query(sql, new ResultSetExtractor<dkTinChi>() {
 			@Override
 			public dkTinChi extractData(ResultSet rs) throws SQLException, DataAccessException {

@@ -51,21 +51,28 @@ public class StudentControllers {
     fileService fs;
 
     //hàm ko liên quan tới mapping
-    public static List<notificationBaiTap> getNearestDate(List<notificationBaiTap> notibts, Date currentDate) throws ParseException {
+    public notificationBaiTap getNearestDate(List<notificationBaiTap> notibts, Date currentDate) throws ParseException {
         List<notificationBaiTap> ls = new ArrayList<>();
         long minDiff = -1, currentTime = currentDate.getTime();
         Date minDate = null;
+        int id = 0;
+        String tenbaitap = "";
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        notificationBaiTap notif = new notificationBaiTap();
         for (notificationBaiTap notibt : notibts) {
             Date date = sdf.parse(notibt.deadline);
             long diff = Math.abs(currentTime - date.getTime());
             if ((minDiff == -1) || (diff < minDiff)) {
                 minDiff = diff;
                 minDate = date;
-                ls.add(notibt);
+                id = notibt.getIdbaiTap();
+                tenbaitap = notibt.getTenbaiTap();
             }
         }
-        return ls;
+        notif.setIdbaiTap(id);
+        notif.setTenbaiTap(tenbaitap);
+        notif.setDeadline(sdf.format(minDate));
+        return notif;
     }
 
     public class notificationBaiTap {
@@ -96,6 +103,37 @@ public class StudentControllers {
         public void setDeadline(String deadline) {
             this.deadline = deadline;
         }
+    }
+
+    public List<notificationBaiTap> checkHetHan() throws ParseException {
+        List<notificationBaiTap> ls1 = new ArrayList<>();
+        List<notificationBaiTap> ls2 = new ArrayList<>();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date deadline;
+        Date current = new Date();
+        String loptinchi = "";
+        for (baiTapDTO bdt : bts.getAll()) {
+            notificationBaiTap nbt = new notificationBaiTap();
+//            if (bts.getAll().indexOf(bdt) == 1) {
+//                loptinchi = bdt.getLoptinchi();
+//            }
+            System.out.println(bts.getAll().indexOf(bdt));
+//            System.out.println("loptinchi" + loptinchi);
+//            System.out.println("lopbdt" + bdt.getLoptinchi());
+//            if (loptinchi.equals(bdt.getLoptinchi())) {
+//                deadline = sdf.parse(bdt.getDeadline());
+//                if (current.compareTo(deadline) < 0) {
+//                    nbt.setTenbaiTap(bdt.getTenBaiTap());
+//                    nbt.setIdbaiTap(bdt.getId());
+//                    nbt.setDeadline(bdt.getDeadline());
+//                    ls1.add(nbt);
+//                }
+//            } else {
+//                ls2.add(getNearestDate(ls1, current));
+//                loptinchi = bdt.getLoptinchi();
+//            }
+        }
+        return ls2;
     }
 //    @RequestMapping("/Profile")
 //    public String profile(ModelMap map, HttpServletRequest request) throws IOException {
@@ -208,7 +246,6 @@ public class StudentControllers {
         List<MonDTO> sdtl = new ArrayList<>();
         List<loptinchiDTO> cdtol = new ArrayList<>();
         List<baiTapDTO> btdt = new ArrayList<>();
-        List<notificationBaiTap> ntbt = new ArrayList<>();
         if (acd.getStudentId() == null) {
 //            List<LearningDTO> ltd = learningService.getByTeacherId(acd.getTeacherId());
 //            for (LearningDTO ld : ltd) {
@@ -220,12 +257,17 @@ public class StudentControllers {
             map.addAttribute("urlToClasse", "Teacher");
             map.addAttribute("name", teacherService.getById(acd.getTeacherId()).getTenGV());
         } else {
+            boolean isInClass = false;
             for (dkTinChiDTO dtcd : learningService.getAll()) {
                 if (dtcd.getMaSV().equals(acd.getStudentId())) {
-                    if (!dtcd.getIdLopTC().equals(loptinchi)) {
-                        return "403page";
+                    if (dtcd.getIdLopTC().equals(classesService.getById(loptinchi).getId())) {
+                        isInClass = true;
                     }
                 }
+            }
+
+            if (isInClass == false) {
+                return "403page";
             }
 //            List<Date> dates = new ArrayList();
 
@@ -235,23 +277,23 @@ public class StudentControllers {
                         for (baiTapDTO btd : bts.getAll()) {
                             if (btd.getLoptinchi().equals(ltd.getId())) {
 //                                System.out.println("sai username")
-                                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-                                Date deadline;
-                                Date current = new Date();
-                                deadline = sdf.parse(btd.getDeadline());
-                                if (current.compareTo(deadline) < 0) {
-//                                    System.out.println("current comes after Deadline");
-//                                } else if (currentDate.compareTo(deadline) < 0) {
-//                                    System.out.println("current date comes before Deadline");
-//                                    btdt.add(btd);
-//                                } else if (currentDate.compareTo(deadline) == 0) {
-//                                    dates.add(deadline);
-                                    notificationBaiTap nt = new notificationBaiTap();
-                                    nt.setTenbaiTap(btd.getTenBaiTap());
-                                    nt.setIdbaiTap(btd.getId());
-                                    nt.setDeadline(btd.getDeadline());
-                                    ntbt.add(nt);
-                                }
+//                                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+//                                Date deadline;
+//                                Date current = new Date();
+//                                deadline = sdf.parse(btd.getDeadline());
+//                                if (current.compareTo(deadline) < 0) {
+////                                    System.out.println("current comes after Deadline");
+////                                } else if (currentDate.compareTo(deadline) < 0) {
+////                                    System.out.println("current date comes before Deadline");
+////                                    btdt.add(btd);
+////                                } else if (currentDate.compareTo(deadline) == 0) {
+////                                    dates.add(deadline);
+//                                    notificationBaiTap nt = new notificationBaiTap();
+//                                    nt.setTenbaiTap(btd.getTenBaiTap());
+//                                    nt.setIdbaiTap(btd.getId());
+//                                    nt.setDeadline(btd.getDeadline());
+//                                    ntbt.add(nt);
+//                                }
                                 btdt.add(btd);
                             }
                         }
@@ -267,9 +309,7 @@ public class StudentControllers {
 //        map.addAttribute("subjectList", sdtl);
 //        map.addAttribute("classList", cdtol);
         }
-        Date currentDate = new Date();
-        ntbt = getNearestDate(ntbt, currentDate);
-        map.addAttribute("notification", ntbt);
+        map.addAttribute("notification", checkHetHan());
         map.addAttribute("subjectList", sdtl);
         map.addAttribute("classList", cdtol);
         map.addAttribute("baiTapLists", btdt);

@@ -163,14 +163,14 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="col ml-n3">
-                                                                    <span class="card-title h5">${nt.idbaiTap}</span>
-                                                                    <p class="card-text font-size-sm">${nt.tenbaiTap}
+                                                                    <span class="card-title h5">${nt.tenbaiTap}</span>
+                                                                    <p class="card-text font-size-sm">Đến hạn:
                                                                     <span class="badge badge-success">${nt.deadline}</span>
                                                                     </p>
                                                                 </div>
                                                                 <small class="col-auto text-muted text-cap">2hr</small>
                                                             </div>
-                                                            <a class="stretched-link" href="#"></a>
+                                                            <a class="stretched-link" href="/projectAPI/Student/baiTap?id=${nt.idbaiTap}"></a>
                                                         </li>
                                                     </c:forEach>
 
