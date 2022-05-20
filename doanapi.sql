@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: May 13, 2022 at 12:18 PM
+-- Generation Time: May 20, 2022 at 10:53 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.5
 
@@ -90,7 +90,11 @@ INSERT INTO `baiTap` (`id`, `name`, `username`, `deadline`, `tenBaiTap`, `noidun
 (7, NULL, 'NguyenThiNga', '2022-01-21', 'Bài Tập AI', '<p>Hello, World!</p>', 'JAVA1902E', '', 0),
 (8, NULL, 'NguyenThiNga', '2022-01-20', 'Luyện tập java', '<p>Hello, World!</p>', 'JAVA1902E', '', 0),
 (9, NULL, 'NguyenThiNga', '2022-01-22', 'Luyen thi triet hoc', '<p>Hay ke ten cac nha triet hoc noi tieng</p>', 'XHKH', NULL, 0),
-(12, NULL, 'NguyenThiNga', '2022-05-18', 'Bài tập ngày 12/5', '<p>C&aacute;c em h&atilde;y t&igrave;m hiểu th&ecirc;m về c&aacute;c nh&agrave; triết học nổi tiếng của Việt Nam</p>', 'XHKH', NULL, 80);
+(12, NULL, 'NguyenThiNga', '2022-05-18', 'Bài tập ngày 12/5', '<p>C&aacute;c em h&atilde;y t&igrave;m hiểu th&ecirc;m về c&aacute;c nh&agrave; triết học nổi tiếng của Việt Nam</p>', 'XHKH', NULL, 80),
+(13, NULL, 'NguyenThiNga', '2022-05-25', 'Bài tập object', '<p>C&aacute;c em về h&atilde;y t&igrave;m hiểu th&ecirc;m về đối tượng trong java nh&eacute;</p>', 'JAVA1902E', NULL, 100),
+(14, NULL, 'NguyenThiNga', '2022-05-20', 'Bài tập jsp', '<p>C&aacute;c em về nghi&ecirc;n cứu th&ecirc;m về jsp nh&eacute;</p>', 'JAVA1902E', NULL, 50),
+(15, NULL, 'NguyenThiNga', '2022-05-23', 'Thực hành Java Service ', '<p>C&aacute;c em h&atilde;y&nbsp;<strong>Thực h&agrave;nh&nbsp;</strong>java nh&eacute;</p>', 'JAVA1902E', NULL, 40),
+(16, NULL, 'NguyenThiNga', '2022-05-22', 'Tìm hiểu thêm về cuộc đời của Bác Hồ', '<p>C&aacute;c em về nh&agrave; h&atilde;y t&igrave;m hiểu thật kĩ cho c&ocirc; về khoảng thời gian b&aacute;c ở Ph&aacute;p</p>', 'XHKH', NULL, 80);
 
 -- --------------------------------------------------------
 
@@ -179,7 +183,8 @@ CREATE TABLE `dkTinChi` (
 --
 
 INSERT INTO `dkTinChi` (`id`, `maSV`, `idLopTC`, `status`, `created_by`, `created_at`, `updated_at`) VALUES
-(1, '0212001', 'JAVA1902E', 0, NULL, '2022-05-08 15:32:35', '2022-05-10 09:42:12');
+(1, '0212001', 'JAVA1902E', 0, NULL, '2022-05-08 15:32:35', '2022-05-10 09:42:12'),
+(2, '0212001', 'XHKH', 1, NULL, '2022-05-20 08:15:43', '2022-05-20 08:15:43');
 
 -- --------------------------------------------------------
 
@@ -209,7 +214,11 @@ INSERT INTO `files` (`id`, `filename`, `baiTapId`, `nopBaiTapId`) VALUES
 (13, '240_Nguyễn Tấn Phát_Trí tuệ nhân tạo.pdf', 0, 3),
 (14, '243_Nguyễn Tấn Phát_Lập trình hướng đối tượng.pdf', 0, 3),
 (17, 'Screenshot from 2022-05-12 10.12.11.png', 12, 0),
-(18, 'Screenshot from 2022-05-12 09.55.47.png', 12, 0);
+(18, 'Screenshot from 2022-05-12 09.55.47.png', 12, 0),
+(19, '188_Nguyễn Tấn Phát_An toàn và bảo mật hệ thống thông tin.docx', 13, 0),
+(20, '200_NguyenQuangTruong.docx', 13, 0),
+(21, '200_NguyenQuangTruong.docx', 14, 0),
+(22, 'doanapi.sql', 15, 0);
 
 -- --------------------------------------------------------
 
@@ -765,7 +774,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `baiTap`
 --
 ALTER TABLE `baiTap`
-  MODIFY `id` int(60) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(60) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `bangcap`
@@ -789,13 +798,13 @@ ALTER TABLE `danghoc`
 -- AUTO_INCREMENT for table `dkTinChi`
 --
 ALTER TABLE `dkTinChi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `files`
 --
 ALTER TABLE `files`
-  MODIFY `id` int(60) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(60) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `lichhoc`
