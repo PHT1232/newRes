@@ -1,4 +1,4 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%--
   Created by IntelliJ IDEA.
   User: phatn
@@ -80,7 +80,7 @@
     <c:if test="${success != null}">
         <h3 style="color: red">Chấm điểm thành công</h3>
     </c:if>
-    <form action="/projectAPI/chamDiem?id=${baiTapid}" method="post">
+    <form action="/projectAPI/Teacher/giaoVienChamDiem?id=${baiTapid}" method="post">
         <div class="content container-fluid">
             <div class="row">
                 <div class="col-9">
@@ -90,7 +90,7 @@
     font-size: 20px;
     color: black;">Chi tiết bài tập</span>
                     </a>
-                    <a href="/projectAPI/${urlToClasse}/chamDiem?id=${baiTapid}" style="width: 235px; margin-top: 15px; text-align: center; padding: 0px; height: 50px" class="btn btn-sm btn-white">
+                    <a href="/projectAPI/${urlToClasse}/chamDiem?id=${baiTapid}&loptinchi=${baiTapList.loptinchi}" style="width: 235px; margin-top: 15px; text-align: center; padding: 0px; height: 50px" class="btn btn-sm btn-white">
                         <span style="
     margin-top: 5px;
     font-size: 20px;
@@ -103,10 +103,11 @@
     color: black;">Điểm sinh viên</span>
                     </a>
                 </div>
+                <% int thangdiem = Integer.parseInt(String.valueOf(request.getAttribute("thangDiem"))); %>
+                <input name="thangDiem" type="number" value="<%= thangdiem%>" style="display: none"/>
                 <div class="col-2">
                     <select name="Diem" style="width: 42%;
                     display: inline-block;" class="form-select">
-                        <% int thangdiem = Integer.parseInt(String.valueOf(request.getAttribute("thangDiem"))); %>
                         <% for (int i = 0; i <= thangdiem; i++) {%>
                         <option value="<% out.print(i); %>"><% out.print(i); %></option>
                         <% } %>
@@ -132,11 +133,11 @@
                                 <td>
 <%--                                    <c:forEach var="fn" items="${filenop}">--%>
                                         <%--                                    <c:if test="${fn.username.equals(btn.username)}">--%>
-<%--                                        <c:forEach var="filn" items="${fn.fileName}">--%>
-                                            <a href="<c:url value="/upload/baiTap/hocsinh/${btn.fileName}"></c:url>" download>
-                                                <span style="color: blue">${btn.fileName}</span>
+                                        <c:forEach var="filn" items="${btn.fileName}">
+                                            <a href="<c:url value="/upload/${loptinchi}/hocsinh/${filn}"></c:url>" download>
+                                                <span style="color: blue">${filn}</span>
                                             </a><br/>
-<%--                                        </c:forEach>--%>
+                                        </c:forEach>
                                         <%--                                    </c:if>--%>
 <%--                                    </c:forEach>--%>
                                 </td>

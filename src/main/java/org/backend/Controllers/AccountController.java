@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.ServletException;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,6 +43,60 @@ public class AccountController {
 
     @Autowired
     svLopQLService svlqs;
+
+    @Autowired
+    getServiceVoVan gsvv;
+
+    //hàm ko liên quan tới mapping
+
+    public class notificationBaiTap {
+        int idbaiTap;
+        String tenbaiTap;
+        String deadline;
+
+        public int getIdbaiTap() {
+            return idbaiTap;
+        }
+
+        public void setIdbaiTap(int idbaiTap) {
+            this.idbaiTap = idbaiTap;
+        }
+
+        public String getTenbaiTap() {
+            return tenbaiTap;
+        }
+
+        public void setTenbaiTap(String tenbaiTap) {
+            this.tenbaiTap = tenbaiTap;
+        }
+
+        public String getDeadline() {
+            return deadline;
+        }
+
+        public void setDeadline(String deadline) {
+            this.deadline = deadline;
+        }
+    }
+
+    public List<notificationBaiTap> checkHetHan() throws ParseException {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        AccountDTO acd = accountService.getByUserName(username);
+        List<notificationBaiTap> ls1 = new ArrayList<>();
+        for (dkTinChiDTO bdt : dtcs.getAll()) {
+            if (bdt.getMaSV().equals(acd.getStudentId())) {
+                notificationBaiTap nbt = new notificationBaiTap();
+                baiTapDTO btdt = gsvv.getByNotification(bdt.getIdLopTC(), username);
+                if (btdt.getId() != 0) {
+                    nbt.setTenbaiTap(btdt.getTenBaiTap());
+                    nbt.setIdbaiTap(btdt.getId());
+                    nbt.setDeadline(btdt.getDeadline());
+                    ls1.add(nbt);
+                }
+            }
+        }
+        return ls1;
+    }
 
     @RequestMapping(value = "/login")
     public String login(@RequestParam(value = "error", required = false) String error,
@@ -77,7 +132,7 @@ public class AccountController {
     }
 
     @RequestMapping("/index")
-    public String index(ModelMap map) {
+    public String index(ModelMap map) throws ParseException {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         AccountDTO acd = accountService.getByUserName(username);
         List<MonDTO> sdtl = new ArrayList<>();
@@ -118,6 +173,7 @@ public class AccountController {
             map.addAttribute("name", std.getTenSV());
             map.addAttribute("classStudent", slqd.getMaLopQL());
         }
+        map.addAttribute("notification", checkHetHan());
         map.addAttribute("subjectList", sdtl);
         map.addAttribute("classList", cdtol);
         map.addAttribute("username", username);

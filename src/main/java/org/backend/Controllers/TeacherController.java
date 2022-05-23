@@ -69,7 +69,7 @@ public class TeacherController {
         String masv;
         String username;
         String name;
-        String fileName;
+        List<String> fileName;
 
         public int getId() {
             return id;
@@ -103,11 +103,11 @@ public class TeacherController {
             this.name = name;
         }
 
-        public String getFileName() {
+        public  List<String> getFileName() {
             return fileName;
         }
 
-        public void setFileName(String fileName) {
+        public void setFileName(List<String> fileName) {
             this.fileName = fileName;
         }
     }
@@ -247,35 +247,37 @@ public class TeacherController {
             cdt.setStudentId(msv);
             cds.insert(cdt);
         }
-        return new RedirectView("Teacher/chamDiem?id=" + id + "&success=true");
+        return new RedirectView("chamDiem?id=" + id + "&success=true");
     }
 
     @RequestMapping(value = "/chamDiem")
-    public String chamDiem(@RequestParam(value = "success", required = false) String success, ModelMap map, HttpServletRequest request, @RequestParam(value = "id", required = false) int id) throws IOException {
+    public String chamDiem(@RequestParam(value = "success", required = false) String success, ModelMap map, HttpServletRequest request, @RequestParam(value = "id", required = false) int id, @RequestParam(value = "loptinchi", required = false) String loptinchi) throws IOException {
         List<studentBaiTapDTO> stbtd = sbts.getByBaiTapId(id);
-        List<filesDTO> fileNops = fs.getAll();
         List<baiTapNop> fileNops1 = new ArrayList<>();
         int thangDiem = bts.getById(id).getThangDiem();
         int i = 0;
         for (studentBaiTapDTO stbt : stbtd) {
+            AccountDTO acd = accountService.getByUserName(stbt.getUsername());
+            SinhVienDTO svd = studentService.getById(acd.getStudentId());
             baiTapNop fn = new baiTapNop();
-            for (filesDTO flsdt : fileNops) {
-                if (stbt.getBaiTapId() == flsdt.getBaiTapId()) {
-                    AccountDTO acd = accountService.getByUserName(stbt.getUsername());
-                    SinhVienDTO svd = studentService.getById(acd.getTeacherId());
-                    fn.setId(i);
-                    fn.setUsername(stbt.getUsername());
-                    fn.setName(svd.getTenSV());
-                    fn.setMasv(svd.getMasv());
-                    fn.setFileName(flsdt.getFilename());
-                    fileNops1.add(fn);
+            fn.setId(i);
+            fn.setUsername(stbt.getUsername());
+            fn.setName(svd.getTenSV());
+            fn.setMasv(svd.getMasv());
+            List<String> lsfn = new ArrayList();
+            for (filesDTO flsdt : fs.getAll()) {
+                if (stbt.getId() == flsdt.getNopBaiTapId()) {
+                    lsfn.add(flsdt.getFilename());
                 }
-            }
+            }	
+            fn.setFileName(lsfn);
+            fileNops1.add(fn);
             i += 1;
         }
         if (success != null) {
             map.addAttribute("success", "Yes");
         }
+        map.addAttribute("loptinchi", loptinchi);
         map.addAttribute("baiTapid", id);
         map.addAttribute("thangDiem", thangDiem);
         map.addAttribute("baitapnop", fileNops1);
@@ -417,6 +419,7 @@ public class TeacherController {
         } catch (Exception dfe) {
             dfe.printStackTrace();
         }
+        map.addAttribute("loptinchi", btd.getLoptinchi());
         map.addAttribute("urlToClasse", "Teacher");
         map.addAttribute("myFile", fdt);
         map.addAttribute("tenBaiTap", btd.getTenBaiTap());

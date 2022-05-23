@@ -88,7 +88,7 @@
                 </a>
                 <c:if test="${urlToClasse.equals('Teacher')}">
 
-                    <a href="/projectAPI/${urlToClasse}/chamDiem?id=${id}" style="width: 235px; margin-top: 15px; text-align: center; padding: 0px; height: 50px" class="btn btn-sm btn-white">
+                    <a href="/projectAPI/${urlToClasse}/chamDiem?id=${id}&loptinchi=${loptinchi}" style="width: 235px; margin-top: 15px; text-align: center; padding: 0px; height: 50px" class="btn btn-sm btn-white">
                         <span style="
     margin-top: 5px;
     font-size: 20px;
@@ -116,7 +116,7 @@
                 </div>
                 ${noiDungBaiTap}
                 <c:forEach var="file" items="${myFile}">
-                    <a href="<c:url value="/upload/baiTap/${file.filename}"></c:url>" download>
+                    <a href="<c:url value="/upload/${loptinchi}/BaiTap/${file.filename}"></c:url>" download>
                         <span style="color: blue">${file.filename}</span>
                     </a><br/>
                 </c:forEach>
@@ -124,10 +124,48 @@
             <div class="col-4">
                 <c:choose>
                     <c:when test="${role.equals('STUDENT')}">
-                        <form action="/projectAPI/nopBaiTap?id=${id}" id="formNop" method="post"
-                              enctype="multipart/form-data">
-                            <div class="row">
-                                <div class="col">
+                        <c:choose>
+                            <c:when test="${hethan != true}">
+                                <c:choose>
+                                    <c:when test="${filesdto != null}">
+                                        <form action="/projectAPI/Student/huyNopBaiTap?id=${id}" id="formHuy" method="post">
+                                            <div class="row">
+                                                <div class="col">
+                                                <span id="nopFile">
+<%--                                    <input type="text" name="username" value="${username}">--%>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                         class="bi bi-paperclip" viewBox="0 0 16 16">
+                                        <path d="M4.5 3a2.5 2.5 0 0 1 5 0v9a1.5 1.5 0 0 1-3 0V5a.5.5 0 0 1 1 0v7a.5.5 0 0 0 1 0V3a1.5 1.5 0 1 0-3 0v9a2.5 2.5 0 0 0 5 0V5a.5.5 0 0 1 1 0v7a3.5 3.5 0 1 1-7 0V3z"/>
+                                    </svg>
+                                    Nộp file <br>
+                                    <c:forEach var="file" items="${filesdto}">
+                                        <a href="<c:url value="/upload/${loptinchi}/hocsinh/${file.filename}"></c:url>" download>
+                                            <span style="color: blue">${file.filename}</span>
+                                        </a><br/>
+                                    </c:forEach>
+                                </span>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div style="cursor: pointer; width: 278px; margin-top: 15px; text-align: center; height: 35px; vertical-align: middle"
+                                                         class="btn btn-sm btn-white" onclick="submitForm()">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                                             class="bi bi-plus-circle" viewBox="0 0 16 16">
+                                                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                                            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                                                        </svg>
+                                                        <span>Hủy nộp<span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <form action="/projectAPI/Student/nopBaiTap?id=${id}" id="formNop" method="post"
+                                              enctype="multipart/form-data">
+                                            <div class="row">
+                                                <div class="col">
                                 <span id="nopFile">
 <%--                                    <input type="text" name="username" value="${username}">--%>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -144,7 +182,7 @@
                                            style="width: 278px; margin-top: 15px; text-align: center; padding: 0px; height: 35px"
                                            value="Thêm hoặc tạo +" class="btn btn-sm btn-white">
                                 </span>
-                                    <span id="lienKet" style="display: none">
+                                                    <span id="lienKet" style="display: none">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                          class="bi bi-link" viewBox="0 0 16 16">
                                         <path d="M6.354 5.5H4a3 3 0 0 0 0 6h3a3 3 0 0 0 2.83-4H9c-.086 0-.17.01-.25.031A2 2 0 0 1 7 10.5H4a2 2 0 1 1 0-4h1.535c.218-.376.495-.714.82-1z"/>
@@ -153,8 +191,8 @@
                                     Liên kết
                                     <input class="form-control" name="link" type="text"/>
                                 </span>
-                                    <br>
-                                    <span id="lienKetSpan" style="cursor: pointer;" onclick="lienket()">
+                                                    <br>
+                                                    <span id="lienKetSpan" style="cursor: pointer;" onclick="lienket()">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                          class="bi bi-link" viewBox="0 0 16 16">
                                         <path d="M6.354 5.5H4a3 3 0 0 0 0 6h3a3 3 0 0 0 2.83-4H9c-.086 0-.17.01-.25.031A2 2 0 0 1 7 10.5H4a2 2 0 1 1 0-4h1.535c.218-.376.495-.714.82-1z"/>
@@ -162,41 +200,62 @@
                                     </svg>
                                     Liên kết
                                 </span>
-                                    <span id="inputSpand" style="cursor: pointer; display: none;" onclick="inputSpan()">
+                                                    <span id="inputSpand" style="cursor: pointer; display: none;" onclick="inputSpan()">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                          class="bi bi-paperclip" viewBox="0 0 16 16">
                                         <path d="M4.5 3a2.5 2.5 0 0 1 5 0v9a1.5 1.5 0 0 1-3 0V5a.5.5 0 0 1 1 0v7a.5.5 0 0 0 1 0V3a1.5 1.5 0 1 0-3 0v9a2.5 2.5 0 0 0 5 0V5a.5.5 0 0 1 1 0v7a3.5 3.5 0 1 1-7 0V3z"/>
                                     </svg>
                                     Nộp file
                                 </span>
-                                </div>
-                            </div>
-                            <br>
-                            <div class="row">
-                                <div class="col">
-                                    <div style="cursor: pointer; width: 278px; margin-top: 15px; text-align: center; height: 35px; vertical-align: middle"
-                                         class="btn btn-sm btn-white" onclick="submitForm()">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                             class="bi bi-plus-circle" viewBox="0 0 16 16">
-                                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                                            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-                                        </svg>
-                                        <span>nộp bài tập<span>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div style="cursor: pointer; width: 278px; margin-top: 15px; text-align: center; height: 35px; vertical-align: middle"
+                                                         class="btn btn-sm btn-white" onclick="submitForm()">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                                             class="bi bi-plus-circle" viewBox="0 0 16 16">
+                                                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                                            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                                                        </svg>
+                                                        <span>nộp bài tập<span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </c:otherwise>
+                                </c:choose>
+                            </c:when>
+                            <c:otherwise>
+                                <h4 class="h4" style="color: red">Đã hết hạn.</h4>
+                            </c:otherwise>
+                        </c:choose>
+
                     </c:when>
                     <c:otherwise>
-                        <div style="cursor: pointer; width: 278px; margin-top: 15px; text-align: center; height: 35px; vertical-align: middle"
-                             class="btn btn-sm btn-white" onclick="submitForm()">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                 class="bi bi-plus-circle" viewBox="0 0 16 16">
-                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                                <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-                            </svg>
-                            <span>sửa bài tập<span>
-                        </div>
+                        <a href="/Teacher/xoaBaiTap?id=${id}" style="text-decoration: none">
+                            <div style="cursor: pointer; width: 278px; margin-top: 15px; text-align: center; height: 35px; vertical-align: middle"
+                                 class="btn btn-sm btn-white">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                     class="bi bi-plus-circle" viewBox="0 0 16 16">
+                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                    <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                                </svg>
+                                <span>sửa bài tập<span>
+                            </div>
+                        </a>
+                        <a href="/Teacher/xoaBaiTap?id=${id}" style="text-decoration: none">
+                            <div style="cursor: pointer; width: 278px; margin-top: 15px; text-align: center; height: 35px; vertical-align: middle"
+                                 class="btn btn-sm btn-white">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                     class="bi bi-plus-circle" viewBox="0 0 16 16">
+                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                    <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                                </svg>
+                                <span>Xóa bài tập<span>
+                            </div>
+                        </a>
                     </c:otherwise>
                 </c:choose>
 
@@ -223,6 +282,7 @@
     var inputSpand = document.getElementById("inputSpand");
     var formNop = document.getElementById("formNop");
     var container = document.getElementById("container");
+    var formHuy = document.getElementById("formHuy")
 
     $(document).ready(function () {
         var x = 1;
@@ -266,6 +326,10 @@
 
     function submitForm() {
         formNop.submit();
+    }
+
+    function submitHuyForm() {
+        formHuy.submit();
     }
 </script>
 </body>

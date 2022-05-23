@@ -9,10 +9,17 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -49,34 +56,14 @@ public class StudentControllers {
 
     @Autowired
     fileService fs;
-//    List<notificationBaiTap> notifls = new ArrayList<>();
+
+    @Autowired
+    getServiceVoVan gsvv;
+
+    @Autowired
+    studentBaiTapService sbts;
+
     //hàm ko liên quan tới mapping
-    public notificationBaiTap getNearestDate(List<notificationBaiTap> notibts, Date currentDate) throws ParseException {
-        long minDiff = -1, currentTime = currentDate.getTime();
-        Date minDate = null;
-        int id = 0;
-        String tenbaitap = "";
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        notificationBaiTap notif = new notificationBaiTap();
-        for (notificationBaiTap notibt : notibts) {
-            Date date = sdf.parse(notibt.deadline);
-            long diff = Math.abs(currentTime - date.getTime());
-            if ((minDiff == -1) || (diff < minDiff)) {
-                minDiff = diff;
-                minDate = date;
-                id = notibt.getIdbaiTap();
-                tenbaitap = notibt.getTenbaiTap();
-            }
-        }
-//        System.out.println(id);
-//        System.out.println(tenbaitap);
-//        System.out.println(minDate);
-        notif.setIdbaiTap(id);
-        notif.setTenbaiTap(tenbaitap);
-        notif.setDeadline(sdf.format(minDate));
-//        notifls.add(notif);
-        return notif;
-    }
 
     public class notificationBaiTap {
         int idbaiTap;
@@ -109,40 +96,22 @@ public class StudentControllers {
     }
 
     public List<notificationBaiTap> checkHetHan() throws ParseException {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        AccountDTO acd = accountService.getByUserName(username);
         List<notificationBaiTap> ls1 = new ArrayList<>();
-        List<notificationBaiTap> ls2 = new ArrayList<>();
-        List<notificationBaiTap> ls3 = new ArrayList<>();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        Date deadline;
-        Date current = new Date();
-        String loptinchi = bts.getAll().get(0).getLoptinchi();
-        int i = 0;
-        for (baiTapDTO bdt : bts.getAll()) {
-            notificationBaiTap nbt = new notificationBaiTap();
-            deadline = sdf.parse(bdt.getDeadline());
-            if (current.compareTo(deadline) < 0) {
-                if (loptinchi.equals(bdt.getLoptinchi())) {
-                    nbt.setIdbaiTap(bdt.getId());
-                    nbt.setTenbaiTap(bdt.getTenBaiTap());
-                    nbt.setDeadline(bdt.getDeadline());
+        for (dkTinChiDTO bdt : learningService.getAll()) {
+            if (bdt.getMaSV().equals(acd.getStudentId())) {
+                notificationBaiTap nbt = new notificationBaiTap();
+                baiTapDTO btdt = gsvv.getByNotification(bdt.getIdLopTC(), username);
+                if (btdt.getId() != 0) {
+                    nbt.setTenbaiTap(btdt.getTenBaiTap());
+                    nbt.setIdbaiTap(btdt.getId());
+                    nbt.setDeadline(btdt.getDeadline());
                     ls1.add(nbt);
-                } else {
-                    loptinchi = bdt.getLoptinchi();
-                    if (!loptinchi.equals(bts.getAll().get(i).getLoptinchi())) {
-
-                    }
-                    ls1 = new ArrayList<>();
-                    nbt.setIdbaiTap(bdt.getId());
-                    nbt.setTenbaiTap(bdt.getTenBaiTap());
-                    nbt.setDeadline(bdt.getDeadline());
-                    ls1.add(nbt);
-                    getNearestDate(ls1, current);
                 }
             }
-            i += 1;
         }
-
-        return ls2;
+        return ls1;
     }
 //    @RequestMapping("/Profile")
 //    public String profile(ModelMap map, HttpServletRequest request) throws IOException {
@@ -183,17 +152,32 @@ public class StudentControllers {
         AccountDTO acd = accountService.getByUserName(username);
         int id = Integer.parseInt(request.getParameter("id"));
         baiTapDTO btd = bts.getById(id);
+        final String new_format = "dd-MM-yyyy";
+        final String old_format = "yyyy-MM-dd";
+        String old_dateS = btd.getDeadline();
+        String newStringDate = "";
+        SimpleDateFormat sdf = new SimpleDateFormat(old_format);
+        Date current = new Date();
+        Date deadline = sdf.parse(btd.getDeadline());
+        if (current.compareTo(deadline) > 0) {
+            map.addAttribute("hethan", "true");
+        }
         List<filesDTO> fdt = new ArrayList<>();
         for (filesDTO fd : fs.getAll()) {
             if (fd.getBaiTapId() == id) {
                 fdt.add(fd);
             }
         }
-        final String new_format = "dd-MM-yyyy";
-        final String old_format = "yyyy-MM-dd";
-        String old_dateS = btd.getDeadline();
-        String newStringDate = "";
-        SimpleDateFormat sdf = new SimpleDateFormat(old_format);
+        studentBaiTapDTO sbtd = gsvv.getByUserNameAndLopTinChiSBT(username, id);
+        if (sbtd.getUsername() != null) {
+            List<filesDTO> lsf = new ArrayList<>();
+            for (filesDTO fd : fs.getAll()) {
+                if (fd.getNopBaiTapId() == sbtd.getId()) {
+                    lsf.add(fd);
+                }
+            }
+            map.addAttribute("filesdto", lsf);
+        }
         try {
             Date d = sdf.parse(old_dateS);
             sdf.applyPattern(new_format);
@@ -201,6 +185,7 @@ public class StudentControllers {
         } catch (Exception dfe) {
             dfe.printStackTrace();
         }
+        map.addAttribute("notification", checkHetHan());
         map.addAttribute("role", "STUDENT");
         map.addAttribute("myFile", fdt);
         map.addAttribute("tenBaiTap", btd.getTenBaiTap());
@@ -285,24 +270,6 @@ public class StudentControllers {
                         monhoc = ltd.getIdMon();
                         for (baiTapDTO btd : bts.getAll()) {
                             if (btd.getLoptinchi().equals(ltd.getId())) {
-//                                System.out.println("sai username")
-//                                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-//                                Date deadline;
-//                                Date current = new Date();
-//                                deadline = sdf.parse(btd.getDeadline());
-//                                if (current.compareTo(deadline) < 0) {
-////                                    System.out.println("current comes after Deadline");
-////                                } else if (currentDate.compareTo(deadline) < 0) {
-////                                    System.out.println("current date comes before Deadline");
-////                                    btdt.add(btd);
-////                                } else if (currentDate.compareTo(deadline) == 0) {
-////                                    dates.add(deadline);
-//                                    notificationBaiTap nt = new notificationBaiTap();
-//                                    nt.setTenbaiTap(btd.getTenBaiTap());
-//                                    nt.setIdbaiTap(btd.getId());
-//                                    nt.setDeadline(btd.getDeadline());
-//                                    ntbt.add(nt);
-//                                }
                                 btdt.add(btd);
                             }
                         }
@@ -329,7 +296,7 @@ public class StudentControllers {
     }
 
     @RequestMapping("/hienThiSinhVien")
-    public String hienThiSV(ModelMap map, @RequestParam("id") String id) {
+    public String hienThiSV(ModelMap map, @RequestParam("id") String id) throws ParseException {
         List<SinhVienDTO> svds = new ArrayList<>();
         loptinchiDTO ltcd = classesService.getById(id);
         dkTinChiDTO dtcdt = new dkTinChiDTO();
@@ -343,6 +310,7 @@ public class StudentControllers {
                 svds.add(svdt);
             }
         }
+        map.addAttribute("notification", checkHetHan());
         map.addAttribute("baitapnop", svds);
         map.addAttribute("classId", id);
         map.addAttribute("monhoc", ltcd.getIdMon());
@@ -351,7 +319,7 @@ public class StudentControllers {
     }
 
     @RequestMapping(value = "diem")
-    public String hienThiDiem(ModelMap map, @RequestParam("id") int id) {
+    public String hienThiDiem(ModelMap map, @RequestParam("id") int id) throws ParseException {
         List<chamDiemDTO> chamDiemDTOS = new ArrayList<>();
         for (chamDiemDTO cdto : cds.getAll()) {
             if (cdto.getBaitapid() == id) {
@@ -363,8 +331,46 @@ public class StudentControllers {
             SinhVienDTO stdo = studentService.getById(cdt.getStudentId());
             studentDTOS.add(stdo);
         }
+        map.addAttribute("notification", checkHetHan());
         map.addAttribute("diems", chamDiemDTOS);
         map.addAttribute("studentdtos", studentDTOS);
         return "hienThiDiem";
+    }
+
+    @RequestMapping(value = "/nopBaiTap", method = RequestMethod.POST)
+    public RedirectView nopBaiTap(@RequestParam(name = "files", required = false) MultipartFile[] files, @RequestParam(name = "id") int id, @RequestParam(name = "link", required = false) String link) throws IOException {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+//        System.out.println(files.length);
+        studentBaiTapDTO stbd = new studentBaiTapDTO();
+        baiTapDTO btd = bts.getById(id);
+        filesDTO filesDTO = new filesDTO();
+        stbd.setUsername(username);
+        stbd.setLienket(link);
+        stbd.setBaiTapId(id);
+        sbts.insertWithFile(stbd);
+        String uploadDir = "C:\\Users\\phatn\\eclipse-workspace\\projectAPI\\uploads\\" + btd.getLoptinchi() + "\\hocsinh";
+
+        Path uploadPath = Paths.get(uploadDir);
+
+        if (!Files.exists(uploadPath)) {
+            Files.createDirectories(uploadPath);
+        }
+
+        for (MultipartFile file : files) {
+//            filename.add(file.getOriginalFilename());
+            filesDTO.setFilename(file.getOriginalFilename());
+            try (InputStream inputStream = file.getInputStream()) {
+                Path filePath = uploadPath.resolve(file.getOriginalFilename());
+                System.out.println(filePath.toFile().getAbsolutePath());
+                Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            filesDTO.setBaiTapId(0);
+            filesDTO.setNopBaiTapId(sbts.getLastId());
+            fs.insert(filesDTO);
+        }
+
+        return new RedirectView("baiTap?id="+id+"&success=true");
     }
 }

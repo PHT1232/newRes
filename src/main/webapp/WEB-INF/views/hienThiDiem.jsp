@@ -80,19 +80,19 @@
         <div class="content container-fluid">
             <div class="row">
                 <div class="col-9">
-                    <a href="/projectAPI_war/${urlToClasse}/baiTap?id=${baiTapid}" style="width: 235px; margin-top: 15px; text-align: center; padding: 0px; height: 50px" class="btn btn-sm btn-white">
+                    <a href="/projectAPI/${urlToClasse}/baiTap?id=${baiTapid}" style="width: 235px; margin-top: 15px; text-align: center; padding: 0px; height: 50px" class="btn btn-sm btn-white">
                                             <span style="
     margin-top: 5px;
     font-size: 20px;
     color: black;">Chi tiết bài tập</span>
                     </a>
-                    <a href="/projectAPI_war/${urlToClasse}/chamDiem?id=${baiTapid}" style="width: 235px; margin-top: 15px; text-align: center; padding: 0px; height: 50px" class="btn btn-sm btn-white">
+                    <a href="/projectAPI/${urlToClasse}/chamDiem?id=${baiTapid}&loptinchi=${loptinchi}" style="width: 235px; margin-top: 15px; text-align: center; padding: 0px; height: 50px" class="btn btn-sm btn-white">
                         <span style="
     margin-top: 5px;
     font-size: 20px;
     color: black;">Chấm điểm sinh viên</span>
                     </a>
-                    <a href="/projectAPI_war/${urlToClasse}/diem?id=${baiTapid}" style="width: 235px; margin-top: 15px; text-align: center; padding: 0px; height: 50px" class="btn btn-sm btn-white">
+                    <a href="/projectAPI/${urlToClasse}/diem?id=${baiTapid}" style="width: 235px; margin-top: 15px; text-align: center; padding: 0px; height: 50px" class="btn btn-sm btn-white">
                         <span style="
     margin-top: 5px;
     font-size: 20px;
@@ -105,8 +105,10 @@
                         <thead>
                         <tr>
                             <th>Mã sinh viên</th>
-                            <th>Tên học viên</th>
-                            <th>Số điện thoại</th>
+                            <th>Tên sinh viên</th>
+                            <th>Khoa học</th>
+                            <th>Địa chỉ</th>
+                            <th>Ngày sinh</th>
                             <th>Điểm</th>
                         </tr>
                         </thead>
@@ -114,10 +116,12 @@
                         <c:forEach var="student" items="${studentdtos}">
                             <tr>
                                 <td>${student.masv}</td>
-                                <td>${student.name}</td>
-                                <td>${student.sdt}</td>
+                                <td>${student.tenSV}</td>
+                                <td>${student.khoa}</td>
+                                <td>${student.quequan}</td>
+                                <td>${student.birthday}</td>
                                 <td>
-                                    <span style="color:greenyellow;">
+                                    <span style="color: blue;">
                                         <c:forEach var="diemt" items="${diems}">
                                             <c:if test="${diemt.studentId.equals(student.masv)}">
                                                 ${diemt.diem}
