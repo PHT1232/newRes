@@ -124,7 +124,7 @@
                                     <span style="color: blue;">
                                         <c:forEach var="diemt" items="${diems}">
                                             <c:if test="${diemt.studentId.equals(student.masv)}">
-                                                ${diemt.diem}
+                                                ${diemt.diem}/${diemt.thangDiem}
                                             </c:if>
                                         </c:forEach>
                                     </span>

@@ -95,7 +95,7 @@
     color: black;">Chấm điểm sinh viên</span>
                     </a>
                 </c:if>
-                <a style="width: 235px; margin-top: 15px; text-align: center; padding: 0px; height: 50px" class="btn btn-sm btn-white">
+                <a href="/projectAPI/${urlToClasse}/diem?id=${id}&loptinchi=${loptinchi}" style="width: 235px; margin-top: 15px; text-align: center; padding: 0px; height: 50px" class="btn btn-sm btn-white">
                         <span style="
                         margin-top: 5px;
                         font-size: 20px;
