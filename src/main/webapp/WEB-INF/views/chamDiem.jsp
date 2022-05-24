@@ -114,8 +114,10 @@
                     </select>
                     <input style="margin-bottom: 5px;" type="submit" class="btn btn-primary" value="Chấm điểm">
                 </div>
-                <div class="row" style="margin-top: 50px;">
+                <div class="row" style="margin-top: 30px;">
                     <h3>Các học viên đã nộp bài tập</h3>
+                </div>
+                <div class="row" style="margin-top: 30px;">
                     <table class="table">
                         <thead>
                         <tr>

@@ -2,12 +2,17 @@ package org.backend.Service.impl;
 
 import org.backend.DAO.getDAOVoVan;
 import org.backend.Entity.baiTap;
+import org.backend.Entity.files;
 import org.backend.Entity.studentBaiTap;
 import org.backend.Models.baiTapDTO;
+import org.backend.Models.filesDTO;
 import org.backend.Models.studentBaiTapDTO;
 import org.backend.Service.getServiceVoVan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class getServiceVoVanimpl implements getServiceVoVan {
@@ -40,5 +45,19 @@ public class getServiceVoVanimpl implements getServiceVoVan {
         sbtd.setBaiTapId(sbt.getBaiTapId());
         sbtd.setLienket(sbt.getLienket());
         return sbtd;
+    }
+
+    @Override
+    public List<filesDTO> getFileByBaiTapId(int id) {
+        List<filesDTO> ls = new ArrayList();
+        for (files f : gdvv.getFileByBaiTapId(id)) {
+            filesDTO fdt = new filesDTO();
+            fdt.setId(f.getId());
+            fdt.setFilename(f.getFilename());
+            fdt.setBaiTapId(f.getBaiTapId());
+            fdt.setNopBaiTapId(f.getNopBaiTapId());
+            ls.add(fdt);
+        }
+        return ls;
     }
 }

@@ -64,6 +64,8 @@ public class TeacherController {
     @Autowired
     svLopQLService svqls;
 
+    @Autowired
+    getServiceVoVan gsvv;
     public class baiTapNop {
         int id;
         String masv;
@@ -211,6 +213,15 @@ public class TeacherController {
 ////        }
 ////        return "login";
 ////    }
+
+    @RequestMapping(value = "suaBaiTap", method = RequestMethod.GET)
+    public String suaBaiTap(ModelMap map, @RequestParam(value = "id") int id) {
+        baiTapDTO btd = bts.getById(id);
+        List<filesDTO> fdt = gsvv.getFileByBaiTapId(id);
+        map.addAttribute("baiTap", btd);
+        map.addAttribute("files", fdt);
+        return "updateBaiTap";
+    }
 
     @RequestMapping(value = "/addBaiTap", method = RequestMethod.GET)
     public String baiTap(@RequestParam(value = "success", required = false) String success, HttpServletRequest request, ModelMap map, @RequestParam(value = "className", required = false) String className, @RequestParam(value = "classID", required = false) String classID) throws IOException {

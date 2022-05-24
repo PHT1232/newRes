@@ -234,7 +234,7 @@
 
                     </c:when>
                     <c:otherwise>
-                        <a href="/Teacher/xoaBaiTap?id=${id}" style="text-decoration: none">
+                        <a href="/projectAPI/Teacher/suaBaiTap?id=${id}" style="text-decoration: none">
                             <div style="cursor: pointer; width: 278px; margin-top: 15px; text-align: center; height: 35px; vertical-align: middle"
                                  class="btn btn-sm btn-white">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -245,7 +245,7 @@
                                 <span>sửa bài tập<span>
                             </div>
                         </a>
-                        <a href="/Teacher/xoaBaiTap?id=${id}" style="text-decoration: none">
+                        <a href="/projectAPI/Teacher/xoaBaiTap?id=${id}" style="text-decoration: none">
                             <div style="cursor: pointer; width: 278px; margin-top: 15px; text-align: center; height: 35px; vertical-align: middle"
                                  class="btn btn-sm btn-white">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"

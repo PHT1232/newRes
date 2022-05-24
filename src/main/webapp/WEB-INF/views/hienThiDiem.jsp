@@ -99,8 +99,10 @@
     color: black;">Điểm sinh viên</span>
                     </a>
                 </div>
-                <div class="row">
-                    <h3>Các học viên đã nộp bài tập</h3>
+                <div class="row" style="margin-top: 15px">
+                    <h3>Điểm của các học viên</h3>
+                </div>
+                    <div class="row" style="margin-top: 15px">
                     <table class="table">
                         <thead>
                         <tr>
